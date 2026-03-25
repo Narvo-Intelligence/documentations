@@ -1,32 +1,40 @@
-# Current Documentation
+# Current Documentation — Design System v3
 
-> Active documentation for Narvo Intelligence (March 2026). Enhanced brand direction.
+> Active documentation as of March 2026. All design and brand files reflect Design System v3 (mathematical foundations, OKLCH colour science, differentiated typefaces).
 
-## Quick reference
+## Files
 
-| Need to know about... | Read this |
-|----------------------|-----------|
-| The full company strategy | `business/Narvo_Intelligence_Company_Blueprint.docx` |
-| Three-brand identity system | `brand/Narvo_Brand_Guidelines.md` |
-| Consumer app concept & flows | `product/Narvo_B2C_Product_Document.docx` |
-| B2B platform & NaaS APIs | `product/Narvo_Platform_B2B_Document.docx` |
-| Corporate entity & operations | `business/Narvo_Intelligence_Parent_Document.docx` |
-| Design tokens & components | `design/Narvo_Design_System.md` |
-| CSS migration guide | `design/Narvo_UX_Design_Pivot_Spec.md` |
-| In-app text (all screens) | `design/Narvo_App_Copy.md` |
-| Codebase architecture | `technical/TECHNICAL_REFERENCE.md` |
-| Agent/project rules | `configuration/Project_Configuration.md` |
-| Investor pitch | `pitch/Narvo_Intelligence_Pitch_Deck.pptx` |
+### Brand
+- **Narvo_Brand_Guidelines_v3.md** — Three-brand identity: OKLCH palettes, General Sans / Geist Sans / Instrument Sans typefaces, mathematical foundations
 
-## Prototypes
+### Business
+- **Narvo_Intelligence_Company_Blueprint.docx** — Master strategy (8 parts)
+- **Narvo_Intelligence_Parent_Document.docx** — Corporate entity: legal, operations, investor relations
 
-Interactive React prototypes (`.jsx` files) — designed to run as Claude Artifacts or in any React environment:
+### Design
+- **Narvo_Design_System_v3.md** — Complete mathematical foundations (787 lines): OKLCH colour, modular type scales, 8px grid, spring physics, 3-layer token architecture
+- **Narvo_App_Copy.md** — All user-facing text — warm, human, culturally grounded
 
-- `narvo_concept_prototype.jsx` — "Spotify for News" full app concept
-- `narvo_enhanced_brand.jsx` — Enhanced brand board with before/after
-- `narvo_brand_board.jsx` — Original brand separation exploration
-- `narvo_brand_variations.jsx` — Three styling variation options
+### Product
+- **Narvo_B2C_Product_Document.docx** — Consumer app concept, user flows, tech stack, MVP roadmap
+- **Narvo_B2C_Product_Document_v2.docx** — Updated product document
+- **Narvo_Platform_B2B_Document.docx** — NaaS APIs, target clients, commercial model
 
-## Repo files
+### Technical
+- **TECHNICAL_REFERENCE.md** — Architecture, data model, infrastructure (900+ lines)
 
-The `repo-files/` directory contains updated files intended for the [narvo_news](https://github.com/Narvo-Intelligence/narvo_news) repository root (`README.md`, `Narvo_Overview.md`).
+### Pitch
+- **Narvo_Intelligence_Pitch_Deck.pptx** — 12-slide investor presentation
+
+### Prototypes
+- **narvo_design_system_v3.jsx** — Interactive three-brand showcase (v3 palettes, type scales, radii, math foundations)
+- **narvo_concept_prototype.jsx** — "Spotify for News" full app prototype
+- **narvo_concept_prototype_v2.jsx** — Updated concept prototype
+
+### Repo Files
+- **README.md** — For narvo_news repo root
+- **Narvo_Overview.md** — Product overview
+
+---
+
+Previous design system (v2 "Enhanced Direction" — Clash Display + Satoshi, burnt orange, warm cream) has been archived to `legacy/v2-enhanced/`.
