@@ -71,6 +71,17 @@ documentations/
 |----------|--------|-------------|
 | [Technical Reference](current/technical/TECHNICAL_REFERENCE.md) | MD | Architecture, data model, infrastructure — 900+ lines |
 
+### Research
+
+| Document | Format | Description |
+|----------|--------|-------------|
+| [Research Index](current/research/README.md) | MD | Overview, context, how-to-use |
+| [01 — Stack Analysis (Free MVP)](current/research/01_Stack_Analysis_Free_MVP.md) | MD | Current stack audit, free alternatives, MVP cost table |
+| [02 — Premium Tools Roadmap](current/research/02_Premium_Tools_Roadmap.md) | MD | Paystack, Backblaze+Cloudflare CDN, Recombee, ElevenLabs — phased adoption |
+| [03 — UX Design Patterns](current/research/03_UX_Design_Patterns.md) | MD | Landing page, feed, nav, audio player, onboarding, microinteractions |
+| [04 — Competitor Analysis](current/research/04_Competitor_Analysis.md) | MD | Opera News, Pulse NG, Curio (closed), Artifact (closed), African app design lessons |
+| [05 — Strategic Opportunities](current/research/05_Strategic_Opportunities.md) | MD | Narvo's 5 advantages: Pidgin audio, WhatsApp distribution, Truth Tag, offline, voice-first |
+
 ### Pitch
 
 | Document | Format | Description |

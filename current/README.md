@@ -23,6 +23,16 @@
 ### Technical
 - **TECHNICAL_REFERENCE.md** — Architecture, data model, infrastructure (900+ lines)
 
+### Research
+Pre-revamp research for the Narvo B2C consumer app restructure (March 2026). Five documents covering stack analysis, premium tools, UX design patterns, competitor analysis, and strategic opportunities.
+
+- **[research/README.md](./research/README.md)** — Index and overview of the research programme
+- **[research/01_Stack_Analysis_Free_MVP.md](./research/01_Stack_Analysis_Free_MVP.md)** — Free MVP stack: current audit, alternatives, cost table (~$0–5/month)
+- **[research/02_Premium_Tools_Roadmap.md](./research/02_Premium_Tools_Roadmap.md)** — Scaling-phase tools: Paystack, Backblaze+Cloudflare CDN, Recombee, ElevenLabs
+- **[research/03_UX_Design_Patterns.md](./research/03_UX_Design_Patterns.md)** — Landing page, feed, nav, audio player, onboarding, microinteractions
+- **[research/04_Competitor_Analysis.md](./research/04_Competitor_Analysis.md)** — Opera News, Pulse NG, Curio (closed), Artifact (closed), African app design lessons
+- **[research/05_Strategic_Opportunities.md](./research/05_Strategic_Opportunities.md)** — Narvo's 5 decisive advantages, go-to-market priorities, revenue model
+
 ### Pitch
 - **Narvo_Intelligence_Pitch_Deck.pptx** — 12-slide investor presentation
 
