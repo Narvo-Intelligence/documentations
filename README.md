@@ -1,6 +1,6 @@
 # Narvo Intelligence — Documentation
 
-> Central archive for all Narvo startup documentation. Legacy and current docs, organised by category.
+> Central archive for all Narvo startup documentation. Current and legacy docs, organised by category.
 
 **Narvo Intelligence** is the parent company behind [Narvo](https://github.com/Narvo-Intelligence/narvo_news) (B2C consumer app) and Narvo Platform (B2B NaaS).
 
@@ -11,21 +11,14 @@
 ```
 documentations/
 ├── current/                        ← Active documentation (March 2026, Design System v3)
-│   ├── brand/                      Brand Guidelines v3 (OKLCH, differentiated typefaces)
-│   ├── business/                   Company Blueprint, Parent entity doc
-│   ├── product/                    B2C Product Document, B2B Platform Document
-│   ├── design/                     Design System v3, App Copy
+│   ├── design/                     Design System v3, Brand Guidelines v3, App Copy, prototypes
+│   ├── business/                   Blueprint, Parent entity, B2C Product, B2B Platform
 │   ├── technical/                  Technical reference (architecture, data model)
-│   ├── pitch/                      Investor pitch deck (.pptx)
-│   ├── prototypes/                 Interactive React prototypes (.jsx)
-│   └── repo-files/                 Files intended for narvo_news repo root
+│   ├── research/                   Stack analysis, competitors, UX patterns, strategy
+│   └── pitch/                      Investor pitch deck (.pptx)
 │
 └── legacy/                         ← Archived documentation
     ├── v2-enhanced/                Enhanced direction (Mar 2026) — superseded by v3
-    │   ├── brand/                  v2 Brand Guidelines (Clash Display + Satoshi)
-    │   ├── design/                 v2 Design System, UX Pivot Spec
-    │   ├── configuration/          v2 Project Configuration
-    │   └── prototypes/             v2 brand boards and variations
     ├── business/                   Swiss Grid era pitch deck, monetisation, NaaS
     ├── design/                     Swiss Grid design system, old app copy
     ├── technical/                  Old technical docs, PWA/Rust strategy
@@ -38,32 +31,24 @@ documentations/
 
 ## Current Documents
 
-### Brand
-
-| Document | Format | Description |
-|----------|--------|-------------|
-| [Brand Guidelines v3](current/brand/Narvo_Brand_Guidelines_v3.md) | MD | Three-brand identity: OKLCH palettes, differentiated typefaces, mathematical foundations |
-
-### Business & Strategy
-
-| Document | Format | Description |
-|----------|--------|-------------|
-| Company Blueprint | DOCX | Master strategy document — 8 parts, all aspects of the startup |
-| Parent Entity Document | DOCX | Narvo Intelligence corporate: legal, operations, investor relations |
-
-### Product
-
-| Document | Format | Description |
-|----------|--------|-------------|
-| B2C Product Document | DOCX | Narvo consumer app: concept, user flows, screens, tech stack, MVP roadmap |
-| B2B Platform Document | DOCX | Narvo Platform: NaaS APIs, target clients, commercial model, roadmap |
-
 ### Design
 
 | Document | Format | Description |
 |----------|--------|-------------|
 | [Design System v3](current/design/Narvo_Design_System_v3.md) | MD | Mathematical foundations: OKLCH colour, modular type scales, 8px grid, spring physics, 3-layer tokens — 787 lines |
+| [Brand Guidelines v3](current/design/Narvo_Brand_Guidelines_v3.md) | MD | Three-brand identity: OKLCH palettes, differentiated typefaces, tone per brand |
 | [App Copy](current/design/Narvo_App_Copy.md) | MD | All user-facing text — warm, human, culturally grounded |
+| narvo_design_system_v3.jsx | JSX | Interactive three-brand showcase — palettes, type scales, radii, math foundations |
+| narvo_concept_prototype_v2.jsx | JSX | "Spotify for News" app prototype — feed, player, playlists |
+
+### Business & Product
+
+| Document | Format | Description |
+|----------|--------|-------------|
+| Company Blueprint | DOCX | Master strategy document — 8 parts, all aspects of the startup |
+| Parent Entity Document | DOCX | Narvo Intelligence corporate: legal, operations, investor relations |
+| B2C Product Document v2 | DOCX | Narvo consumer app: "Spotify for News" concept, user flows, tech stack, MVP roadmap |
+| B2B Platform Document | DOCX | Narvo Platform: NaaS APIs, target clients, commercial model, roadmap |
 
 ### Technical
 
@@ -77,31 +62,17 @@ documentations/
 |----------|--------|-------------|
 | [Research Index](current/research/README.md) | MD | Overview, context, how-to-use |
 | [01 — Stack Analysis (Free MVP)](current/research/01_Stack_Analysis_Free_MVP.md) | MD | Current stack audit, free alternatives, MVP cost table |
-| [02 — Premium Tools Roadmap](current/research/02_Premium_Tools_Roadmap.md) | MD | Paystack, Backblaze+Cloudflare CDN, Recombee, ElevenLabs — phased adoption |
-| [03 — UX Design Patterns](current/research/03_UX_Design_Patterns.md) | MD | Landing page, feed, nav, audio player, onboarding, microinteractions |
-| [04 — Competitor Analysis](current/research/04_Competitor_Analysis.md) | MD | Opera News, Pulse NG, Curio (closed), Artifact (closed), African app design lessons |
-| [05 — Strategic Opportunities](current/research/05_Strategic_Opportunities.md) | MD | Narvo's 5 advantages: Pidgin audio, WhatsApp distribution, Truth Tag, offline, voice-first |
+| [02 — Premium Tools Roadmap](current/research/02_Premium_Tools_Roadmap.md) | MD | Paystack, CDN, Recombee, ElevenLabs — phased adoption |
+| [03 — UX Design Patterns](current/research/03_UX_Design_Patterns.md) | MD | Landing page, feed, nav, audio player, onboarding, micro-interactions |
+| [04 — Competitor Analysis](current/research/04_Competitor_Analysis.md) | MD | Opera News, Pulse NG, Curio, Artifact, African app design lessons |
+| [05 — Strategic Opportunities](current/research/05_Strategic_Opportunities.md) | MD | Pidgin audio, WhatsApp distribution, Truth Tag, offline, voice-first |
+| [06 — Landing Page Implementation](current/research/06_Landing_Page_Implementation.md) | MD | Implementation guide for the Narvo landing page |
 
 ### Pitch
 
 | Document | Format | Description |
 |----------|--------|-------------|
 | Pitch Deck | PPTX | 12-slide investor presentation with Narvo Intelligence branding |
-
-### Prototypes
-
-| File | Description |
-|------|-------------|
-| narvo_design_system_v3.jsx | Interactive three-brand showcase — palettes, type scales, radii, cards, mathematical foundations |
-| narvo_concept_prototype.jsx | "Spotify for News" — full app prototype with 4 tabs, player, playlists |
-| narvo_concept_prototype_v2.jsx | Updated concept prototype |
-
-### Repo Files
-
-Files intended for the [narvo_news](https://github.com/Narvo-Intelligence/narvo_news) repository root:
-
-- `README.md` — Repo README
-- `Narvo_Overview.md` — Product overview
 
 ---
 
@@ -142,7 +113,7 @@ Three-layer system: **Primitives** (brand-specific raw values) → **Semantics**
 
 ### v2 Enhanced Direction (Archived)
 
-The `legacy/v2-enhanced/` directory contains the "Enhanced Direction" docs from early March 2026 — the Clash Display + Satoshi era with burnt orange primary and warm cream background. These are superseded by Design System v3.
+The `legacy/v2-enhanced/` directory contains the "Enhanced Direction" docs from early March 2026 — the Clash Display + Satoshi era with burnt orange primary and warm cream background. Superseded by Design System v3.
 
 ### Swiss Grid Era (Archived)
 
