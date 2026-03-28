@@ -1,14 +1,11 @@
-# Current Documentation — Design System v3
+# Current Documentation — Design System v4
 
-> Active documentation as of March 2026. 19 files across 5 directories.
+> Active documentation as of March 2026. Design System v4 supersedes v3 across all brand files.
 
 ## design/
 
-- **Narvo_Design_System_v3.md** — Complete mathematical foundations (787 lines): OKLCH colour, modular type scales, 8px grid, spring physics, 3-layer token architecture
-- **Narvo_Brand_Guidelines_v3.md** — Three-brand identity: OKLCH palettes, General Sans / Geist Sans / Instrument Sans, tone per brand
+- **Narvo_Design_System_v4.md** — Complete brand and UI reference (v4): continent fragment mark, six-colour system, warm neutral scale, Fraunces + Plus Jakarta Sans + Geist Mono typography, full token architecture, component patterns — 820+ lines
 - **Narvo_App_Copy.md** — All user-facing text — warm, human, culturally grounded
-- **narvo_design_system_v3.jsx** — Interactive three-brand showcase prototype
-- **narvo_concept_prototype_v2.jsx** — "Spotify for News" app prototype
 
 ## business/
 
