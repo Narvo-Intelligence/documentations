@@ -10,15 +10,16 @@
 
 ```
 documentations/
-├── current/                        ← Active documentation (March 2026, Design System v3)
-│   ├── design/                     Design System v3, Brand Guidelines v3, App Copy, prototypes
+├── current/                        ← Active documentation (March 2026, Design System v4)
+│   ├── design/                     Design System v4, App Copy
 │   ├── business/                   Blueprint, Parent entity, B2C Product, B2B Platform
 │   ├── technical/                  Technical reference (architecture, data model)
 │   ├── research/                   Stack analysis, competitors, UX patterns, strategy
 │   └── pitch/                      Investor pitch deck (.pptx)
 │
 └── legacy/                         ← Archived documentation
-    ├── v2-enhanced/                Enhanced direction (Mar 2026) — superseded by v3
+    ├── design/                     Design System v3, Brand Guidelines v3, v3 JSX prototypes
+    ├── v2-enhanced/                Enhanced direction (Mar 2026) — superseded by v3/v4
     ├── business/                   Swiss Grid era pitch deck, monetisation, NaaS
     ├── design/                     Swiss Grid design system, old app copy
     ├── technical/                  Old technical docs, PWA/Rust strategy
@@ -35,11 +36,8 @@ documentations/
 
 | Document | Format | Description |
 |----------|--------|-------------|
-| [Design System v3](current/design/Narvo_Design_System_v3.md) | MD | Mathematical foundations: OKLCH colour, modular type scales, 8px grid, spring physics, 3-layer tokens — 787 lines |
-| [Brand Guidelines v3](current/design/Narvo_Brand_Guidelines_v3.md) | MD | Three-brand identity: OKLCH palettes, differentiated typefaces, tone per brand |
+| [Design System v4](current/design/Narvo_Design_System_v4.md) | MD | Complete brand and UI reference — continent fragment mark, six-colour system, warm neutral scale, three-typeface system, full token architecture — 820+ lines |
 | [App Copy](current/design/Narvo_App_Copy.md) | MD | All user-facing text — warm, human, culturally grounded |
-| narvo_design_system_v3.jsx | JSX | Interactive three-brand showcase — palettes, type scales, radii, math foundations |
-| narvo_concept_prototype_v2.jsx | JSX | "Spotify for News" app prototype — feed, player, playlists |
 
 ### Business & Product
 
@@ -76,48 +74,62 @@ documentations/
 
 ---
 
-## Design System v3 (March 2026)
+## Design System v4 (March 2026)
 
-Built from mathematical first principles. OKLCH colour science. Modular type scales. Physics-based motion.
+Built from mathematical first principles with a new brand identity direction.
 
 | | Narvo Intelligence | Narvo (B2C) | Narvo Platform (B2B) |
 |---|---|---|---|
-| **Display Font** | Instrument Sans | General Sans | Geist Sans |
-| **Body Font** | Inter | General Sans | Geist Sans |
-| **Mono Font** | Geist Mono | Geist Mono | Geist Mono |
+| **Display Font** | Instrument Sans | Fraunces (variable serif) | Geist Sans |
+| **Body Font** | Inter | Plus Jakarta Sans | Geist Sans |
+| **Label/Meta Font** | Geist Mono | Geist Mono | Geist Mono |
 | **Type Ratio** | 1.333 (Perfect Fourth) | 1.250 (Major Third) | 1.200 (Minor Third) |
-| **Background** | `#FDFDFD` clean white | `#FDF8F0` warm champagne | `#0D0F1A` near black |
-| **Primary** | `#5B52EF` deep indigo | `#D4850A` sunset amber | `#22AAD0` electric cyan |
-| **Accent** | `#06D6A0` mint | `#5B5BD6` adire indigo | `#34D399` emerald |
+| **Background** | `#FDFDFD` clean white | `#F3E8CC` Cream | `#0D0F1A` near black |
+| **Primary** | `#5B52EF` deep indigo | `#18542A` Forest Green | `#22AAD0` electric cyan |
+| **CTA** | — | `#F96015` Crisp Carrot | — |
+| **Accent** | `#06D6A0` mint | `#FFC926` Sunshine Yellow | `#34D399` emerald |
 | **Card Radius** | 6–8px | 16–20px | 8–10px |
-| **Shadow Tint** | Neutral | Warm amber | None (surface tint) |
+| **Shadow Tint** | Neutral | Warm green `rgba(24,84,42,·)` | None (surface tint) |
 | **Default Mode** | Light | Light | Dark |
+
+### B2C Six-Colour System
+
+**Brand Identity:** Forest Green `#18542A` · Sunshine Yellow `#FFC926` · Cream `#F3E8CC`
+
+**Functional:** Crisp Carrot `#F96015` (all CTAs) · Tomato Burst `#D52518` (urgency only) · Kiwi `#9ABC05` (Truth Tag / verified only)
 
 ### Mathematical Foundations
 
 - **Typography:** `Size(n) = base × ratio^n` — modular scale per brand
 - **Spacing:** 8px grid — `0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128`
-- **Colour:** OKLCH perceptual colour space, 12-step scales per hue (Radix pattern)
-- **Motion:** Spring physics (`F = -kx - dv`), MD3 cubic-bezier curves
-- **Layout:** Golden ratio (φ = 1.618) for content splits and card proportions
+- **Colour:** OKLCH perceptual colour space; warm neutral scale (hue 60°, cream axis)
+- **Motion:** Spring physics (stiffness 260, damping 20), MD3 cubic-bezier curves
 - **Touch targets:** Fitts's Law — 48px minimum, larger for primary CTAs
-- **Elevation:** Z-axis shadow formula, logarithmic dark-mode surfaces
+- **Elevation:** Warm green shadow tint (light mode); surface tint (dark mode)
 
 ### Token Architecture
 
 Three-layer system: **Primitives** (brand-specific raw values) → **Semantics** (shared purpose-based aliases) → **Components** (element-specific mappings). Brand switching via `[data-brand]` CSS attribute.
 
+### Brand Mark
+
+Continent fragment mark — Africa's silhouette abstracted into three horizontal hexagonal polygon fragments. The gap between fragments is structural. Never close it.
+
 ---
 
 ## Legacy Documents
 
+### Design System v3 (Archived March 2026)
+
+`legacy/design/` contains the v3 design system files — sunset amber primary, adire indigo accent, General Sans typeface, warm champagne background. Superseded by Design System v4.
+
 ### v2 Enhanced Direction (Archived)
 
-The `legacy/v2-enhanced/` directory contains the "Enhanced Direction" docs from early March 2026 — the Clash Display + Satoshi era with burnt orange primary and warm cream background. Superseded by Design System v3.
+`legacy/v2-enhanced/` contains the Clash Display + Satoshi era with burnt orange primary. Superseded by v3 → v4.
 
 ### Swiss Grid Era (Archived)
 
-The `legacy/` root contains pre-pivot documentation from the Swiss Grid era (Feb–Mar 2026) — Space Grotesk + Inter, 0px radii, technical-instrument metaphor. Fully superseded.
+`legacy/` root contains pre-pivot documentation from the Swiss Grid era — Space Grotesk + Inter, 0px radii. Fully superseded.
 
 ---
 
