@@ -491,130 +491,206 @@ When audio is actively playing, the fragment drift speeds up to 1.8s and amplitu
 
 ## 10. Component Patterns
 
+### Sizing Philosophy
+
+Narvo components are deliberately generous. The minimum (48px touch target) is a floor, not a design target. Every component should feel substantial enough to match the editorial weight of Fraunces headlines at their sizes. Nothing should feel like it was sized to save space — whitespace is the tool for breathing room, not shrinking components.
+
+Two contexts, two size registers:
+
+| Context | Philosophy | Primary CTA | Inputs | Card padding |
+|---------|------------|-------------|--------|--------------|
+| **Landing page** | First impression — make it count | **56px** | 56px | 32px |
+| **App (daily use)** | Habitual, ergonomic — generous but not overwhelming | **52px** | 52px | 24px |
+
+The ghost/secondary button matches the primary height in both contexts. The size relationship between buttons within a group must remain consistent — never mix 56px and 48px side by side.
+
+---
+
 ### Navigation Bar
 
-- Height: 64px
+- Height: **72px** (landing) / **64px** (app)
 - Background: Cream (light mode) / Forest Green (dark mode)
-- Logo: Mark (40px) + Wordmark side by side
-- Active state: Forest Green text, 2px Forest Green underline with 2px offset
-- Sticky, `--shadow-3` on scroll
+- Logo: Mark (40px) + Wordmark, vertically centred
+- Nav links: Plus Jakarta Sans 500, 15px, `--neutral-600`, 24px gap
+- Active link: Forest Green, 2px Forest Green underline, 2px offset
+- Sticky with `--shadow-3` on scroll
 - Mobile: collapses to hamburger + bottom tab bar
 
 ### Bottom Tab Bar (Mobile)
 
-- Height: 64px + safe area inset
+- Height: **72px** + safe area inset
 - 5 tabs maximum: Home, Stories, Briefings, Search, Profile
-- Active icon: Forest Green fill, Sunshine Yellow dot indicator
-- Background: Cream with `--shadow-3` upward
+- Icon: 24px, active = Forest Green fill + Sunshine Yellow 6px dot below
+- Label: Geist Mono 400, 10px
+- Background: Cream, `--shadow-3` upward
 
-### News Card (Standard)
+---
 
-- `--radius-lg` (16px)
-- Background: Cream light `#FDF8EF`
-- `--shadow-2`
-- Structure: thumbnail (16:9) → category chip → headline (H4/H5) → metadata → play button row
-- Play button: 44px circular, Crisp Carrot bg, white icon
-- Headline: Fraunces 600, H4 size, Forest Green, max 2 lines
-- Metadata: General Sans 400, caption size, `var(--text-dim)`
+### Buttons
 
-### Featured Card
-
-- `--radius-xl` (20px)
-- `--shadow-3`
-- Full-bleed thumbnail with Forest Green gradient overlay (bottom 50%)
-- Headline in Sunshine Yellow on the overlay
-- Play button: 52px circular, Crisp Carrot bg
-
-### Primary CTA Button
+Shared base — only height, padding, and font-size vary between contexts.
 
 ```css
-.btn-primary {
-  background: #F96015;        /* Crisp Carrot */
-  color: #ffffff;
-  font-family: 'General Sans', sans-serif;
-  font-size: 14px;
+/* ── Shared base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   letter-spacing: 0.02em;
-  padding: 12px 24px;
-  border-radius: 9999px;      /* pill */
   border: none;
-  box-shadow: var(--shadow-2);
+  cursor: pointer;
   transition: background 200ms cubic-bezier(0.2, 0, 0, 1),
-              transform 100ms cubic-bezier(0.2, 0, 0, 1);
+              transform  100ms cubic-bezier(0.2, 0, 0, 1);
 }
-.btn-primary:hover  { background: #e05510; }
-.btn-primary:active { transform: scale(0.96); }
-```
+.btn:active { transform: scale(0.96); }
 
-### Brand Button
+/* ── Landing page sizes ── */
+.btn--landing    { height: 56px; padding: 0 36px; font-size: 16px; }
+.btn--landing-sm { height: 48px; padding: 0 28px; font-size: 14px; } /* secondary/ghost only */
 
-```css
-.btn-brand {
-  background: #18542A;        /* Forest Green */
-  color: #FFC926;             /* Sunshine Yellow */
-  /* same structure as primary */
-}
+/* ── App sizes ── */
+.btn--app    { height: 52px; padding: 0 32px; font-size: 15px; }
+.btn--app-sm { height: 44px; padding: 0 24px; font-size: 14px; } /* secondary/ghost only */
+
+/* ── Variants ── */
+.btn-primary { background: #F96015; color: #ffffff; }           /* Crisp Carrot — ALL CTAs */
+.btn-primary:hover { background: #e05510; }
+
+.btn-brand   { background: #18542A; color: #FFC926; }           /* Forest Green / Yellow */
 .btn-brand:hover { background: #0e3319; }
-```
 
-### Ghost Button
-
-```css
 .btn-ghost {
   background: transparent;
   color: #18542A;
   border: 1.5px solid rgba(24, 84, 42, 0.30);
-  /* same font/padding/radius */
 }
 .btn-ghost:hover { border-color: rgba(24, 84, 42, 0.60); }
 ```
 
+---
+
+### Inputs & Form Fields
+
+Inputs are tall, open, and clearly legible. Never the web default 36–40px.
+
+```css
+.input {
+  height: 56px;                            /* landing */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #18542A;
+  background: #FDF8EF;
+  border: 1.5px solid #DDD8D2;            /* --neutral-200 */
+  border-radius: 12px;                    /* --radius-md */
+  padding: 0 20px;
+  width: 100%;
+  transition: border-color 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+.input--app { height: 52px; }             /* app context */
+
+.input::placeholder { color: #A09890; }  /* --neutral-400 */
+.input:focus {
+  outline: none;
+  border-color: #18542A;
+  box-shadow: 0 0 0 3px rgba(24, 84, 42, 0.10);
+}
+```
+
+**Search field (app):** same as `.input--app` but with a 24px search icon inset left, padding-left 52px, `border-radius: 9999px` (pill).
+
+**Textarea:** minimum height 120px, `padding: 16px 20px`, same border/focus treatment.
+
+---
+
+### News Card (Standard — App)
+
+- `--radius-lg` (16px)
+- Background: `#FDF8EF`
+- `--shadow-2`
+- Internal padding: **24px**
+- Structure: thumbnail (16:9, radius 12px) → 12px gap → category chip → 8px gap → headline (Fraunces 600, 20px, Forest Green, max 2 lines) → 8px gap → metadata row → 16px gap → play button row
+- Play button: **52px** circular, Crisp Carrot bg, white 18px icon
+- Thumbnail: full-width, `border-radius: 12px`, aspect-ratio 16/9
+
+### Featured Card (App & Landing)
+
+- `--radius-xl` (20px)
+- `--shadow-3`
+- Internal padding: **32px** (landing) / **24px** (app)
+- Full-bleed thumbnail with Forest Green overlay (bottom 60%)
+- Headline: Fraunces 700, 25px, Sunshine Yellow, max 2 lines
+- Metadata: Geist Mono 400, 10px, Sunshine Yellow 60%
+- Play button: **64px** circular (landing) / **56px** (app), Crisp Carrot bg, white 22px icon
+
+### Briefing / Morning Card (Full-width)
+
+- `--radius-2xl` (24px)
+- Background: Forest Green
+- Internal padding: **40px** (landing) / **32px** (app)
+- Headline: Fraunces 700 italic, 31px, Sunshine Yellow
+- Subtext: Plus Jakarta Sans 400, 15px, White 70%
+- Play button: **64px** circular, Crisp Carrot bg
+
+---
+
 ### Tags & Chips
 
 ```css
-/* Category chip */
+/* Category chip — Plus Jakarta Sans */
 .chip-category {
   background: rgba(24, 84, 42, 0.10);
   color: #18542A;
-  font-size: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 3px 9px;
+  padding: 5px 12px;          /* slightly taller than convention */
   border-radius: 9999px;
 }
 
-/* Breaking news tag */
+/* Breaking tag — Geist Mono, sharp corners */
 .tag-breaking {
   background: #D52518;
   color: #ffffff;
-  font-size: 9px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 4px;         /* sharp corners — urgency reads better square */
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
-/* Truth Tag / Verified */
+/* Truth Tag / Verified — Geist Mono */
 .tag-verified {
   background: rgba(154, 188, 5, 0.12);
   color: #5a7003;
-  font-size: 9px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
   font-weight: 700;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 9999px;
 }
 ```
 
+---
+
 ### Audio Player Bar
 
-- Height: 64px, fixed bottom (above tab bar)
+- Height: **72px** (expanded) / 64px (collapsed), fixed bottom above tab bar
 - Background: Forest Green
-- Track title: Plus Jakarta Sans 500, Sunshine Yellow text
-- Timestamp / progress label: Geist Mono 400, Sunshine Yellow 65%
-- Waveform / progress: 4px bar, Sunshine Yellow filled, Cream/40% unfilled
-- Play/Pause: 52px circle, Crisp Carrot
+- Internal padding: 0 24px
+- Track title: Plus Jakarta Sans 600, 15px, Sunshine Yellow
+- Source / timestamp: Geist Mono 400, 10px, Sunshine Yellow 55%
+- Progress bar: **6px** tall (generous — easy to scrub), Sunshine Yellow filled, Sunshine Yellow 25% unfilled
+- Play/Pause button: **56px** circle, Crisp Carrot bg, white 20px icon
+- Skip ±15s: **40px** circle, transparent, white icon
 - Scrub: tap-anywhere on progress bar
 
 ---
