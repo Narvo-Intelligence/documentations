@@ -187,5 +187,5 @@ When writing new copy for Narvo:
 2. **Use local flavour sparingly.** "Oya, Play" and "Good morning, Oga" work. Don't overdo it — not every line needs slang.
 3. **Be helpful in errors.** "You're offline. Showing saved stories." not "NETWORK_ERROR: NO_CONNECTION".
 4. **Questions over labels.** "What languages do you speak at home?" not "Select Locale".
-5. **Short and confident.** Headlines in Clash Display should be punchy. 5 words beats 15.
+5. **Short and confident.** Headlines in Newsreader should be punchy. 5 words beats 15.
 6. **Respect intelligence.** Users know it's an app. Don't over-explain. Don't patronise.

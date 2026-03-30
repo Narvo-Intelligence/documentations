@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Narvo Component Design System Board</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Instrument+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap");
+
+      :root {
+        --primary: #0f5f73;
+        --primary-deep: #17324a;
+        --primary-soft: #7fddca;
+        --alert: #f04b24;
+        --alert-soft: #ff9f8d;
+        --highlight: #f2d66b;
+        --insight: #acb6ff;
+        --bg: #f6f8fb;
+        --surface: #ffffff;
+        --surface-soft: #eef3f7;
+        --surface-muted: #e5edf3;
+        --text: #17324a;
+        --text-mid: #6c7f93;
+        --text-dim: #93a4b6;
+        --line: rgba(23, 50, 74, 0.1);
+        --shadow: 0 24px 72px rgba(23, 50, 74, 0.08);
+        --shadow-sm: 0 10px 28px rgba(23, 50, 74, 0.08);
+        --mono: "Roboto Mono", "SF Mono", ui-monospace, monospace;
+        --display: "Newsreader", Georgia, serif;
+        --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(127, 221, 202, 0.22), transparent 18%),
+          radial-gradient(circle at 80% 14%, rgba(240, 75, 36, 0.08), transparent 18%),
+          radial-gradient(circle at 50% 88%, rgba(172, 182, 255, 0.12), transparent 18%),
+          linear-gradient(180deg, #faf6ee 0%, #f4efe7 100%);
+        font-family: var(--body);
+      }
+
+      h1, h2, h3, h4, p { margin: 0; }
+
+      .board {
+        width: 1880px;
+        margin: 0 auto;
+        padding: 34px;
+      }
+
+      .header,
+      .section {
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .header {
+        padding: 34px 38px;
+      }
+
+      .eyebrow,
+      .chip,
+      .meta,
+      .tiny,
+      .badge,
+      .status,
+      .nav-label {
+        font-family: var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .eyebrow {
+        color: var(--text-mid);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .header h1 {
+        margin-top: 12px;
+        max-width: 1180px;
+        font-family: var(--display);
+        font-size: 76px;
+        line-height: 0.92;
+        letter-spacing: -0.05em;
+      }
+
+      .header p {
+        margin-top: 16px;
+        max-width: 1180px;
+        font-size: 21px;
+        line-height: 1.58;
+        color: var(--text-mid);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .chip {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(23, 50, 74, 0.04);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        gap: 22px;
+        margin-top: 22px;
+      }
+
+      .two-col {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+
+      .three-col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section {
+        padding: 22px;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .section-title h2 {
+        font-family: var(--display);
+        font-size: 34px;
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+      }
+
+      .section-title p {
+        max-width: 460px;
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--text-mid);
+      }
+
+      .family-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        border-radius: 24px;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+
+      .module {
+        padding: 18px;
+      }
+
+      .tiny {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text-dim);
+      }
+
+      .headline-lg,
+      .headline-md,
+      .headline-sm {
+        font-family: var(--display);
+        letter-spacing: -0.04em;
+        color: var(--text);
+      }
+
+      .headline-lg { font-size: 44px; line-height: 0.94; }
+      .headline-md { font-size: 28px; line-height: 0.98; }
+      .headline-sm { font-size: 22px; line-height: 1.02; }
+
+      .body-md {
+        font-size: 15px;
+        line-height: 1.58;
+        color: var(--text-mid);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        border: 1px solid rgba(23, 50, 74, 0.08);
+      }
+
+      .pill.primary {
+        background: var(--alert);
+        color: #fff;
+        border-color: var(--alert);
+      }
+
+      .pill.secondary {
+        background: var(--surface-soft);
+        color: var(--text);
+      }
+
+      .pill.ghost {
+        background: rgba(255,255,255,0.65);
+        color: var(--text-mid);
+      }
+
+      .circle-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        background: #fff;
+        color: var(--text);
+        font-size: 18px;
+      }
+
+      .circle-btn.active {
+        background: var(--alert);
+        border-color: var(--alert);
+        color: white;
+        box-shadow: 0 8px 24px rgba(240, 75, 36, 0.24);
+      }
+
+      .tag-row,
+      .btn-row,
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .badge.truth {
+        color: #1f6b58;
+        background: rgba(127, 221, 202, 0.18);
+      }
+
+      .badge.breaking {
+        color: var(--alert);
+        background: rgba(240, 75, 36, 0.1);
+      }
+
+      .badge.category {
+        color: var(--primary);
+        background: rgba(15, 95, 115, 0.09);
+      }
+
+      .nav-shell {
+        display: grid;
+        gap: 12px;
+      }
+
+      .topbar,
+      .bottomnav,
+      .searchbar,
+      .settings-row,
+      .queue-row,
+      .radio-row,
+      .list-row {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        border-radius: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .brand img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .brand .name {
+        font-family: var(--display);
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .mini-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: var(--surface-soft);
+        color: var(--text-mid);
+        font-size: 14px;
+      }
+
+      .bottomnav {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+      }
+
+      .nav-item {
+        flex: 1;
+        min-width: 0;
+        display: grid;
+        justify-items: center;
+        gap: 6px;
+        padding: 10px 8px;
+        border-radius: 16px;
+      }
+
+      .nav-item.active {
+        background: rgba(15, 95, 115, 0.08);
+        color: var(--primary);
+      }
+
+      .nav-item.live {
+        position: relative;
+      }
+
+      .nav-item.live::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        right: 18px;
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--alert);
+      }
+
+      .nav-label {
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--text-mid);
+      }
+
+      .story-feature {
+        padding: 22px;
+        background:
+          radial-gradient(circle at top right, rgba(127, 221, 202, 0.16), transparent 28%),
+          linear-gradient(135deg, rgba(15,95,115,0.98), rgba(10,73,89,0.98));
+        color: white;
+      }
+
+      .story-feature .headline-md,
+      .briefing-card .headline-md,
+      .story-feature .headline-sm {
+        color: white;
+      }
+
+      .story-feature .body-md,
+      .briefing-card .body-md {
+        color: rgba(255,255,255,0.82);
+      }
+
+      .story-standard {
+        padding: 18px;
+      }
+
+      .story-breaking {
+        padding: 18px;
+        border: 1px solid rgba(240, 75, 36, 0.18);
+      }
+
+      .briefing-card {
+        padding: 20px;
+        background:
+          radial-gradient(circle at top right, rgba(242, 214, 107, 0.2), transparent 30%),
+          linear-gradient(135deg, rgba(15,95,115,0.95), rgba(23,50,74,0.98));
+      }
+
+      .progress {
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(23,50,74,0.08);
+        overflow: hidden;
+      }
+
+      .progress .fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--alert) 100%);
+      }
+
+      .meter {
+        display: grid;
+        gap: 8px;
+      }
+
+      .meter .top {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .timeline {
+        position: relative;
+        display: grid;
+        gap: 16px;
+        padding-left: 20px;
+        margin-top: 14px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 4px;
+        bottom: 4px;
+        width: 1px;
+        background: rgba(23, 50, 74, 0.14);
+      }
+
+      .timeline-item {
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -19px;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 0 4px rgba(15,95,115,0.08);
+      }
+
+      .audio-shell {
+        display: grid;
+        gap: 14px;
+      }
+
+      .player {
+        padding: 18px;
+      }
+
+      .wave {
+        display: flex;
+        align-items: end;
+        gap: 4px;
+        height: 42px;
+      }
+
+      .wave span {
+        width: 6px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--primary-soft) 0%, var(--primary) 100%);
+      }
+
+      .player-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 16px;
+      }
+
+      .queue-row,
+      .radio-row,
+      .list-row,
+      .settings-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+      }
+
+      .thumb {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(15,95,115,0.14), rgba(172,182,255,0.22));
+        display: grid;
+        place-items: center;
+        font-family: var(--display);
+        font-size: 22px;
+        color: var(--primary);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .thumb.round {
+        border-radius: 999px;
+      }
+
+      .row-copy {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .row-copy .headline-sm {
+        font-size: 20px;
+      }
+
+      .switch {
+        margin-left: auto;
+        width: 50px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(15,95,115,0.16);
+        position: relative;
+      }
+
+      .switch::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 24px;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: var(--primary);
+      }
+
+      .searchbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+      }
+
+      .search-input {
+        color: var(--text-mid);
+        font-size: 15px;
+      }
+
+      .utility-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .stat-card,
+      .empty-card,
+      .toast-card {
+        padding: 18px;
+      }
+
+      .metric {
+        font-family: var(--display);
+        font-size: 40px;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+      }
+
+      .toast-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(238,243,247,0.92));
+      }
+
+      .footer-note {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+      }
+
+      .note-box {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        border-radius: 26px;
+        box-shadow: var(--shadow);
+        padding: 22px 24px;
+      }
+
+      .note-box h3 {
+        font-family: var(--display);
+        font-size: 34px;
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+      }
+
+      .note-box p {
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 1.58;
+        color: var(--text-mid);
+      }
+
+      .rule-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .rule {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .rule .dot {
+        width: 10px;
+        height: 10px;
+        margin-top: 7px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 0 6px rgba(15,95,115,0.1);
+      }
+
+      .rule span {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board">
+      <section class="header">
+        <p class="eyebrow">Narvo Component Design System</p>
+        <h1>A modular, editorial, audio-first component library for the full product.</h1>
+        <p>
+          The inspiration is the floating card language, soft modularity, and clarity of grouping.
+          Narvo pushes it further: calmer reading surfaces, stronger proof-of-trust modules, and a
+          more distinctive audio layer built on Petrol Teal, Signal Vermilion, Newsreader, and Instrument Sans.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Signature Families: Story + Truth + Player</span>
+          <span class="chip">Primary UI Tone: Calm, Modular, Precise</span>
+          <span class="chip">Audio Surfaces Carry More Energy</span>
+          <span class="chip">Cards Are Rounded but Not Soft-Generic</span>
+        </div>
+      </section>
+
+      <div class="grid two-col">
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 1</p>
+              <h2>Primitives</h2>
+            </div>
+            <p>
+              Buttons, chips, badges, search, toggles, and metrics. These are the base components
+              every feature module inherits.
+            </p>
+          </div>
+          <div class="family-grid">
+            <div class="card module">
+              <p class="tiny">Buttons</p>
+              <div class="btn-row" style="margin-top: 14px;">
+                <span class="pill primary">&#9654; Listen now</span>
+                <span class="pill secondary">Follow source</span>
+                <span class="pill ghost">View detail</span>
+              </div>
+              <div class="btn-row" style="margin-top: 12px;">
+                <div class="circle-btn">&#8635;</div>
+                <div class="circle-btn active">&#10074;&#10074;</div>
+                <div class="circle-btn">&#8631;</div>
+              </div>
+            </div>
+
+            <div class="card module">
+              <p class="tiny">Chips and Truth</p>
+              <div class="tag-row" style="margin-top: 14px;">
+                <span class="badge category">Markets</span>
+                <span class="badge truth">Verified 82%</span>
+                <span class="badge breaking">Breaking</span>
+              </div>
+              <div class="meter" style="margin-top: 16px;">
+                <div class="top tiny"><span>Certainty Index</span><span>78%</span></div>
+                <div class="progress"><div class="fill" style="width: 78%;"></div></div>
+              </div>
+            </div>
+
+            <div class="card module">
+              <p class="tiny">Input and Settings</p>
+              <div class="searchbar" style="margin-top: 14px;">
+                <span style="color: var(--text-mid);">&#128269;</span>
+                <span class="search-input">Search topics, stories, stations...</span>
+              </div>
+              <div class="settings-row" style="margin-top: 12px;">
+                <div class="thumb" style="width:40px;height:40px;border-radius:12px;font-size:16px;">A</div>
+                <div class="row-copy">
+                  <div style="font-weight: 600; color: var(--text);">High contrast</div>
+                  <div class="body-md" style="font-size: 13px;">Keep proof and playback highly legible.</div>
+                </div>
+                <div class="switch"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 2</p>
+              <h2>Navigation</h2>
+            </div>
+            <p>
+              Top navigation, search entry, and the bottom nav are the habit layer of the app.
+              They should feel light, obvious, and premium.
+            </p>
+          </div>
+          <div class="nav-shell">
+            <div class="topbar">
+              <div class="brand">
+                <img src="../../../narvo/frontend/public/narvo_logo.svg" alt="Narvo logo" />
+                <span class="name">Narvo</span>
+              </div>
+              <div class="actions">
+                <div class="mini-icon">&#128269;</div>
+                <div class="mini-icon">&#128276;</div>
+                <div class="mini-icon">&#128100;</div>
+              </div>
+            </div>
+            <div class="searchbar">
+              <span style="color: var(--text-mid);">&#128269;</span>
+              <span class="search-input">Search stories, radio, podcasts, insight...</span>
+            </div>
+            <div class="bottomnav">
+              <div class="nav-item active">
+                <div>&#8962;</div>
+                <span class="nav-label">Dashboard</span>
+              </div>
+              <div class="nav-item live">
+                <div>&#9835;</div>
+                <span class="nav-label">Listen</span>
+              </div>
+              <div class="nav-item">
+                <div>&#9673;</div>
+                <span class="nav-label">Discover</span>
+              </div>
+              <div class="nav-item">
+                <div>&#8681;</div>
+                <span class="nav-label">Library</span>
+              </div>
+              <div class="nav-item">
+                <div>&#9786;</div>
+                <span class="nav-label">Profile</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid three-col">
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 3</p>
+              <h2>Story Cards</h2>
+            </div>
+            <p>Featured, standard, and breaking cards form the main editorial scanning system.</p>
+          </div>
+          <div class="card story-feature">
+            <p class="tiny" style="color: rgba(255,255,255,0.62);">Morning Feed / Featured Story</p>
+            <div class="tag-row" style="margin-top: 14px;">
+              <span class="badge category" style="background: rgba(255,255,255,0.1); color: white;">Policy</span>
+              <span class="badge truth" style="background: rgba(255,255,255,0.12); color: white;">Verified 82%</span>
+            </div>
+            <h3 class="headline-md" style="margin-top: 16px;">CBN signals a harder monetary tone as markets reprice expectations.</h3>
+            <p class="body-md" style="margin-top: 12px;">A premium, calm headline surface with a single hot action moment.</p>
+            <div class="meta-row" style="margin-top: 18px; justify-content: space-between; align-items: center;">
+              <span class="meta">Reuters / 4 min listen</span>
+              <span class="pill primary">&#9654; Play</span>
+            </div>
+          </div>
+          <div class="card story-standard" style="margin-top: 14px;">
+            <span class="badge category">Technology</span>
+            <h4 class="headline-sm" style="margin-top: 12px;">Narvo card standard for the dashboard grid and article modules.</h4>
+            <p class="body-md" style="margin-top: 10px;">Compact enough for repeat use, but still editorial.</p>
+            <div class="meta-row" style="margin-top: 14px; justify-content: space-between;">
+              <span class="meta">TechCabal / 2h ago</span>
+              <span class="badge truth">Mixed 58%</span>
+            </div>
+          </div>
+          <div class="card story-breaking" style="margin-top: 14px;">
+            <div class="meta-row" style="justify-content: space-between;">
+              <span class="badge breaking">Breaking</span>
+              <span class="meta">Live update</span>
+            </div>
+            <h4 class="headline-sm" style="margin-top: 12px;">Breaking cards get hotter cues, not a fully hot interface.</h4>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 4</p>
+              <h2>Trust and Intelligence</h2>
+            </div>
+            <p>These are the most ownable Narvo components and should feel forensic, not decorative.</p>
+          </div>
+          <div class="card module">
+            <p class="tiny">Truth + certainty</p>
+            <div class="tag-row" style="margin-top: 14px;">
+              <span class="badge truth">Verified</span>
+              <span class="badge category">Cross-source</span>
+            </div>
+            <div class="meter" style="margin-top: 16px;">
+              <div class="top tiny"><span>Certainty Index</span><span>82%</span></div>
+              <div class="progress"><div class="fill" style="width: 82%;"></div></div>
+            </div>
+          </div>
+          <div class="card module" style="margin-top: 14px;">
+            <p class="tiny">Chronological consensus log</p>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="meta">08:15</div>
+                <div style="font-weight: 600; margin-top: 3px;">Reuters</div>
+                <div class="body-md" style="font-size: 13px;">Initial market-moving report.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="meta">08:31</div>
+                <div style="font-weight: 600; margin-top: 3px;">Bloomberg</div>
+                <div class="body-md" style="font-size: 13px;">Follow-up confirmation and analyst framing.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="meta">09:02</div>
+                <div style="font-weight: 600; margin-top: 3px;">BusinessDay</div>
+                <div class="body-md" style="font-size: 13px;">Regional context and local business impact.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 5</p>
+              <h2>Audio Layer</h2>
+            </div>
+            <p>Player, queue, and active listening surfaces carry more motion and more vermilion than reading surfaces.</p>
+          </div>
+          <div class="card player">
+            <div class="meta-row" style="justify-content: space-between;">
+              <span class="meta">24:25</span>
+              <span class="meta">-18:04</span>
+            </div>
+            <div class="wave" style="margin-top: 14px;">
+              <span style="height: 22px;"></span>
+              <span style="height: 34px;"></span>
+              <span style="height: 28px;"></span>
+              <span style="height: 40px;"></span>
+              <span style="height: 18px;"></span>
+              <span style="height: 31px;"></span>
+              <span style="height: 24px;"></span>
+              <span style="height: 38px;"></span>
+              <span style="height: 18px; background: linear-gradient(180deg, #ff9f8d 0%, #f04b24 100%);"></span>
+            </div>
+            <div class="player-controls">
+              <div class="circle-btn">&#8635;</div>
+              <div class="circle-btn">&#9198;</div>
+              <div class="circle-btn active">&#10074;&#10074;</div>
+              <div class="circle-btn">&#9197;</div>
+              <div class="circle-btn">&#9789;</div>
+            </div>
+            <div class="progress" style="margin-top: 16px;"><div class="fill" style="width: 56%;"></div></div>
+          </div>
+          <div class="queue-row" style="margin-top: 14px;">
+            <span class="meta">01</span>
+            <div class="row-copy">
+              <div style="font-weight: 600; color: var(--text);">Full Gist on inflation and policy signal</div>
+              <div class="meta" style="margin-top: 4px;">NARVO_QUEUE / Reuters</div>
+            </div>
+            <div class="wave" style="height: 18px; margin-top: 0;">
+              <span style="width:3px;height:8px;"></span>
+              <span style="width:3px;height:15px;"></span>
+              <span style="width:3px;height:10px;"></span>
+            </div>
+          </div>
+          <div class="radio-row" style="margin-top: 14px;">
+            <div class="thumb round">&#128251;</div>
+            <div class="row-copy">
+              <div style="font-weight: 600; color: var(--text);">Lagos Morning Radio</div>
+              <div class="body-md" style="font-size: 13px;">Radio station card, podcast episode, or voice tile.</div>
+            </div>
+            <div class="circle-btn active">&#9654;</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid two-col">
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 6</p>
+              <h2>Collections and Settings</h2>
+            </div>
+            <p>Discovery cards, profile modules, and settings rows should feel modular without turning into a dashboard soup.</p>
+          </div>
+          <div class="family-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="card module">
+              <p class="tiny">Collection tile</p>
+              <div class="thumb round" style="width:88px;height:88px;margin-top: 14px;">NG</div>
+              <h4 class="headline-sm" style="margin-top: 16px;">Nigeria Politics</h4>
+              <p class="body-md" style="margin-top: 8px;">Interest, topic, or curated listening collection.</p>
+            </div>
+            <div class="card module">
+              <p class="tiny">Stat tile</p>
+              <div class="metric" style="margin-top: 18px;">42.8K</div>
+              <div class="body-md" style="margin-top: 8px;">Active listeners across today’s network.</div>
+            </div>
+            <div class="settings-row">
+              <div class="thumb" style="width:42px;height:42px;border-radius:14px;font-size:18px;">&#127760;</div>
+              <div class="row-copy">
+                <div style="font-weight: 600; color: var(--text);">Broadcast language</div>
+                <div class="body-md" style="font-size: 13px;">English, Yoruba, Hausa, Igbo, Pidgin.</div>
+              </div>
+              <span class="pill secondary">English</span>
+            </div>
+            <div class="settings-row">
+              <div class="thumb" style="width:42px;height:42px;border-radius:14px;font-size:18px;">&#9835;</div>
+              <div class="row-copy">
+                <div style="font-weight: 600; color: var(--text);">Sound theme</div>
+                <div class="body-md" style="font-size: 13px;">Short, branded, controlled.</div>
+              </div>
+              <div class="switch"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Family 7</p>
+              <h2>Feedback and System States</h2>
+            </div>
+            <p>Empty, loading, success, and urgent states should stay clean and product-native.</p>
+          </div>
+          <div class="utility-grid">
+            <div class="card empty-card">
+              <p class="tiny">Empty state</p>
+              <div class="thumb round" style="width:72px;height:72px;margin-top: 14px;">&#9733;</div>
+              <h4 class="headline-sm" style="margin-top: 16px;">No saved stories yet.</h4>
+              <p class="body-md" style="margin-top: 8px;">A single next action, not a long explanation.</p>
+              <div class="btn-row" style="margin-top: 14px;">
+                <span class="pill primary">Go to dashboard</span>
+              </div>
+            </div>
+            <div class="card toast-card">
+              <p class="tiny">Toast / sync state</p>
+              <h4 class="headline-sm" style="margin-top: 16px;">Story saved for offline listening.</h4>
+              <p class="body-md" style="margin-top: 8px;">Brief, warm, and not louder than the action itself.</p>
+            </div>
+            <div class="card module">
+              <p class="tiny">Breaking banner</p>
+              <div style="margin-top: 14px; padding: 14px 16px; border-radius: 18px; background: rgba(240,75,36,0.10); border: 1px solid rgba(240,75,36,0.18);">
+                <div class="meta-row" style="justify-content: space-between;">
+                  <span class="badge breaking">Breaking</span>
+                  <span class="meta">Live now</span>
+                </div>
+                <div style="font-weight: 600; margin-top: 10px; color: var(--text);">Fed-style urgency cue without turning the whole screen red.</div>
+              </div>
+            </div>
+            <div class="card module">
+              <p class="tiny">Skeleton</p>
+              <div style="display: grid; gap: 10px; margin-top: 14px;">
+                <div style="height: 16px; width: 34%; border-radius: 999px; background: var(--surface-muted);"></div>
+                <div style="height: 28px; width: 88%; border-radius: 12px; background: var(--surface-muted);"></div>
+                <div style="height: 14px; width: 76%; border-radius: 999px; background: var(--surface-muted);"></div>
+                <div style="height: 14px; width: 64%; border-radius: 999px; background: var(--surface-muted);"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer-note">
+        <div class="note-box">
+          <p class="eyebrow">System Read</p>
+          <h3>The three signature families are Story, Truth, and Player.</h3>
+          <p>
+            Everything else should support those three families. That is how Narvo avoids becoming
+            a generic content app with isolated good-looking pieces.
+          </p>
+        </div>
+        <div class="note-box">
+          <p class="eyebrow">Rules</p>
+          <div class="rule-list">
+            <div class="rule"><span class="dot"></span><span>Reading surfaces stay quieter than audio surfaces.</span></div>
+            <div class="rule"><span class="dot"></span><span>Signal Vermilion is action and urgency, not the base UI colour.</span></div>
+            <div class="rule"><span class="dot"></span><span>Truth modules must feel precise, mono-led, and Narvo-specific.</span></div>
+            <div class="rule"><span class="dot"></span><span>Rounded cards are modular and premium, not playful or generic.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
