@@ -1,32 +1,48 @@
 # Current Documentation — Narvo Design Foundation v5
 
-> Active documentation as of March 29, 2026. `Narvo_Design_Foundation_v5.md` is the approved visual foundation for the next Narvo build.
+> Active documentation as of March 30, 2026. Use the canonical set below for current Narvo product and brand decisions.
 
-## design/
+## Canonical
 
-- **Narvo_Design_Foundation_v5.md** — Approved visual foundation (v5): Petrol Teal + Signal Vermilion colour system, Newsreader + Instrument Sans + Geist Mono typography, token architecture, and visual rules for the next implementation phase
-- **Narvo_Component_Design_System_v1.md** — Comprehensive component system for Narvo: primitives, navigation, story cards, truth/intelligence modules, player family, settings, feedback states, and layout shells
-- **Narvo_Emotional_Interaction_Guidelines_v1.md** — Narvo-specific emotional design guidance: habit loops, trust feedback, premium motion, audio rituals, and interaction principles for delight without noise
-- **Narvo_Design_System_v4.md** — Previous full brand and UI reference (v4): kept for historical context while the new component system is being rebuilt
-- **Narvo_App_Copy.md** — All user-facing text — warm, human, culturally grounded
+### Design
 
-## business/
+- **Narvo_Design_Foundation_v5.md** — Approved visual foundation: Petrol Teal + Signal Vermilion colour system, Newsreader + Instrument Sans + Geist Mono typography, token architecture, and visual rules for the next implementation phase
+- **Narvo_Component_Design_System_v1.md** — Approved component system: primitives, navigation, story cards, truth/intelligence modules, player family, settings, feedback states, and layout shells
+- **Narvo_Emotional_Interaction_Guidelines_v1.md** — Interaction guidance: habit loops, trust feedback, premium motion, audio rituals, and delight rules without noise
+- **Narvo_App_Copy.md** — Current user-facing copy system and language direction
 
-- **Narvo_Intelligence_Company_Blueprint.docx** — Master strategy (8 parts)
-- **Narvo_Intelligence_Parent_Document.docx** — Corporate entity: legal, operations, investor relations
-- **Narvo_B2C_Product_Document_v2.docx** — Consumer app: "Spotify for News" concept, user flows, MVP roadmap
-- **Narvo_Platform_B2B_Document.docx** — NaaS APIs, target clients, commercial model
-
-## technical/
+### Technical
 
 - **Narvo_Security_Hardening_Checklist_v1.md** — Security hardening priorities for the current stack: Supabase/RLS, auth boundaries, rate limiting, sensitive routes, spend caps, and verification steps
-- **TECHNICAL_REFERENCE.md** — Architecture, data model, infrastructure (900+ lines)
+- **TECHNICAL_REFERENCE.md** — Current architecture, data model, infrastructure, and implementation reference
 
-## research/
+### Business
 
-- **README.md** — Research index
-- **01–06** — Stack analysis, premium tools roadmap, UX patterns, competitor analysis, strategic opportunities, landing page implementation
+- **Narvo_Intelligence_Company_Blueprint.docx** — Master strategy document
+- **Narvo_Intelligence_Parent_Document.docx** — Corporate entity: legal, operations, investor relations
+- **Narvo_B2C_Product_Document_v2.docx** — Consumer product: "Spotify for News" concept, user flows, MVP roadmap
+- **Narvo_Platform_B2B_Document.docx** — NaaS APIs, target clients, and commercial model
 
-## pitch/
+### Research
 
-- **Narvo_Intelligence_Pitch_Deck.pptx** — 12-slide investor presentation
+- **research/README.md** — Research index
+- **research/01_Stack_Analysis_Free_MVP.md** — Stack analysis
+- **research/02_Premium_Tools_Roadmap.md** — Premium tools roadmap
+- **research/03_UX_Design_Patterns.md** — UX pattern research
+- **research/04_Competitor_Analysis.md** — Competitor analysis
+- **research/05_Strategic_Opportunities.md** — Strategic opportunities
+- **research/06_Landing_Page_Implementation.md** — Landing page implementation guidance
+
+### Pitch
+
+- **Narvo_Intelligence_Pitch_Deck.pptx** — Current investor presentation
+
+## Historical
+
+- **Narvo_Design_System_v4.md** — Previous brand and UI reference retained for context during the v5 transition
+
+## Supporting Visuals
+
+- **narvo_design_system_approval_board.html** — Final foundation approval board
+- **narvo_product_visual_system_showcase.html** — Product-wide surface showcase
+- **narvo_component_design_system_board.html** — Component system visual board
