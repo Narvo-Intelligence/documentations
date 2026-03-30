@@ -1,191 +1,290 @@
 # Narvo App Copy: Source of Truth
+### Approved User-Facing Strings for the Consumer Product
 
-This document serves as the central repository for all user-facing text in the **Narvo** consumer app. The tone is **warm, bold, and culturally grounded** — like a trusted, well-informed friend.
-
-> **Design Direction:** Enhanced (March 2026). No more technical-instrument metaphors. No SYSTEM_STATUS, LOCALE_MATRIX, or COMMAND_CONSOLE. Every line should feel human.
+> **Version:** 2.0  
+> **Date:** March 30, 2026  
+> **Author:** Ajibola Akelebe — Founder & Sole Developer, Narvo Intelligence  
+> **Scope:** Narvo consumer product copy across landing, onboarding, dashboard, stories, Morning Briefing, verification, playback, settings, errors, and notifications  
+> **Status:** Approved copy inventory aligned to `Narvo_Copy_System.md`
 
 ---
 
-## 1. Global & Brand
+## 1. Purpose
+
+This document is the approved string inventory for the Narvo consumer app.
+
+It should be used together with:
+
+- [Narvo_Copy_System.md](/Users/ajibolagenius/Desktop/Narvo_Int/documentations/current/design/Narvo_Copy_System.md)
+- [Narvo_Design_Foundation_v5.md](/Users/ajibolagenius/Desktop/Narvo_Int/documentations/current/design/Narvo_Design_Foundation_v5.md)
+
+This file answers:
+
+- what Narvo should say
+- where it should say it
+- which line is currently approved
+
+The copy system defines the rules. This file defines the strings.
+
+---
+
+## 2. Global & Brand
 
 | **Key** | **Text** | **Context** |
 |---------|----------|-------------|
-| `brand_tagline` | Narvo: The Local Pulse, Refined. | Global header / Splash. |
+| `brand_name` | Narvo | Global brand name. |
+| `brand_tagline` | Africa's news, spoken clearly. | Primary product tagline. |
+| `brand_tagline_alt` | The day's biggest stories, turned into a briefing. | Alternate marketing line. |
+| `brand_subtitle` | Less scrolling. More understanding. | Short supporting line. |
 | `cta_play` | Oya, Play | Primary play action. |
-| `cta_listen` | Start Listening | Marketing / landing. |
-| `cta_start` | Oya, Let's Go | Onboarding completion. |
-| `status_loading` | Getting your stories ready... | Loading state. |
-| `status_syncing` | Catching up on the latest... | Sync/refresh state. |
+| `cta_listen` | Start Listening | General listening CTA. |
+| `cta_start` | Oya, Let's Go | Onboarding completion CTA. |
+| `cta_continue` | Continue | General continuation action. |
+| `cta_try_guest` | Try it first | Guest/demo CTA. |
+| `status_loading` | Getting your stories ready... | General loading state. |
+| `status_syncing` | Catching up on the latest... | Refresh/sync state. |
 | `status_translating` | Translating for you... | Translation in progress. |
-| `truth_tag_label` | Verified: {score}% | Transparency label. |
-| `lang_select_title` | What languages do you speak at home? | Language selection header. |
+| `status_connecting_dots` | Connecting the dots for you... | Story synthesis or verification wait state. |
+| `status_reconnecting` | Reconnecting the dots... | Recovery state. |
 
 ---
 
-## 2. Home Dashboard
+## 3. Landing Page
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `landing_headline` | Africa's news, spoken clearly. | Hero headline. |
+| `landing_headline_alt` | The day's biggest stories, turned into a briefing. | Alternate hero line. |
+| `landing_subtitle` | News that speaks your language. Summarised, cross-checked, and read aloud so you can stay informed without looking at a screen. | Hero subtitle. |
+| `landing_cta_primary` | Oya, Start Listening | Primary CTA. |
+| `landing_cta_secondary` | Try it first | Secondary CTA. |
+| `landing_pillar_audio_title` | Audio-First | Feature pillar title. |
+| `landing_pillar_audio_desc` | Clear voices, built for your commute, your kitchen, and your morning. | Feature pillar description. |
+| `landing_pillar_language_title` | Your Language | Feature pillar title. |
+| `landing_pillar_language_desc` | Yoruba, Hausa, Igbo, Pidgin, English. Hear the story the way it fits your world. | Feature pillar description. |
+| `landing_pillar_trust_title` | Cross-Checked | Feature pillar title. |
+| `landing_pillar_trust_desc` | See the sources, confidence, and context behind every story. | Feature pillar description. |
+| `landing_pillar_briefing_title` | Morning Briefing | Feature pillar title. |
+| `landing_pillar_briefing_desc` | Wake up to the stories that matter, already sorted for you. | Feature pillar description. |
+
+---
+
+## 4. Onboarding
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `onboard_progress` | Step {n} of 3 | Progress label. |
+| `onboard_p1_title` | What languages do you speak at home? | Step 1 title. |
+| `onboard_p1_desc` | Pick your main language. We'll speak your stories in it. | Step 1 description. |
+| `onboard_p2_title` | Who should tell the story today? | Step 2 title. |
+| `onboard_p2_desc` | Pick the voice for your briefing. Tap to hear a sample. | Step 2 description. |
+| `onboard_p3_title` | What matters to you right now? | Step 3 title. |
+| `onboard_p3_desc` | Pick at least 3 topics. We'll shape your feed around them. | Step 3 description. |
+| `onboard_complete` | Oya, Let's Go | Completion button. |
+| `onboard_skip` | Skip for now | Optional skip action. |
+
+---
+
+## 5. Home Dashboard
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
 | `home_greeting_morning` | Good morning, {name} | Before 12:00. |
 | `home_greeting_afternoon` | Good afternoon, {name} | 12:00–17:00. |
 | `home_greeting_evening` | Good evening, {name} | After 17:00. |
-| `home_briefing_ready` | Your briefing is ready | Below greeting when briefing available. |
-| `home_briefing_cta` | {n} stories · {duration} min | Briefing card meta. |
-| `home_trending` | Trending Now | Trending section header. |
-| `home_latest` | Latest Stories | Latest news section. |
-| `home_empty` | Nothing here yet. Check back soon! | Empty feed state. |
-| `home_breaking` | Breaking | Breaking news banner prefix. |
+| `home_briefing_ready` | Your briefing is ready | Briefing card status. |
+| `home_briefing_meta` | {n} stories · {duration} min | Briefing card metadata. |
+| `home_trending` | Trending Now | Section header. |
+| `home_latest` | Latest Stories | Section header. |
+| `home_breaking` | Breaking | Breaking banner label. |
+| `home_recommended` | Picked for You | Recommendations section. |
+| `home_empty` | Nothing here yet. Check back soon. | Empty dashboard state. |
+| `home_refreshing` | Pull to refresh | Refresh helper text. |
 
 ---
 
-## 3. News Detail
+## 6. News Detail
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
 | `detail_takeaways` | Key Takeaways | Summary header. |
 | `detail_full_story` | The Full Story | Main content header. |
-| `detail_truth_tag` | Source Verified | Trust indicator. |
-| `detail_attribution` | Originally from {source} | Attribution label. |
-| `detail_listen_in` | Listen in {language} | Language indicator on audio. |
-| `detail_related` | You might also like | Related stories header. |
-
----
-
-## 4. Search & Discovery
-
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `search_placeholder` | Find a story | Search bar placeholder. |
-| `search_voice_cta` | Search by voice | Voice search prompt. |
-| `search_no_results` | No stories found for "{query}" | Empty search results. |
-| `discover_radio` | Live Radio | Radio section title. |
-| `discover_podcasts` | Podcasts | Podcast section title. |
-| `discover_trending` | What's Trending | Trending topic header. |
-
----
-
-## 5. Voice & Language
-
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `voice_title` | Your Narvo Voice | Voice selection header. |
-| `voice_subtitle` | Choose how your stories sound | Voice selection description. |
-| `voice_preview` | Listen to a sample | Preview button. |
-| `voice_label_pidgin` | Pidgin | Voice label. |
-| `voice_label_yoruba` | Yorùbá | Voice label. |
-| `voice_label_hausa` | Hausa | Voice label. |
-| `voice_label_igbo` | Igbo | Voice label. |
-| `voice_label_english` | English | Voice label. |
-
----
-
-## 6. Library & Offline
-
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `library_saved` | Saved Stories | Saved tab title. |
-| `library_offline` | Available Offline | Offline tab title. |
-| `library_empty_saved` | No saved stories yet. Tap the bookmark icon on any story. | Empty saved state. |
-| `library_empty_offline` | No offline stories. Save stories when you have connectivity. | Empty offline state. |
-| `library_storage` | Storage: {used} MB used | Storage meter label. |
-| `library_clear` | Clear offline data | Clear cache action. |
+| `detail_listen_now` | Hear the full gist | Primary playback CTA. |
+| `detail_listen_in` | Listen in {language} | Language indicator. |
+| `detail_attribution` | Originally from {source} | Source attribution. |
+| `detail_related` | You might also like | Related content header. |
+| `detail_save` | Save for later | Save action label. |
+| `detail_saved` | Saved | Saved state label. |
+| `detail_story_developing` | This story is still developing. | State for lower-certainty or evolving stories. |
 
 ---
 
 ## 7. Morning Briefing
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
 | `briefing_title` | Morning Briefing | Page title. |
-| `briefing_ready` | Your briefing is ready | Status when generated. |
-| `briefing_generating` | Preparing your briefing... | Generation in progress. |
-| `briefing_play_all` | Play All | Play full briefing. |
-| `briefing_stories` | {n} stories · {duration} min | Story count and duration. |
-| `briefing_transcript` | Transcript | Transcript section header. |
-| `briefing_archive` | Past Briefings | Archive section header. |
-| `briefing_today` | Today | Badge for current day. |
+| `briefing_ready` | Your briefing is ready | Generated state. |
+| `briefing_generating` | Preparing your briefing... | Generation state. |
+| `briefing_intro_morning` | Good morning. Narvo has the gist. | Preferred briefing intro line. |
+| `briefing_intro_alt` | Here's what matters this morning. | Alternate briefing intro line. |
+| `briefing_play_all` | Play All | Full briefing CTA. |
+| `briefing_listen_now` | Listen now | General briefing playback CTA. |
+| `briefing_meta` | {n} stories · {duration} min | Story count and duration. |
+| `briefing_transcript` | Transcript | Transcript header. |
+| `briefing_archive` | Past Briefings | Archive header. |
+| `briefing_today` | Today | Current-day label. |
+| `briefing_ready_toast` | Your briefing is ready. | Success toast. |
 
 ---
 
-## 8. Settings
+## 8. Search & Discovery
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `search_placeholder` | Find a story | Search input placeholder. |
+| `search_voice_cta` | Search by voice | Voice search prompt. |
+| `search_no_results` | No stories found for "{query}" | Empty search result. |
+| `search_empty` | Start with a topic, place, or headline. | Empty search prompt. |
+| `discover_radio` | Live Radio | Section title. |
+| `discover_podcasts` | Podcasts | Section title. |
+| `discover_trending` | What's Trending | Section title. |
+| `discover_for_you` | More to Explore | Discovery section title. |
+
+---
+
+## 9. Voice & Language
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `voice_title` | Your Narvo Voice | Voice page title. |
+| `voice_subtitle` | Choose how your stories sound | Voice page subtitle. |
+| `voice_pick_prompt` | Pick the voice for your briefing | Voice selection helper text. |
+| `voice_preview` | Listen to a sample | Voice preview button. |
+| `voice_label_english` | English | Voice label. |
+| `voice_label_pidgin` | Pidgin | Voice label. |
+| `voice_label_yoruba` | Yorùbá | Voice label. |
+| `voice_label_hausa` | Hausa | Voice label. |
+| `voice_label_igbo` | Igbo | Voice label. |
+| `language_title` | Voice & Language | Settings section title. |
+| `language_home_question` | What languages do you speak at home? | Language selection question. |
+
+---
+
+## 10. Truth Tag & Verification
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `truth_tag_title` | What Narvo could verify | Verification card title. |
+| `truth_tag_subtitle` | Here's why we trust this story | Supporting title. |
+| `truth_tag_cross_checked` | Cross-checked with {n} sources | Verification evidence line. |
+| `truth_tag_confidence` | Confidence: {score}% based on current sources | Confidence label. |
+| `truth_tag_sources` | See the sources behind this story | Source disclosure CTA. |
+| `truth_tag_developing` | This story is still developing. | Lower-certainty state. |
+| `truth_tag_explainer` | Narvo compared the reporting, checked the sources, and scored this story based on what holds up right now. | Explanatory subcopy. |
+
+---
+
+## 11. Playback, Saves, and Feedback
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `play_cta` | Listen now | General play action. |
+| `play_cta_full_gist` | Hear the full gist | Story playback CTA. |
+| `play_cta_story` | Play the story | Alternate story CTA. |
+| `pause_cta` | Pause | Playback control. |
+| `resume_cta` | Resume | Playback control. |
+| `save_cta` | Save for later | Bookmark/save CTA. |
+| `save_toast` | Keep this for later. | Save success toast. |
+| `save_toast_alt` | Saved. Come back to it anytime. | Alternate save toast. |
+| `download_ready` | Ready offline | Download/offline state. |
+| `download_in_progress` | Saving for offline... | Offline save state. |
+| `download_complete` | Saved for offline. | Offline completion toast. |
+| `queue_processing` | Getting this ready for you... | Queue state. |
+
+---
+
+## 12. Library & Offline
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `library_saved` | Saved Stories | Library tab title. |
+| `library_offline` | Available Offline | Library tab title. |
+| `library_empty_saved` | No saved stories yet. Tap the bookmark icon on any story. | Empty saved state. |
+| `library_empty_offline` | No offline stories yet. Save stories when you have connectivity. | Empty offline state. |
+| `library_storage` | Storage: {used} MB used | Storage meter. |
+| `library_clear` | Clear offline data | Clear cache action. |
+| `library_clear_confirm` | Clear saved offline audio and stories? | Confirm message. |
+
+---
+
+## 13. Settings
+
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
 | `settings_title` | Settings | Page title. |
-| `settings_profile` | Profile | Profile section. |
-| `settings_voice` | Voice & Language | Voice selection section. |
-| `settings_appearance` | Appearance | Theme, font scale. |
-| `settings_notifications` | Notifications | Push settings. |
-| `settings_storage` | Storage | Data management. |
-| `settings_account` | Account | Account management. |
+| `settings_profile` | Profile | Section title. |
+| `settings_voice` | Voice & Language | Section title. |
+| `settings_notifications` | Notifications | Section title. |
+| `settings_storage` | Storage | Section title. |
+| `settings_appearance` | Appearance | Section title. |
+| `settings_account` | Account | Section title. |
 | `settings_theme_light` | Light | Theme option. |
 | `settings_theme_dark` | Dark | Theme option. |
 | `settings_theme_system` | System | Theme option. |
-| `settings_logout` | Log Out | Logout button. |
+| `settings_logout` | Log Out | Logout action. |
 
 ---
 
-## 9. Onboarding (3 Panels)
+## 14. Errors, Empty States, and Recovery
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `onboard_p1_title` | What languages do you speak at home? | Panel 1 header. |
-| `onboard_p1_desc` | Pick your main language. We'll speak your stories in it. | Panel 1 description. |
-| `onboard_p2_title` | Listen to your Narvo voice | Panel 2 header. |
-| `onboard_p2_desc` | This is how your stories will sound. Tap to hear a sample. | Panel 2 description. |
-| `onboard_p3_title` | What matters to you? | Panel 3 header. |
-| `onboard_p3_desc` | Pick at least 3 topics. We'll personalise your feed. | Panel 3 description. |
-| `onboard_complete` | Oya, Let's Go | Completion button. |
-| `onboard_progress` | Step {n} of 3 | Progress indicator. |
-
----
-
-## 10. Landing Page
-
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `landing_headline` | The Local Pulse, Refined. | Hero headline. |
-| `landing_subtitle` | News that speaks your language. Summarised, verified, and read aloud — so you can stay informed without looking at a screen. | Hero subtitle. |
-| `landing_cta` | Oya, Start Listening | Primary CTA. |
-| `landing_guest` | Try it first | Guest/demo CTA. |
-| `landing_pillar_1` | Audio-First | Pillar 1 title. |
-| `landing_pillar_1_desc` | Studio-quality voices in your language. Designed for your commute. | Pillar 1 description. |
-| `landing_pillar_2` | Your Language | Pillar 2 title. |
-| `landing_pillar_2_desc` | Yoruba, Hausa, Igbo, Pidgin, English — more coming. | Pillar 2 description. |
-| `landing_pillar_3` | Verified | Pillar 3 title. |
-| `landing_pillar_3_desc` | Every story tagged with sources, fact-checks, and confidence scores. | Pillar 3 description. |
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `error_generic` | Something went wrong. Try again. | Generic error state. |
+| `error_offline` | You're offline. Showing saved stories. | Offline fallback state. |
+| `error_network` | Connection is slow. Some features may be limited. | Slow-network warning. |
+| `error_signal_fuzzy` | The signal is fuzzy right now. | Softer recovery-oriented error headline. |
+| `error_reconnecting` | We're reconnecting the dots. | Recovery message. |
+| `error_hold_tight` | Hold tight. Try again shortly. | Recovery helper line. |
+| `error_404` | We can't find that page. | 404 state. |
+| `error_500` | Our servers are having a moment. Try again shortly. | 500 state. |
+| `empty_feed` | Nothing here yet. Check back soon. | Empty feed state. |
+| `empty_search` | No stories found for "{query}" | Empty search state. |
+| `empty_recommendations` | We'll have more for you soon. | Recommendations empty state. |
 
 ---
 
-## 11. Error & Empty States
+## 15. Notifications
 
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `error_generic` | Something went wrong. Tap to retry. | Generic error. |
-| `error_offline` | You're offline. Showing saved stories. | Offline fallback. |
-| `error_network` | Connection is slow. Some features may be limited. | Low connectivity. |
-| `error_404` | We can't find that page. | 404 page. |
-| `error_500` | Our servers are having a moment. Try again shortly. | 500 page. |
-
----
-
-## 12. Notifications
-
-| **Key** | **Copy** | **Notes** |
-|---------|----------|-----------|
-| `push_briefing_title` | Your morning briefing is ready | Push notification title. |
-| `push_briefing_body` | {n} stories · {duration} min · Tap to listen | Push notification body. |
-| `push_breaking_title` | Breaking: {headline} | Breaking news push. |
+| **Key** | **Text** | **Context** |
+|---------|----------|-------------|
+| `push_briefing_title` | Your morning briefing is ready | Morning briefing push title. |
+| `push_briefing_body` | {n} stories · {duration} min · Tap to listen | Morning briefing push body. |
+| `push_breaking_title` | Breaking: {headline} | Breaking news push title. |
+| `push_breaking_body` | Tap to hear the full gist. | Breaking news push body. |
 
 ---
 
-## Tone Guidelines
+## 16. Tone Notes for Implementers
 
-When writing new copy for Narvo:
+When adding or changing copy in Narvo:
 
-1. **Be warm, not clinical.** "Your briefing is ready" not "BRIEFING_STATUS: GENERATED".
-2. **Use local flavour sparingly.** "Oya, Play" and "Good morning, Oga" work. Don't overdo it — not every line needs slang.
-3. **Be helpful in errors.** "You're offline. Showing saved stories." not "NETWORK_ERROR: NO_CONNECTION".
-4. **Questions over labels.** "What languages do you speak at home?" not "Select Locale".
-5. **Short and confident.** Headlines in Newsreader should be punchy. 5 words beats 15.
-6. **Respect intelligence.** Users know it's an app. Don't over-explain. Don't patronise.
+1. Follow [Narvo_Copy_System.md](/Users/ajibolagenius/Desktop/Narvo_Int/documentations/current/design/Narvo_Copy_System.md) first.
+2. Use **Warm / Narrative** for onboarding, Morning Briefing, playback, saves, and loading.
+3. Use **Clear / Assured** for labels, navigation, settings, and core structure.
+4. Use **Precise / Responsible** for Truth Tag, confidence, source attribution, and corrections.
+5. Never overclaim certainty.
+6. Use Nigerian flavour with restraint.
+7. Prefer short, direct, spoken language over technical or corporate wording.
+
+---
+
+## 17. Deprecated Directions
+
+The following directions should not be reintroduced into Narvo copy:
+
+- technical instrument metaphors as the dominant product language
+- generic "AI-powered" marketing phrasing
+- overconfident verification wording
+- cold system-state labels as primary UI copy
+- overuse of slang in trust-sensitive contexts
