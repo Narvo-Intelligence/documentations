@@ -1,10 +1,13 @@
-# Current Documentation — Design System v4
+# Current Documentation — Narvo Design Foundation v5
 
-> Active documentation as of March 2026. Design System v4 supersedes v3 across all brand files.
+> Active documentation as of March 29, 2026. `Narvo_Design_Foundation_v5.md` is the approved visual foundation for the next Narvo build.
 
 ## design/
 
-- **Narvo_Design_System_v4.md** — Complete brand and UI reference (v4): continent fragment mark, six-colour system, warm neutral scale, Fraunces + Plus Jakarta Sans + Geist Mono typography, full token architecture, component patterns — 820+ lines
+- **Narvo_Design_Foundation_v5.md** — Approved visual foundation (v5): Petrol Teal + Signal Vermilion colour system, Newsreader + Instrument Sans + Geist Mono typography, token architecture, and visual rules for the next implementation phase
+- **Narvo_Component_Design_System_v1.md** — Comprehensive component system for Narvo: primitives, navigation, story cards, truth/intelligence modules, player family, settings, feedback states, and layout shells
+- **Narvo_Emotional_Interaction_Guidelines_v1.md** — Narvo-specific emotional design guidance: habit loops, trust feedback, premium motion, audio rituals, and interaction principles for delight without noise
+- **Narvo_Design_System_v4.md** — Previous full brand and UI reference (v4): kept for historical context while the new component system is being rebuilt
 - **Narvo_App_Copy.md** — All user-facing text — warm, human, culturally grounded
 
 ## business/
@@ -16,6 +19,7 @@
 
 ## technical/
 
+- **Narvo_Security_Hardening_Checklist_v1.md** — Security hardening priorities for the current stack: Supabase/RLS, auth boundaries, rate limiting, sensitive routes, spend caps, and verification steps
 - **TECHNICAL_REFERENCE.md** — Architecture, data model, infrastructure (900+ lines)
 
 ## research/

@@ -1,7 +1,7 @@
 # Narvo News — Technical Reference
 
 > **Maintained document.** Update this file whenever a major technical or logical change is made to the codebase.
-> Last updated: 2026-03-22 — Enhanced design direction (Clash Display, Satoshi, Geist Mono), company restructure (Narvo Intelligence parent).
+> Last updated: 2026-03-29 — Documentation alignment for the approved v5 design foundation and typography system.
 > 
 > **Author:** Ajibola Akelebe — Founder & Sole Developer, Narvo Intelligence
 
@@ -54,7 +54,7 @@ Narvo is a bold, audio-first news platform for Africa. Part of **Narvo Intellige
 
 **Company structure:** Narvo Intelligence (parent) → Narvo (B2C consumer app, this repo) + Narvo Platform (B2B NaaS, planned).
 
-**Design system:** Enhanced direction — Clash Display + Satoshi + Geist Mono. Warm cream (#FFFCF5) background, burnt orange (#D4520A) primary. See [Narvo_Design_System.md](../design/Narvo_Design_System.md).
+**Design system:** The codebase currently still reflects the older v4 frontend tokens in `src/index.css` (`Fraunces + Plus Jakarta Sans + Geist Mono`, green-led palette). The newly approved visual foundation for the next implementation phase is documented in [Narvo_Design_Foundation_v5.md](../design/Narvo_Design_Foundation_v5.md): `Petrol Teal + Signal Vermilion`, `Newsreader + Instrument Sans + Geist Mono`.
 
 ---
 
@@ -185,9 +185,9 @@ narvo_news/
 | Framework | React 18 + TypeScript | Concurrent rendering |
 | Build | Vite | HMR, `/api` proxy in dev |
 | Styling | Tailwind CSS | Utility-first, design system tokens via CSS vars |
-| Display Font | Clash Display (fontshare.com) | Free. Shared across all Narvo brands |
-| Body Font | Satoshi (fontshare.com) | Free. Modern geometric sans |
-| Mono Font | Geist Mono (Vercel CDN) | Free. Code, timestamps, metadata |
+| Display Font | Fraunces (current code) / Newsreader (approved next foundation) | Current frontend still uses Fraunces; approved foundation moves to Newsreader |
+| Body Font | Plus Jakarta Sans (current code) / Instrument Sans (approved next foundation) | Current frontend still uses Plus Jakarta Sans; approved foundation moves to Instrument Sans |
+| Mono Font | Geist Mono | Metadata, timestamps, truth labels, system stamps |
 | Routing | React Router v6 | Lazy-loaded pages |
 | Data fetching | SWR | Stale-while-revalidate |
 | Animation | Framer Motion | Spring-based transitions, player, sheet |
@@ -630,40 +630,26 @@ UI language is controlled by `broadcastLanguage` in `AudioContext`, which also d
 
 `ThemeContext.tsx` — light/dark/system theme switching using CSS custom properties on `:root`.
 
-**Enhanced direction (March 2026):** Two themes (Light default + Dark), replacing the previous four (Nature/Sun/Moon/Dusk). Palette uses the Narvo enhanced design system — Clash Display + Satoshi + Geist Mono, warm cream background, burnt orange primary.
+**Current implementation state:** `ThemeContext.tsx` still sits on the v4 CSS-token setup in `src/index.css`. The newly approved design foundation is a documentation-level decision at this stage and is not yet wired into runtime tokens.
 
 ```css
-/* Light theme (default :root) */
---color-bg:              255 252 245;   /* #FFFCF5 warm cream */
---color-surface:         255 255 255;   /* #FFFFFF */
---color-surface-raised:  255 243 224;   /* #FFF3E0 */
---color-border:          240 220 200;   /* #F0DCC8 */
---color-primary:         212 82 10;     /* #D4520A burnt orange */
---color-accent:          10 104 71;     /* #0A6847 deep green */
---color-text-primary:    26 18 7;       /* #1A1207 */
---color-text-secondary:  107 90 64;     /* #6B5A40 */
---color-text-dim-accessible: 130 115 90; /* #82735A — 4.5:1 on cream */
+/* Current v4-implemented tokens in src/index.css */
+--color-bg: #F9F8F3;
+--color-surface: #FFFFFF;
+--color-surface-alt: #F2F1EC;
+--color-primary: #18542A;
+--color-accent: #FFC926;
+--color-cta: #F96015;
+--color-urgent: #D52518;
+--color-verified: #9ABC05;
 
-/* Typography */
---font-display: 'Clash Display', system-ui, sans-serif;
---font-body: 'Satoshi', system-ui, sans-serif;
+/* Current typography */
+--font-display: 'Fraunces', serif;
+--font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
 --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
-
-/* Radii (replacing 0px Swiss Grid) */
---radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
-
-/* Shadows (replacing none) */
---shadow-sm: 0 1px 4px rgba(180,130,80,0.06);
---shadow-md: 0 2px 12px rgba(180,130,80,0.08);
---shadow-lg: 0 4px 20px rgba(180,130,80,0.10);
-
-/* Layout (scaled up) */
---header-h: 56px;  --header-h-desktop: 72px;
---mobile-nav-h: 60px;  --audio-bar-h: 68px;
---touch-target-min: 52px;
 ```
 
-See [Narvo_Design_System.md](../design/Narvo_Design_System.md) for the full token set including dark theme overrides, category colours, and component specs.
+See [Narvo_Design_Foundation_v5.md](../design/Narvo_Design_Foundation_v5.md) for the approved next-phase foundation, and [Narvo_Design_System_v4.md](../design/Narvo_Design_System_v4.md) for the previous full reference that still matches the current CSS more closely.
 
 ### 5.10 Client Storage & Validation
 
