@@ -3,914 +3,1032 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Narvo Design System Approval Board</title>
+    <title>Narvo Final Design Approval Board</title>
     <style>
       :root {
-        --primary: #0f5f73;
-        --primary-deep: #17324a;
-        --primary-glow: rgba(15, 95, 115, 0.22);
-        --alert: #f04b24;
-        --alert-soft: #ff9f8d;
-        --success: #87d7b4;
-        --highlight: #f2d66b;
-        --insight: #acb6ff;
-        --bg: #f6f8fb;
+        --teal: #0f5f73;
+        --teal-deep: #17324a;
+        --teal-soft: #e9f4f6;
+        --mist: #eef3f7;
+        --cloud: #f6f8fb;
         --surface: #ffffff;
-        --surface-soft: #eef3f7;
-        --surface-muted: #e7edf2;
-        --line: rgba(23, 50, 74, 0.1);
-        --text: #17324a;
+        --vermilion: #f04b24;
+        --vermilion-soft: rgba(240, 75, 36, 0.12);
+        --mint: #7fddca;
+        --butter: #f2d66b;
+        --lilac: #acb6ff;
+        --ink: #17324a;
         --text-mid: #6c7f93;
-        --text-dim: #93a4b6;
-        --shadow: 0 24px 80px rgba(23, 50, 74, 0.08);
+        --text-dim: #90a2b5;
+        --line: rgba(23, 50, 74, 0.1);
+        --shadow: 0 28px 90px rgba(23, 50, 74, 0.12);
       }
 
       * { box-sizing: border-box; }
 
       body {
         margin: 0;
-        color: var(--text);
         background:
-          radial-gradient(circle at top left, rgba(127, 221, 202, 0.24), transparent 20%),
+          radial-gradient(circle at top left, rgba(127, 221, 202, 0.16), transparent 22%),
           radial-gradient(circle at top right, rgba(240, 75, 36, 0.10), transparent 18%),
-          linear-gradient(180deg, #f9f6ef 0%, #f3efe8 100%);
+          linear-gradient(180deg, #f9f6ef 0%, #f4efe7 100%);
+        color: var(--ink);
         font-family: "Helvetica Neue", Arial, sans-serif;
       }
 
       .board {
-        width: 1680px;
+        width: 1720px;
         margin: 0 auto;
-        padding: 40px;
+        padding: 34px;
       }
 
       .header,
-      .section,
-      .screen,
-      .footer {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(18px);
+      .panel,
+      .desktop-shell,
+      .phone-shell,
+      .story-card,
+      .article-shell {
+        background: rgba(255, 255, 255, 0.84);
+        backdrop-filter: blur(20px);
         border: 1px solid rgba(23, 50, 74, 0.08);
-        border-radius: 32px;
+        border-radius: 34px;
         box-shadow: var(--shadow);
       }
 
       .header {
-        padding: 38px 42px;
-      }
-
-      .eyebrow {
-        margin: 0;
-        font: 700 12px/1.2 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--text-mid);
+        padding: 34px 38px;
       }
 
       h1, h2, h3, h4, h5, p { margin: 0; }
 
-      h1, h2, h3, h4, h5 {
+      h1, h2, h3, h4 {
         font-family: Georgia, "Times New Roman", serif;
         letter-spacing: -0.04em;
       }
 
+      .eyebrow,
+      .micro,
+      .pill {
+        font-family: "SF Mono", "Roboto Mono", Consolas, monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-mid);
+      }
+
       .header h1 {
-        max-width: 1040px;
+        max-width: 980px;
         margin-top: 12px;
-        font-size: 70px;
+        font-size: 74px;
         line-height: 0.92;
       }
 
       .header p {
-        max-width: 1080px;
-        margin-top: 18px;
-        font-size: 21px;
-        line-height: 1.58;
+        max-width: 1120px;
+        margin-top: 14px;
+        font-size: 19px;
+        line-height: 1.6;
         color: var(--text-mid);
       }
 
-      .header-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 24px;
-        margin-top: 26px;
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
       }
 
-      .hero-card {
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 34px;
+        padding: 0 14px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .pill.teal {
+        background: rgba(15, 95, 115, 0.1);
+        color: var(--teal);
+        border: 1px solid rgba(15, 95, 115, 0.12);
+      }
+
+      .pill.vermilion {
+        background: var(--vermilion-soft);
+        color: var(--vermilion);
+        border: 1px solid rgba(240, 75, 36, 0.14);
+      }
+
+      .pill.mint {
+        background: rgba(127, 221, 202, 0.18);
+        color: #177766;
+        border: 1px solid rgba(127, 221, 202, 0.2);
+      }
+
+      .pill.butter {
+        background: rgba(242, 214, 107, 0.22);
+        color: #6e5a08;
+        border: 1px solid rgba(242, 214, 107, 0.24);
+      }
+
+      .top-grid {
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .panel h2 {
+        margin-top: 8px;
+        font-size: 42px;
+        line-height: 0.96;
+      }
+
+      .panel > p {
+        margin-top: 12px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--text-mid);
+      }
+
+      .landing-hero {
         position: relative;
         overflow: hidden;
-        min-height: 300px;
-        padding: 26px;
-        border-radius: 28px;
+        min-height: 420px;
+        margin-top: 18px;
+        padding: 28px;
+        border-radius: 30px;
         background:
-          radial-gradient(circle at top right, rgba(127, 221, 202, 0.18), transparent 30%),
-          linear-gradient(135deg, var(--primary) 0%, #0a4959 100%);
+          radial-gradient(circle at 72% 75%, rgba(255,255,255,0.12), transparent 22%),
+          linear-gradient(135deg, var(--teal) 0%, #0a4859 100%);
         color: white;
       }
 
-      .hero-card::after {
+      .landing-hero::after {
         content: "";
         position: absolute;
-        right: -56px;
-        bottom: -56px;
-        width: 220px;
-        height: 220px;
+        right: -140px;
+        bottom: -130px;
+        width: 420px;
+        height: 420px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.08);
-        filter: blur(8px);
       }
 
-      .brand {
+      .landing-topbar {
         position: relative;
         z-index: 1;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 14px;
       }
 
-      .brand img {
-        width: 40px;
-        height: 40px;
-        filter: brightness(0) saturate(100%) invert(100%);
+      .brand {
+        font: 700 24px/1 Georgia, "Times New Roman", serif;
+        letter-spacing: -0.05em;
       }
 
-      .brand span {
-        font: 700 32px/1 Georgia, "Times New Roman", serif;
+      .nav-mini {
+        display: flex;
+        gap: 18px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255,255,255,0.75);
       }
 
-      .hero-card h2 {
+      .landing-hero h3 {
         position: relative;
         z-index: 1;
-        max-width: 560px;
-        margin-top: 34px;
-        font-size: 56px;
-        line-height: 0.92;
+        max-width: 720px;
+        margin-top: 58px;
+        font-size: 118px;
+        line-height: 0.84;
       }
 
-      .hero-card p {
+      .landing-hero .sub {
         position: relative;
         z-index: 1;
         max-width: 520px;
-        margin-top: 14px;
+        margin-top: 18px;
         font-size: 18px;
-        line-height: 1.58;
-        color: rgba(255, 255, 255, 0.84);
+        line-height: 1.6;
+        color: rgba(255,255,255,0.84);
       }
 
       .hero-actions {
         position: relative;
         z-index: 1;
         display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 18px;
-      }
-
-      .mono-chip,
-      .small-chip {
-        border-radius: 999px;
-        font: 700 10px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .mono-chip {
-        padding: 9px 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .rationale {
-        padding: 24px;
-        border-radius: 28px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.66));
-        border: 1px solid rgba(23, 50, 74, 0.08);
-      }
-
-      .rationale h3 {
-        font-size: 34px;
-        line-height: 0.98;
-      }
-
-      .rationale p {
-        margin-top: 12px;
-        font-size: 17px;
-        line-height: 1.6;
-        color: var(--text-mid);
-      }
-
-      .rationale .score {
-        display: grid;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .score-row {
-        display: grid;
-        grid-template-columns: 120px 1fr 42px;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .score-row span,
-      .score-row strong {
-        font: 700 10px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .score-row span { color: var(--text-mid); }
-
-      .track {
-        height: 10px;
-        overflow: hidden;
-        border-radius: 999px;
-        background: rgba(23, 50, 74, 0.08);
-      }
-
-      .fill {
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, var(--primary) 0%, #13829d 100%);
-      }
-
-      .main-grid {
-        display: grid;
-        grid-template-columns: 0.92fr 1.08fr;
-        gap: 24px;
-        margin-top: 24px;
-      }
-
-      .stack {
-        display: grid;
-        gap: 24px;
-      }
-
-      .section {
-        padding: 26px;
-      }
-
-      .section h3 {
-        margin-top: 10px;
-        font-size: 36px;
-        line-height: 0.98;
-      }
-
-      .section > p {
-        margin-top: 12px;
-        font-size: 17px;
-        line-height: 1.6;
-        color: var(--text-mid);
-      }
-
-      .palette {
-        display: grid;
         gap: 12px;
-        margin-top: 20px;
+        margin-top: 22px;
       }
 
-      .swatch {
-        display: grid;
-        grid-template-columns: 68px 1fr auto;
+      .cta {
+        display: inline-flex;
         align-items: center;
-        gap: 14px;
-        padding: 12px;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.72);
-        border: 1px solid rgba(23, 50, 74, 0.06);
-      }
-
-      .swatch .color {
-        height: 48px;
-        border-radius: 14px;
-      }
-
-      .swatch strong {
-        display: block;
-        font-size: 15px;
-      }
-
-      .swatch span {
-        display: block;
-        margin-top: 4px;
-        font-size: 12px;
-        line-height: 1.45;
-        color: var(--text-mid);
-      }
-
-      .swatch code {
-        font: 700 10px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.06em;
-        color: var(--text-mid);
-      }
-
-      .type-grid,
-      .token-grid,
-      .component-grid {
-        display: grid;
-        gap: 14px;
-        margin-top: 20px;
-      }
-
-      .type-card,
-      .token-card,
-      .component-card {
-        padding: 18px;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.76);
-        border: 1px solid rgba(23, 50, 74, 0.08);
-      }
-
-      .type-card .label,
-      .token-card .label,
-      .component-card .label {
-        font: 700 10px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        color: var(--text-mid);
-      }
-
-      .type-card h4 {
-        margin-top: 10px;
-        font-size: 34px;
-        line-height: 0.98;
-      }
-
-      .type-card p,
-      .token-card p,
-      .component-card p {
-        margin-top: 8px;
-        font-size: 13px;
-        line-height: 1.5;
-        color: var(--text-mid);
-      }
-
-      .body-demo {
-        margin-top: 12px;
-        font-size: 16px;
-        line-height: 1.7;
-      }
-
-      .mono-demo {
-        margin-top: 12px;
-        font: 700 11px/1.5 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .token-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .token-card strong {
-        display: block;
-        margin-top: 10px;
-        font-size: 28px;
-      }
-
-      .component-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .button-row,
-      .pill-row {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 14px;
-      }
-
-      .btn {
-        padding: 14px 18px;
+        justify-content: center;
+        height: 54px;
+        padding: 0 22px;
         border-radius: 999px;
-        border: none;
-        font: 700 11px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.08em;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
-      .btn-primary {
-        background: var(--primary);
+      .cta.primary {
+        background: var(--vermilion);
         color: white;
-        box-shadow: 0 0 24px var(--primary-glow);
       }
 
-      .btn-secondary {
-        background: white;
-        color: var(--primary);
-        border: 1px solid rgba(23, 50, 74, 0.1);
-      }
-
-      .btn-alert {
-        background: var(--alert);
+      .cta.secondary {
+        background: rgba(255,255,255,0.12);
         color: white;
-        box-shadow: 0 0 22px rgba(240, 75, 36, 0.22);
+        border: 1px solid rgba(255,255,255,0.14);
       }
 
-      .small-chip {
-        padding: 8px 10px;
-      }
-
-      .small-chip.primary { color: var(--primary); background: rgba(127,221,202,0.18); }
-      .small-chip.ok { color: #12755e; background: rgba(135,215,180,0.18); }
-      .small-chip.mixed { color: #8e7316; background: rgba(242,214,107,0.22); }
-      .small-chip.alert { color: var(--alert); background: rgba(240,75,36,0.12); }
-      .small-chip.insight { color: #5964c9; background: rgba(172,182,255,0.17); }
-
-      .screen-showcase {
+      .calm-strip {
+        position: relative;
+        z-index: 1;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px;
-        margin-top: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 26px;
       }
 
-      .screen {
-        overflow: hidden;
+      .calm-strip div {
+        padding: 14px 16px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.12);
       }
 
-      .screen-head {
+      .calm-strip span {
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255,255,255,0.62);
+      }
+
+      .calm-strip strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .phone-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      .phone-shell {
+        width: 430px;
+        min-height: 760px;
+        padding: 22px;
+        background: linear-gradient(180deg, #fcfdff 0%, #f4f7fb 100%);
+      }
+
+      .phone-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px 20px;
-        border-bottom: 1px solid rgba(23, 50, 74, 0.06);
       }
 
-      .screen-head .title {
-        font-size: 18px;
-        line-height: 1;
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--butter), var(--vermilion));
       }
 
-      .screen-head .meta {
-        font: 700 10px/1 "SF Mono", "Roboto Mono", Consolas, monospace;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+      .phone-title h4 {
+        font-size: 36px;
+        line-height: 0.96;
+      }
+
+      .phone-title p {
+        margin-top: 4px;
+        font-size: 12px;
         color: var(--text-mid);
       }
 
-      .dashboard-screen {
-        background: var(--bg);
+      .filter-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
       }
 
-      .dash-body {
-        display: grid;
-        gap: 14px;
-        padding: 18px;
-      }
-
-      .dash-hero {
-        position: relative;
-        overflow: hidden;
-        padding: 20px;
-        border-radius: 22px;
-        background: linear-gradient(135deg, var(--primary) 0%, #0a4959 100%);
-        color: white;
-      }
-
-      .dash-hero::after {
-        content: "";
-        position: absolute;
-        right: -36px;
-        bottom: -36px;
-        width: 150px;
-        height: 150px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.08);
-      }
-
-      .dash-hero h4 {
-        position: relative;
-        z-index: 1;
-        max-width: 360px;
-        margin-top: 10px;
-        font-size: 34px;
-        line-height: 0.95;
-      }
-
-      .dash-hero p {
-        position: relative;
-        z-index: 1;
-        max-width: 360px;
-        margin-top: 10px;
-        font-size: 14px;
-        line-height: 1.55;
-        color: rgba(255,255,255,0.84);
+      .filter-row .pill {
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 11px;
       }
 
       .story-card {
-        padding: 18px;
-        border-radius: 20px;
-        background: white;
-        border: 1px solid var(--line);
+        overflow: hidden;
+        margin-top: 18px;
+        padding: 22px;
       }
 
-      .story-card h5,
-      .detail-screen h4,
-      .briefing-screen h4 {
-        margin-top: 10px;
-        font-size: 26px;
-        line-height: 0.98;
+      .story-card.large {
+        background:
+          radial-gradient(circle at top right, rgba(127,221,202,0.18), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
       }
 
-      .story-card p,
-      .detail-screen p,
-      .briefing-screen p {
+      .story-card .kicker {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .story-card h5 {
+        margin-top: 14px;
+        font-size: 38px;
+        line-height: 0.95;
+      }
+
+      .story-card p {
         margin-top: 10px;
-        font-size: 14px;
-        line-height: 1.55;
+        font-size: 15px;
+        line-height: 1.6;
         color: var(--text-mid);
       }
 
-      .story-footer,
-      .detail-footer {
+      .meta-row {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
         margin-top: 16px;
       }
 
-      .detail-screen,
-      .briefing-screen {
-        padding: 18px;
-        background: white;
+      .micro {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text-dim);
       }
 
-      .detail-panel,
-      .briefing-panel {
-        padding: 18px;
+      .player-cluster {
+        display: grid;
+        grid-template-columns: 42px 1fr 42px;
+        align-items: center;
+        gap: 14px;
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 24px;
+        background: var(--mist);
+      }
+
+      .icon-button,
+      .play-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+      }
+
+      .icon-button {
+        width: 42px;
+        height: 42px;
+        background: white;
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+
+      .play-button {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        background: var(--vermilion);
+        color: white;
+        box-shadow: 0 0 0 1px rgba(240,75,36,0.18), 0 0 24px rgba(240,75,36,0.18);
+      }
+
+      .wave {
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .wave span {
+        width: 6px;
+        border-radius: 999px;
+        background: var(--teal);
+      }
+
+      .wave span:nth-child(1) { height: 14px; }
+      .wave span:nth-child(2) { height: 24px; }
+      .wave span:nth-child(3) { height: 18px; }
+      .wave span:nth-child(4) { height: 28px; }
+      .wave span:nth-child(5) { height: 16px; }
+      .wave span:nth-child(6) { height: 22px; background: rgba(240, 75, 36, 0.75); }
+
+      .compact-row {
+        display: grid;
+        grid-template-columns: 72px 1fr auto;
+        gap: 14px;
+        align-items: center;
+        margin-top: 16px;
+        padding: 14px;
         border-radius: 22px;
-        background: var(--surface-soft);
+        background: white;
         border: 1px solid var(--line);
       }
 
-      .meter {
-        margin-top: 16px;
-        padding: 14px;
+      .thumb {
+        width: 72px;
+        height: 72px;
         border-radius: 18px;
-        background: rgba(127,221,202,0.12);
-        border: 1px solid rgba(15,95,115,0.08);
+        background:
+          linear-gradient(135deg, rgba(15,95,115,0.18), rgba(172,182,255,0.35)),
+          linear-gradient(180deg, white, white);
       }
 
-      .meter-track {
-        height: 10px;
-        overflow: hidden;
-        margin-top: 10px;
-        border-radius: 999px;
-        background: rgba(23, 50, 74, 0.08);
-      }
-
-      .meter-fill {
-        width: 78%;
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, #8acdb7 0%, var(--primary) 100%);
-      }
-
-      .screen-list {
-        display: grid;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .screen-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .screen-item strong {
+      .compact-row strong {
         display: block;
-        font-size: 14px;
+        font-size: 18px;
+        line-height: 1.2;
       }
 
-      .screen-item span {
+      .compact-row span {
         display: block;
         margin-top: 4px;
         font-size: 12px;
         color: var(--text-mid);
       }
 
-      .footer {
+      .dock {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        align-items: center;
+        margin-top: 22px;
+        padding: 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        box-shadow: 0 18px 36px rgba(23, 50, 74, 0.12);
+      }
+
+      .dock-item {
+        display: grid;
+        justify-items: center;
+        gap: 6px;
+        min-height: 64px;
+        padding: 10px 0;
+        border-radius: 999px;
+        color: var(--text-mid);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .dock-item.active {
+        background: rgba(15,95,115,0.1);
+        color: var(--teal);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: currentColor;
+      }
+
+      .desktop-panel {
         margin-top: 24px;
-        padding: 26px 30px;
       }
 
-      .footer h3 {
+      .desktop-shell {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 18px;
+        padding: 18px;
+      }
+
+      .rail {
+        padding: 18px 16px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, #1a3145 0%, #0f2233 100%);
+        color: white;
+      }
+
+      .rail h3 {
+        font-size: 26px;
+      }
+
+      .rail-nav {
+        display: grid;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .rail-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 52px;
+        padding: 0 16px;
+        border-radius: 18px;
+        color: rgba(255,255,255,0.72);
+        background: transparent;
+      }
+
+      .rail-item.active {
+        color: white;
+        background: rgba(255,255,255,0.1);
+      }
+
+      .canvas {
+        padding: 8px;
+      }
+
+      .canvas-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 8px 18px;
+      }
+
+      .canvas-top h3 {
+        font-size: 54px;
+        line-height: 0.95;
+      }
+
+      .canvas-top p {
+        margin-top: 6px;
+        font-size: 15px;
+        color: var(--text-mid);
+      }
+
+      .canvas-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 18px;
+      }
+
+      .module-stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .module-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .module {
+        padding: 20px;
+        border-radius: 26px;
+        background: white;
+        border: 1px solid var(--line);
+      }
+
+      .module.tint {
+        background: linear-gradient(180deg, rgba(15,95,115,0.08), rgba(255,255,255,0.9));
+      }
+
+      .module.alert {
+        background: linear-gradient(180deg, rgba(240,75,36,0.1), rgba(255,255,255,0.92));
+      }
+
+      .module h4 {
         margin-top: 10px;
-        font-size: 36px;
-        line-height: 0.98;
+        font-size: 34px;
+        line-height: 0.96;
       }
 
-      .footer p {
-        max-width: 1180px;
-        margin-top: 12px;
-        font-size: 18px;
+      .module p {
+        margin-top: 8px;
+        font-size: 14px;
         line-height: 1.6;
         color: var(--text-mid);
+      }
+
+      .bottom-grid {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr 0.9fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .story-card-panel .story-card.large { margin-top: 16px; }
+
+      .story-card.compact {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: 18px;
+      }
+
+      .story-card.compact .thumb {
+        width: 100px;
+        height: 100px;
+        border-radius: 22px;
+      }
+
+      .pill-grid {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .pill-group {
+        padding: 18px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+        border: 1px solid var(--line);
+      }
+
+      .pill-group h4 {
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .pill-group .chip-row {
+        margin-top: 14px;
+      }
+
+      .article-shell {
+        padding: 22px;
+      }
+
+      .article-shell h3 {
+        margin-top: 14px;
+        font-size: 50px;
+        line-height: 0.94;
+      }
+
+      .article-shell .deck {
+        margin-top: 12px;
+        font-size: 17px;
+        line-height: 1.68;
+        color: var(--text-mid);
+      }
+
+      .proof-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .article-copy {
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .article-copy p {
+        font-size: 17px;
+        line-height: 1.82;
+        color: #324d63;
+      }
+
+      .article-copy p + p {
+        margin-top: 16px;
+      }
+
+      .footer-note {
+        margin-top: 24px;
+        padding: 18px 22px;
+        border-radius: 24px;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(23, 50, 74, 0.08);
+        color: var(--text-mid);
+        font-size: 14px;
+        line-height: 1.6;
       }
     </style>
   </head>
   <body>
     <main class="board">
       <section class="header">
-        <p class="eyebrow">Narvo Design System · Approval Board</p>
-        <h1>Petrol Teal as the core engine. Signal Vermilion as controlled urgency.</h1>
+        <div class="eyebrow">Narvo Final Approval Board · March 31, 2026</div>
+        <h1>Large UI for habit surfaces. Calm reading for trust surfaces.</h1>
         <p>
-          This is the approval version of the Narvo system: one primary brand colour, one urgency colour, calm editorial surfaces, and a restrained component language built around listening, verification, and daily utility. It is intentionally tighter than the exploratory board and focuses only on what should be approved as the system baseline.
+          Narvo keeps the approved v5 engine intact: <strong>Petrol Teal</strong> provides
+          structure, <strong>Signal Vermilion</strong> drives action and urgency, and the
+          interface scales up only where habit and audio benefit from it.
         </p>
+        <div class="chip-row">
+          <div class="pill teal">Petrol Teal · Structural Core</div>
+          <div class="pill vermilion">Signal Vermilion · Action</div>
+          <div class="pill mint">Large UI · Dashboard / Listen / Discover / Player</div>
+          <div class="pill butter">Calm Reading · Article / Settings / Proof</div>
+        </div>
+      </section>
 
-        <div class="header-grid">
-          <div class="hero-card">
-            <div class="brand">
-              <img src="../../../narvo/frontend/public/narvo_logo.svg" alt="Narvo logo" />
-              <span>Narvo</span>
+      <section class="top-grid">
+        <div class="panel">
+          <div class="eyebrow">LandingHeroFrame</div>
+          <h2>Bold hero first, calmer product explanation after.</h2>
+          <p>
+            Marketing gets one dominant headline moment and one focal action. The rest of the
+            page should step back into product clarity instead of staying loud all the way down.
+          </p>
+          <div class="landing-hero">
+            <div class="landing-topbar">
+              <div class="brand">Narvo</div>
+              <div class="nav-mini">
+                <span>Product</span>
+                <span>Listen</span>
+                <span>Why Narvo</span>
+              </div>
             </div>
-            <h2>The signal-first system for The Gist and The Pipeline.</h2>
-            <p>
-              Calm enough for daily reading and listening. Modern enough to feel digital-native. Sharp enough to make urgency visible when it actually matters.
+            <h3>HEAR THE GIST.</h3>
+            <p class="sub">
+              A daily briefing and trust-first news product designed for fast scanning, clearer
+              listening, and calmer verification.
             </p>
             <div class="hero-actions">
-              <span class="mono-chip">Trust</span>
-              <span class="mono-chip">Signal</span>
-              <span class="mono-chip">Audio-first</span>
-              <span class="mono-chip">Verification</span>
+              <div class="cta primary">Start Morning Briefing</div>
+              <div class="cta secondary">See Product Screens</div>
+            </div>
+            <div class="calm-strip">
+              <div>
+                <span>Morning ritual</span>
+                <strong>Start with audio, not clutter</strong>
+              </div>
+              <div>
+                <span>Truth layer</span>
+                <strong>Pills and proof stay compact</strong>
+              </div>
+              <div>
+                <span>Visual tone</span>
+                <strong>Big hero. Calm system below.</strong>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="rationale">
-            <p class="eyebrow">Approval Logic</p>
-            <h3>Why this should be the final direction</h3>
-            <p>
-              The product needs long-session visual endurance, clear audio controls, and confidence signals. Petrol Teal supports all three. Vermilion stays present, but only where urgency, live moments, and breaking states need a visible spike.
-            </p>
-            <div class="score">
-              <div class="score-row">
-                <span>Trust</span>
-                <div class="track"><div class="fill" style="width:90%;"></div></div>
-                <strong>90</strong>
+        <div class="panel">
+          <div class="eyebrow">NavDock + PlayerCluster</div>
+          <h2>Floating dock, oversized touch targets, central player emphasis.</h2>
+          <p>
+            The mobile shell should feel premium and touchable. The dock floats, filters feel like
+            real controls, and the player cluster gets the most visible energy in the flow.
+          </p>
+          <div class="phone-wrap">
+            <div class="phone-shell">
+              <div class="phone-top">
+                <div class="phone-title">
+                  <h4>Good morning.</h4>
+                  <p>Tuesday briefing · 8 stories · 21 min</p>
+                </div>
+                <div class="avatar"></div>
               </div>
-              <div class="score-row">
-                <span>Endurance</span>
-                <div class="track"><div class="fill" style="width:92%;"></div></div>
-                <strong>92</strong>
+
+              <div class="filter-row">
+                <div class="pill teal">Top Stories</div>
+                <div class="pill">Business</div>
+                <div class="pill">Policy</div>
               </div>
-              <div class="score-row">
-                <span>Recall</span>
-                <div class="track"><div class="fill" style="width:83%;"></div></div>
-                <strong>83</strong>
+
+              <div class="story-card large">
+                <div class="kicker">
+                  <div class="pill teal">Morning Briefing</div>
+                  <div class="pill vermilion">Live Audio</div>
+                </div>
+                <h5>Markets, policy, and culture. One clear briefing.</h5>
+                <p>
+                  Large-card rhythm belongs on habit surfaces, with compact proof and stronger
+                  transport focus.
+                </p>
+                <div class="meta-row">
+                  <span class="micro">06:00 WAT</span>
+                  <span class="micro">8 stories</span>
+                  <span class="micro">Trust-first summary</span>
+                </div>
+                <div class="player-cluster">
+                  <div class="icon-button">⟲</div>
+                  <div class="play-button">▶</div>
+                  <div class="icon-button">≋</div>
+                </div>
+                <div class="wave" style="margin-top: 14px;">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
               </div>
-              <div class="score-row">
-                <span>Urgency</span>
-                <div class="track"><div class="fill" style="width:74%;"></div></div>
-                <strong>74</strong>
+
+              <div class="compact-row">
+                <div class="thumb"></div>
+                <div>
+                  <strong>Why the naira story matters this week</strong>
+                  <span>Economy · 7 min listen · Verified source trail</span>
+                </div>
+                <div class="pill mint">Saved</div>
+              </div>
+
+              <div class="dock">
+                <div class="dock-item active"><div class="dot"></div><span>Home</span></div>
+                <div class="dock-item"><div class="dot"></div><span>Listen</span></div>
+                <div class="dock-item"><div class="dot"></div><span>Discover</span></div>
+                <div class="dock-item"><div class="dot"></div><span>Library</span></div>
+                <div class="dock-item"><div class="dot"></div><span>Profile</span></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="main-grid">
-        <div class="stack">
-          <article class="section">
-            <p class="eyebrow">Colour System</p>
-            <h3>Primary, urgency, surface, and signal roles</h3>
-            <p>
-              The core rule is simple: Teal carries identity and structure. Vermilion carries urgency. Everything else exists to support reading, listening, and clarity.
-            </p>
-            <div class="palette">
-              <div class="swatch">
-                <div class="color" style="background:#0F5F73;"></div>
-                <div><strong>Petrol Teal</strong><span>Main brand colour. Navigation, hero shells, player shell, active controls.</span></div>
-                <code>#0F5F73</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#17324A;"></div>
-                <div><strong>Deep Ink</strong><span>Headlines, high-contrast text, serious editorial weight.</span></div>
-                <code>#17324A</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#F6F8FB;"></div>
-                <div><strong>Cloud White</strong><span>Primary page ground for web and mobile.</span></div>
-                <code>#F6F8FB</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#EEF3F7;"></div>
-                <div><strong>Cool Mist</strong><span>Cards, transcript panels, secondary surfaces.</span></div>
-                <code>#EEF3F7</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#6C7F93;"></div>
-                <div><strong>Slate Mist</strong><span>Secondary body copy, metadata, borders, system text.</span></div>
-                <code>#6C7F93</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#F04B24;"></div>
-                <div><strong>Signal Vermilion</strong><span>Breaking, live, urgent notifications, high-attention action.</span></div>
-                <code>#F04B24</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#87D7B4;"></div>
-                <div><strong>Verified Green</strong><span>Truth-tag positive state and confidence support.</span></div>
-                <code>#87D7B4</code>
-              </div>
-              <div class="swatch">
-                <div class="color" style="background:#F2D66B;"></div>
-                <div><strong>Highlight Gold</strong><span>Mixed-certainty, highlights, warm editorial emphasis.</span></div>
-                <code>#F2D66B</code>
-              </div>
-            </div>
-          </article>
-
-          <article class="section">
-            <p class="eyebrow">Typography</p>
-            <h3>Editorial serif, system sans, technical mono</h3>
-            <p>
-              The type stack should feel unmistakably editorial at the headline layer, frictionless in body copy, and precise in metadata and system tags.
-            </p>
-            <div class="type-grid">
-              <div class="type-card">
-                <div class="label">Display / Headlines</div>
-                <h4>Fraunces</h4>
-                <p>For dashboard hero cards, article titles, briefing headlines, and high-value moments.</p>
-              </div>
-              <div class="type-card">
-                <div class="label">Body / Interface</div>
-                <div class="body-demo">Plus Jakarta Sans keeps long-form reading and navigation clean, calm, and contemporary without becoming generic.</div>
-                <p>For body copy, controls, settings, summaries, and support text.</p>
-              </div>
-              <div class="type-card">
-                <div class="label">Meta / Signals</div>
-                <div class="mono-demo">Verified · 6 sources · 4 min listen · briefing_live</div>
-                <p>Use for Truth Tags, timestamps, categories, durations, analytics labels, and technical UI identifiers.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="section">
-            <p class="eyebrow">Components</p>
-            <h3>The repeatable system primitives</h3>
-            <p>
-              The approval decision should lock these component behaviours: clear primary action, calm secondary action, truth signals, and visible urgency only when justified.
-            </p>
-            <div class="component-grid">
-              <div class="component-card">
-                <div class="label">Buttons</div>
-                <div class="button-row">
-                  <button class="btn btn-primary">Play now</button>
-                  <button class="btn btn-secondary">Queue</button>
-                  <button class="btn btn-alert">Breaking</button>
-                </div>
-                <p>Primary teal for standard action. White secondary for supporting action. Vermilion only for urgency.</p>
-              </div>
-              <div class="component-card">
-                <div class="label">Truth / State Pills</div>
-                <div class="pill-row">
-                  <span class="small-chip ok">Verified</span>
-                  <span class="small-chip mixed">Mixed</span>
-                  <span class="small-chip alert">Disputed</span>
-                  <span class="small-chip insight">Insight</span>
-                </div>
-                <p>Truth tags and state chips stay compact, mono, and semantically strict.</p>
-              </div>
-              <div class="component-card">
-                <div class="label">Surface Tokens</div>
-                <div class="token-grid">
-                  <div class="token-card">
-                    <div class="label">Primary Surface</div>
-                    <strong style="color:var(--text);">Cloud White</strong>
-                    <p>Main reading and app background.</p>
-                  </div>
-                  <div class="token-card">
-                    <div class="label">Raised Surface</div>
-                    <strong style="color:var(--text);">Cool Mist</strong>
-                    <p>Cards, transcript blocks, utility panels.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="component-card">
-                <div class="label">Glow Rule</div>
-                <div class="button-row">
-                  <button class="btn btn-primary">Active TTS</button>
-                </div>
-                <p>Glow is reserved for primary audio and focused active states. It should not be spread across normal reading surfaces.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="stack">
-          <article class="section">
-            <p class="eyebrow">Key Product Surfaces</p>
-            <h3>The three approval screens</h3>
-            <p>
-              These are the surfaces that matter most for the decision: the daily dashboard, the article detail page, and the Morning Briefing. If these work, the rest of the system has a stable foundation.
-            </p>
-
-            <div class="screen-showcase">
-              <article class="screen dashboard-screen">
-                <div class="screen-head">
-                  <div class="title">Dashboard</div>
-                  <div class="meta">/dashboard</div>
-                </div>
-                <div class="dash-body">
-                  <div class="dash-hero">
-                    <div class="eyebrow" style="color:rgba(255,255,255,0.7);">Saturday · 05:32 WAT</div>
-                    <h4>The gist, synthesised before the city wakes up.</h4>
-                    <p>Hero story, certainty-first cards, live sources, and direct play actions define the daily front door.</p>
-                  </div>
-                  <div class="story-card">
-                    <div class="eyebrow" style="color:var(--alert);">Breaking · Economy</div>
-                    <h5>CBN liquidity moves ripple across fintech settlement cycles.</h5>
-                    <p>One synthesis. Three sources. Four-minute listen. The card stays compact but still communicates truth and urgency.</p>
-                    <div class="story-footer">
-                      <div class="pill-row" style="margin-top:0;">
-                        <span class="small-chip ok">Verified</span>
-                        <span class="small-chip primary">4 min</span>
-                      </div>
-                      <button class="btn btn-primary" style="padding:12px 16px;">Play</button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="screen">
-                <div class="screen-head">
-                  <div class="title">News Detail</div>
-                  <div class="meta">/news/:id</div>
-                </div>
-                <div class="detail-screen">
-                  <div class="detail-panel">
-                    <div class="eyebrow" style="color:var(--primary);">Technology · Composite narrative</div>
-                    <h4>AI policy draft splits optimism and caution across the ecosystem.</h4>
-                    <p>The article page must feel calm and credible. Truth Tag, certainty meter, and source lineage are the main trust devices.</p>
-                    <div class="detail-footer">
-                      <div class="pill-row" style="margin-top:0;">
-                        <span class="small-chip ok">Verified</span>
-                        <span class="small-chip insight">6 sources</span>
-                      </div>
-                      <button class="btn btn-primary" style="padding:12px 16px;">Listen</button>
-                    </div>
-                    <div class="meter">
-                      <div class="eyebrow" style="color:var(--primary);">Certainty meter · 78/100</div>
-                      <div class="meter-track"><div class="meter-fill"></div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="screen">
-                <div class="screen-head">
-                  <div class="title">Morning Briefing</div>
-                  <div class="meta">/briefing</div>
-                </div>
-                <div class="briefing-screen">
-                  <div class="detail-panel" style="background:linear-gradient(135deg, var(--primary) 0%, #0a4959 100%); color:white;">
-                    <div class="eyebrow" style="color:rgba(255,255,255,0.7);">Autoplay · intro cues · transcript sync</div>
-                    <h4 style="color:white;">Five top stories, one cinematic audio rundown.</h4>
-                    <p style="color:rgba(255,255,255,0.84);">This is the strongest expression of Narvo’s audio-first identity and the product surface where the brand should feel most ownable.</p>
-                  </div>
-                  <div class="briefing-panel" style="margin-top:16px;">
-                    <div class="eyebrow" style="color:var(--primary);">Transcript segments</div>
-                    <div class="screen-list">
-                      <div class="screen-item"><div><strong>01. Fuel subsidy update</strong><span>active highlight</span></div><span class="small-chip primary">live</span></div>
-                      <div class="screen-item"><div><strong>02. AI policy draft</strong><span>up next</span></div><span>02:44</span></div>
-                      <div class="screen-item"><div><strong>03. Startup funding</strong><span>queued</span></div><span>01:58</span></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="screen">
-                <div class="screen-head">
-                  <div class="title">Persistent Player</div>
-                  <div class="meta">AudioPlayerBar</div>
-                </div>
-                <div class="detail-screen">
-                  <div class="detail-panel">
-                    <div class="eyebrow" style="color:var(--primary);">Queue · playback speed · mute · mobile full-screen</div>
-                    <h4>Audio control should feel like the stable engine of the app.</h4>
-                    <p>The shell stays teal-led, with urgency reserved for live states and breaking overlays rather than permanent player chrome.</p>
-                    <div class="button-row">
-                      <button class="btn btn-secondary" style="padding:12px 14px;">Prev</button>
-                      <button class="btn btn-primary" style="padding:12px 16px;">Play</button>
-                      <button class="btn btn-secondary" style="padding:12px 14px;">Next</button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="footer">
-        <p class="eyebrow">Approval Recommendation</p>
-        <h3>Approve the Petrol Teal system as Narvo’s core design language.</h3>
+      <section class="panel desktop-panel">
+        <div class="eyebrow">DesktopRail + Airy Canvas</div>
+        <h2>Deep rail for memory and identity. Light canvas for editorial breathing room.</h2>
         <p>
-          The final rule set is straightforward: Teal owns identity, structure, and everyday use. Vermilion owns urgency and live attention. Editorial typography gives the product a point of view, while cool surfaces and strict truth-state semantics keep the experience usable and credible over long sessions.
+          Desktop Narvo should not look like a generic analytics app. The left rail anchors the
+          product, while the canvas stays airy, modular, and clearly editorial.
         </p>
+        <div class="desktop-shell" style="margin-top: 18px;">
+          <aside class="rail">
+            <div class="eyebrow" style="color: rgba(255,255,255,0.56);">DesktopRail</div>
+            <h3>Narvo</h3>
+            <div class="rail-nav">
+              <div class="rail-item active">Dashboard</div>
+              <div class="rail-item">Listen</div>
+              <div class="rail-item">Discover</div>
+              <div class="rail-item">Library</div>
+              <div class="rail-item">Profile</div>
+            </div>
+          </aside>
+
+          <div class="canvas">
+            <div class="canvas-top">
+              <div>
+                <div class="eyebrow">Dashboard / Morning briefing</div>
+                <h3>Start with the signal.</h3>
+                <p>Large modules, clearer hierarchy, and calmer proof layers.</p>
+              </div>
+              <div class="pill teal">Rail width 232px</div>
+            </div>
+
+            <div class="canvas-grid">
+              <div class="module-stack">
+                <div class="module tint">
+                  <div class="eyebrow">StoryCardLarge</div>
+                  <h4>The morning deck should feel big, clear, and trustworthy.</h4>
+                  <p>
+                    Teal shapes the shell. Vermilion stays reserved for action and urgency, not the
+                    whole surface.
+                  </p>
+                  <div class="chip-row">
+                    <div class="pill teal">Economy</div>
+                    <div class="pill mint">Verified</div>
+                    <div class="pill vermilion">Play</div>
+                  </div>
+                </div>
+
+                <div class="module-grid">
+                  <div class="module">
+                    <div class="eyebrow">Player summary</div>
+                    <h4>Audio gets the strongest control emphasis.</h4>
+                    <p>Large control clusters belong here, not in article reading.</p>
+                  </div>
+                  <div class="module alert">
+                    <div class="eyebrow">Breaking strip</div>
+                    <h4>Urgency stays compact.</h4>
+                    <p>Breaking should spike attention without turning the whole layout hot.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="module-stack">
+                <div class="module">
+                  <div class="eyebrow">Proof module</div>
+                  <h4>Truth stays precise.</h4>
+                  <p>Mono pills and calmer data treatment keep proof readable and disciplined.</p>
+                  <div class="chip-row">
+                    <div class="pill mint">Verified</div>
+                    <div class="pill butter">Mixed</div>
+                    <div class="pill vermilion">Disputed</div>
+                  </div>
+                </div>
+                <div class="module">
+                  <div class="eyebrow">Continue listening</div>
+                  <h4>Compact rows stay useful, not tiny.</h4>
+                  <p>Large UI does not remove the need for utility density where it matters.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <section class="bottom-grid">
+        <div class="panel story-card-panel">
+          <div class="eyebrow">StoryCardLarge / StoryCardCompact</div>
+          <h2>Editorial cards scale up, but hierarchy stays calm.</h2>
+          <p>
+            Large cards belong to dashboard, listen, discover, and landing transitions. Compact
+            cards still need enough breathing room to feel premium.
+          </p>
+          <div class="story-card large">
+            <div class="kicker">
+              <div class="pill teal">Markets</div>
+              <div class="pill mint">Verified</div>
+            </div>
+            <h5>One big headline. One clean next action.</h5>
+            <p>Large UI means bigger rhythm, not louder decoration.</p>
+          </div>
+          <div class="story-card compact">
+            <div class="thumb"></div>
+            <div>
+              <div class="pill butter">Policy</div>
+              <h5 style="margin-top: 12px; font-size: 26px;">Compact cards stay legible in repeat contexts.</h5>
+              <p>Use them in feeds, related stories, and library views.</p>
+            </div>
+            <div class="pill vermilion">Play</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="eyebrow">FilterPill / StatusPill / TruthPill</div>
+          <h2>Pills must communicate semantics, not decoration.</h2>
+          <p>
+            Filters feel large and touchable on browse surfaces. Status and truth stay compact and
+            strict so the metadata layer remains informative.
+          </p>
+          <div class="pill-grid">
+            <div class="pill-group">
+              <h4>Filter pills</h4>
+              <div class="chip-row">
+                <div class="pill teal">Top Stories</div>
+                <div class="pill">Business</div>
+                <div class="pill">Culture</div>
+              </div>
+            </div>
+            <div class="pill-group">
+              <h4>Status pills</h4>
+              <div class="chip-row">
+                <div class="pill vermilion">Breaking</div>
+                <div class="pill mint">Saved</div>
+                <div class="pill butter">Queued</div>
+              </div>
+            </div>
+            <div class="pill-group">
+              <h4>Truth pills</h4>
+              <div class="chip-row">
+                <div class="pill mint">Verified</div>
+                <div class="pill butter">Mixed</div>
+                <div class="pill vermilion">Disputed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="eyebrow">Article Shell</div>
+          <h2>Reading stays quieter than browsing.</h2>
+          <p>
+            Article detail should not inherit the whole large-card language. It remains typography-led,
+            calmer, and more restrained even after the large-UI pivot.
+          </p>
+          <div class="article-shell" style="margin-top: 18px;">
+            <div class="eyebrow">News detail</div>
+            <h3>Context first. Proof visible. Reading uninterrupted.</h3>
+            <p class="deck">
+              The article shell keeps stronger whitespace and calmer proof modules so users can read,
+              verify, and continue listening without visual fatigue.
+            </p>
+            <div class="proof-row">
+              <div class="pill mint">Verified</div>
+              <div class="pill teal">Source trail</div>
+              <div class="pill butter">3 min read</div>
+            </div>
+            <div class="article-copy">
+              <p>
+                Large UI belongs to habit surfaces. Detail pages should instead use cleaner typography,
+                restrained cards, and quieter metadata grouping.
+              </p>
+              <p>
+                This is where Narvo earns trust: not by removing personality, but by knowing when to
+                lower the visual volume.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Final direction: <strong>teal structures the product</strong>, <strong>vermilion energizes action</strong>,
+        <strong>large UI belongs to habit surfaces</strong>, and <strong>reading remains calm</strong>.
+        This board is the approval artifact for the final branding and overall design-system stance.
+      </div>
     </main>
   </body>
 </html>

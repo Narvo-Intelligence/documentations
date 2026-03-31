@@ -1,11 +1,11 @@
 # Narvo Design Foundation — v5
 ### Approved Visual System for the Next Narvo Build
 
-> **Version:** 5.0  
-> **Date:** March 29, 2026  
+> **Version:** 5.1  
+> **Date:** March 31, 2026  
 > **Author:** Ajibola Akelebe — Founder & Sole Developer, Narvo Intelligence  
 > **Scope:** Narvo B2C brand foundation, colour system, typography system, and core visual rules  
-> **Status:** Approved foundation — implementation pending, component system next  
+> **Status:** Approved foundation — large-UI refinement locked, implementation pending  
 
 ---
 
@@ -100,6 +100,22 @@ The system must survive repetition. If a style looks good only once on a hero ba
 
 Narvo can borrow the discipline of single-colour-led brands like CowryWise, but it should not inherit their category signals. The approved system is teal-led, not trust-blue, and not earth-tone-led.
 
+### 3.6 Large UI, Calm Reading
+
+Narvo should feel larger, clearer, and more touchable on high-frequency product surfaces without turning every surface into a chunky card system.
+
+- large UI belongs on dashboard, listen, discover, player, and landing hero moments
+- calm reading belongs on article detail, settings, and dense informational contexts
+- scale should increase clarity and confidence, not mimic e-commerce or playful consumer apps
+
+### 3.7 Deep Rail, Airy Canvas
+
+Desktop Narvo should use a dark anchored rail with a lighter main canvas.
+
+- the rail provides structure, memory, and product identity
+- the main canvas remains editorial and spacious
+- the product should not collapse into an all-light, border-only SaaS shell
+
 ---
 
 ## 4. Product Surface Intent
@@ -109,10 +125,10 @@ The foundation must support the actual product structure already visible in the 
 | Surface | Primary goal | Visual behaviour |
 |--------|--------------|------------------|
 | Dashboard / feed | Scan quickly, trust instantly | Calm background, strong headline hierarchy, sparing vermilion |
-| News detail | Read comfortably, verify context | Highest readability, lowest decorative noise |
+| News detail | Read comfortably, verify context | Highest readability, lowest decorative noise, restrained scale |
 | Morning Briefing | Feel premium and routine | Strong display typography, controlled warmth |
-| Audio player | Emphasise action and continuity | Vermilion can become more visible here |
-| Listen / Discover | Feel curated, browseable | Teal structure with lighter support colours |
+| Audio player | Emphasise action and continuity | Vermilion can become more visible here, controls can scale up |
+| Listen / Discover | Feel curated, browseable | Teal structure with lighter support colours and larger modular cards |
 | Voice / truth surfaces | Signal system intelligence | Mono stamps, teal-based structural credibility |
 
 The general rule is:
@@ -120,6 +136,7 @@ The general rule is:
 - Reading surfaces should be quieter than browsing surfaces.
 - Audio surfaces can carry slightly more energy than article surfaces.
 - Breaking or live moments can spike in colour, but the entire app should not.
+- Large-UI scale should concentrate on top-level and habit surfaces, not long-form reading surfaces.
 
 ---
 
@@ -453,6 +470,8 @@ If a screen does not show that hierarchy, it is off-system.
 
 These are foundation rules, not final component specs.
 
+The approved refinement adds a **large-UI scale** for top-level habit surfaces while preserving a calmer reading scale for article and settings contexts.
+
 ### 7.1 Spacing Grid
 
 Narvo remains on an 8px grid.
@@ -470,18 +489,29 @@ Narvo remains on an 8px grid.
 | `--space-12` | 48px |
 | `--space-16` | 64px |
 
-### 7.2 Radius
+### 7.2 Layout and Shell Tokens
 
 | Token | Value | Use |
 |------|-------|-----|
-| `--radius-sm` | 10px | chips, small inputs |
+| `--shell-radius` | 32px | major desktop shells, hero framing |
+| `--card-radius` | 24px | large modular cards |
+| `--dock-height` | 84px | floating mobile dock container |
+| `--rail-width` | 232px expanded / 88px compact | desktop anchored rail |
+| `--section-gap` | 24px mobile / 32px desktop | major grouping rhythm |
+| `--hero-max-width` | 1120px | landing hero text and focal composition |
+
+### 7.3 Radius
+
+| Token | Value | Use |
+|------|-------|-----|
+| `--radius-sm` | 10px | compact pills, small inputs |
 | `--radius-md` | 14px | standard controls |
-| `--radius-lg` | 18px | cards |
+| `--radius-lg` | 18px | compact cards and rows |
 | `--radius-xl` | 24px | large cards, player shells |
-| `--radius-2xl` | 30px | hero panels, modal surfaces |
+| `--radius-2xl` | 32px | dock containers, hero panels, desktop shells |
 | `--radius-full` | 999px | pills, circular controls |
 
-### 7.3 Shadows
+### 7.4 Shadows
 
 Shadows should derive from Deep Ink, not cold black.
 
@@ -492,7 +522,7 @@ Shadows should derive from Deep Ink, not cold black.
 --shadow-4: 0 24px 80px rgba(23, 50, 74, 0.12);
 ```
 
-### 7.4 Glow Rule
+### 7.5 Glow Rule
 
 A soft teal glow is allowed on:
 
@@ -508,7 +538,7 @@ box-shadow: 0 0 0 1px rgba(15,95,115,0.14), 0 0 24px rgba(15,95,115,0.20);
 
 Do not apply glow to article cards or dense list items.
 
-### 7.5 Glass Rule
+### 7.6 Glass Rule
 
 Glassmorphism is allowed only on:
 
@@ -526,11 +556,12 @@ backdrop-filter: blur(30px);
 
 Never use heavy glass on article reading surfaces.
 
-### 7.6 Motion Rule
+### 7.7 Motion Rule
 
 - Standard transitions should feel deliberate, not playful.
 - Audio and live states can move faster than reading states.
 - Reduced motion must fully disable decorative movement.
+- Large-UI motion should rely on lift, spring, and emphasis, not bounce.
 
 ---
 
@@ -559,10 +590,33 @@ The approved token structure for the next implementation pass:
   --color-text-mid: #6C7F93;
   --color-text-dim: #93A4B6;
   --color-border: rgba(23, 50, 74, 0.10);
+  --surface-base: #F6F8FB;
+  --surface-card: #FFFFFF;
+  --surface-floating: #FFFFFF;
+  --surface-rail: #17324A;
 
   --font-display: 'Newsreader', Georgia, serif;
   --font-body: 'Instrument Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'SF Mono', monospace;
+
+  --shell-radius: 32px;
+  --card-radius: 24px;
+  --dock-height: 84px;
+  --rail-width: 232px;
+  --section-gap: 32px;
+  --hero-max-width: 1120px;
+
+  --button-lg: 56px;
+  --button-md: 48px;
+  --pill-sm: 30px;
+  --pill-md: 40px;
+  --nav-item-lg: 56px;
+  --card-padding-lg: 24px;
+
+  --motion-dock-spring: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --motion-pill-hover: 180ms ease;
+  --motion-card-lift: 220ms ease;
+  --motion-player-pulse: 240ms ease;
 }
 ```
 
@@ -573,6 +627,8 @@ Keep semantic aliases separate from brand tokens:
 - `--color-primary` means brand anchor
 - `--color-alert` means active / urgent / breaking
 - `--color-text-primary` means maximum readable text
+- `--surface-rail` means dark anchored navigation, not generic dark mode
+- `--button-lg` and `--pill-md` belong to large-UI core surfaces, not every dense context
 
 Do not let component code hard-code raw hex values when the token already exists.
 
@@ -588,6 +644,7 @@ Do not let component code hard-code raw hex values when the token already exists
 - Keep editorial hierarchy clear through Newsreader headlines and Instrument Sans body copy.
 - Use Geist Mono to mark system truth, timing, and metadata.
 - Reserve the most energetic visuals for audio, live, and breaking contexts.
+- Apply the large-UI scale primarily to dashboard, listen, discover, player, and landing surfaces.
 
 ### Never
 
@@ -596,6 +653,7 @@ Do not let component code hard-code raw hex values when the token already exists
 - Never use decorative typography in utility-heavy contexts.
 - Never let reading surfaces become visually busier than playback surfaces.
 - Never collapse metadata into body text styles.
+- Never force large dock, pill, or card scale into long-form reading surfaces.
 
 ---
 
@@ -617,14 +675,16 @@ At the time of approval:
 
 - the approved colour system is **not yet implemented** in the production CSS tokens
 - the approved typography system is **not yet implemented** in the production frontend
+- the large-UI dock, rail, and card scale are **not yet implemented** in the production frontend
 - the old v4 design system remains in the repo as the previous reference
 
 ### Next Sequence
 
-1. Update design tokens in frontend CSS to match this foundation.
+1. Update design tokens in frontend CSS to match this foundation and the new scale tokens.
 2. Replace legacy typography tokens with `Newsreader`, `Instrument Sans`, and `Geist Mono`.
-3. Redesign the component system against this foundation.
-4. Apply the new system across dashboard, article, player, and supporting surfaces.
+3. Implement the dock, rail, pill, and large-card component families.
+4. Apply the new system across dashboard, listen, discover, landing, and player surfaces first.
+5. Keep article detail and settings on the calmer reading scale.
 
 ### Canonical Rule
 
@@ -633,5 +693,6 @@ From this point onward:
 - This document is the source of truth for **colour**
 - This document is the source of truth for **typography**
 - This document is the source of truth for **visual posture**
+- This document is the source of truth for **layout scale and shell stance**
 
 Component rules should reference this file, not re-invent these decisions.

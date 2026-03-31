@@ -1,13 +1,13 @@
 # Current Documentation — Narvo Design Foundation v5
 
-> Active documentation as of March 30, 2026. Use the canonical set below for current Narvo product and brand decisions.
+> Active documentation as of March 31, 2026. Use the canonical set below for current Narvo product and brand decisions.
 
 ## Canonical
 
 ### Design
 
-- **Narvo_Design_Foundation_v5.md** — Approved visual foundation: Petrol Teal + Signal Vermilion colour system, Newsreader + Instrument Sans + Geist Mono typography, token architecture, and visual rules for the next implementation phase
-- **Narvo_Component_Design_System_v1.md** — Approved component system: primitives, navigation, story cards, truth/intelligence modules, player family, settings, feedback states, and layout shells
+- **Narvo_Design_Foundation_v5.md** — Approved visual foundation: Petrol Teal + Signal Vermilion colour system, Newsreader + Instrument Sans + Geist Mono typography, large-UI core-surface rules, and layout scale tokens
+- **Narvo_Component_Design_System_v1.md** — Approved component system: dock, rail, pill, story-card, truth/intelligence, player, settings, feedback, and layout-shell families
 - **Narvo_Emotional_Interaction_Guidelines_v1.md** — Interaction guidance: habit loops, trust feedback, premium motion, audio rituals, and delight rules without noise
 - **Narvo_App_Copy.md** — Current user-facing copy system and language direction
 
@@ -44,6 +44,6 @@
 
 ## Supporting Visuals
 
-- **narvo_design_system_approval_board.html** — Final foundation approval board
+- **narvo_design_system_approval_board.html** — Final branding and design-system approval board: landing hero, mobile dock, desktop rail, large cards, pill system, and calmer article shell
 - **narvo_product_visual_system_showcase.html** — Product-wide surface showcase
 - **narvo_component_design_system_board.html** — Component system visual board

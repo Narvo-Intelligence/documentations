@@ -1,11 +1,11 @@
 # Narvo Component Design System — v1
 ### Comprehensive Component Reference for the Approved v5 Foundation
 
-> **Version:** 1.0  
-> **Date:** March 29, 2026  
+> **Version:** 1.1  
+> **Date:** March 31, 2026  
 > **Author:** Ajibola Akelebe — Founder & Sole Developer, Narvo Intelligence  
 > **Depends on:** [Narvo_Design_Foundation_v5.md](./Narvo_Design_Foundation_v5.md)  
-> **Status:** Approved component-system direction — implementation pending  
+> **Status:** Approved component-system direction — large-UI refinement locked, implementation pending  
 
 ---
 
@@ -79,6 +79,26 @@ Cards, rows, chips, player controls, and settings modules should not look like t
 
 The attached inspiration is useful in one way: it shows a modular, card-led interface with soft elevation and clear groupings. Narvo should borrow that modularity, but become more editorial, more trustworthy, and more product-specific.
 
+### 2.7 Large on Habit Surfaces
+
+Narvo should feel physically larger on the surfaces users touch every day:
+
+- dashboard
+- listen
+- discover
+- player
+- landing hero
+
+Large scale means bigger targets, clearer grouping, and stronger rhythm. It does not mean playful inflation everywhere.
+
+### 2.8 Calm Reading by Default
+
+The large-UI pivot stops where reading density starts.
+
+- article detail stays typography-led
+- settings stay controlled and compact
+- proof modules stay precise rather than oversized
+
 ---
 
 ## 3. Component Architecture
@@ -105,6 +125,36 @@ Rule:
 - Primitives should never encode product semantics directly.
 - Feature components should never duplicate primitive rules.
 
+### 3.1 Core Contracts
+
+The following contracts are now mandatory reference components for the next Narvo implementation pass:
+
+| Contract | Role |
+|---------|------|
+| `NavDock` | floating mobile bottom navigation with large touch targets |
+| `FilterPill` | segmented browsing/filter control for dashboard, listen, discover |
+| `StatusPill` | saved, live, breaking, downloaded, queued, syncing |
+| `TruthPill` | verified, mixed, disputed, checking |
+| `StoryCardLarge` | high-importance editorial card for dashboard, listen, and landing |
+| `StoryCardCompact` | repeatable feed card for browse and list contexts |
+| `PlayerCluster` | central transport control family for full and compact playback |
+| `DesktopRail` | dark anchored desktop navigation shell |
+| `LandingHeroFrame` | bold campaign-level hero that transitions into calmer product explanation |
+
+### 3.2 Scope of Scale
+
+Apply the larger scale to:
+
+- top-level habit surfaces
+- modular browse surfaces
+- primary audio controls
+
+Do not apply the same scale to:
+
+- long-form article reading
+- source-dense verification blocks
+- settings rows where compact comparison matters
+
 ---
 
 ## 4. Primitives
@@ -115,10 +165,10 @@ Narvo needs four main button types.
 
 | Component | Use | Height | Shape | Colour rule |
 |----------|-----|--------|-------|-------------|
-| `ButtonPrimary` | play, listen, start, confirm | 52px app / 56px landing | full pill or soft rounded | Signal Vermilion |
-| `ButtonSecondary` | follow, save, view more | 44px to 48px | rounded rectangle | white or Cool Mist with Petrol Teal text |
-| `ButtonGhost` | subtle inline action | 40px to 44px | transparent | text-led only |
-| `ButtonIcon` | player controls, nav utilities | 40px / 48px / 56px | circular | white, Cool Mist, or Vermilion depending on priority |
+| `ButtonPrimary` | play, listen, start, confirm | 56px app / 60px landing | full pill or soft rounded | Signal Vermilion |
+| `ButtonSecondary` | follow, save, view more | 48px to 52px | rounded rectangle | white or Cool Mist with Petrol Teal text |
+| `ButtonGhost` | subtle inline action | 44px to 48px | transparent | text-led only |
+| `ButtonIcon` | player controls, nav utilities | 44px / 52px / 60px | circular | white, Cool Mist, or Vermilion depending on priority |
 
 ### Primary Button Rule
 
@@ -145,16 +195,22 @@ Narvo uses chips heavily for scanning, not decoration.
 
 | Component | Use | Font | Style |
 |----------|-----|------|-------|
-| `ChipCategory` | politics, markets, tech, health | Instrument Sans 12/600 | soft teal tint |
-| `ChipStatus` | live, breaking, saved, downloaded | Geist Mono 10/700 | pill with state colour |
-| `ChipTruth` | verified, mixed, disputed | Geist Mono 10/700 | semantically coloured |
-| `ChipFilter` | category rail and segmented selection | Instrument Sans 12/600 | interactive pill |
+| `CategoryPill` | politics, markets, tech, health | Instrument Sans 12/600 | soft teal tint |
+| `StatusPill` | live, breaking, saved, downloaded | Geist Mono 10/700 | pill with state colour |
+| `TruthPill` | verified, mixed, disputed | Geist Mono 10/700 | semantically coloured |
+| `FilterPill` | category rail and segmented selection | Instrument Sans 12/600 | interactive pill |
 
 Chip priority:
 
 - category chips are quieter
 - status chips are hotter
 - truth chips are most semantically strict
+- filter pills should feel larger and more touchable on top-level browse surfaces
+
+Pill size defaults:
+
+- `pill-sm`: compact metadata and inline labels
+- `pill-md`: filter rails, docked selectors, and large browse contexts
 
 ### 4.3 Progress and Waveform
 
@@ -184,6 +240,8 @@ Surface tiers:
 | `Surface/Base` | page body |
 | `Surface/Card` | regular cards |
 | `Surface/Raised` | player, sheets, sticky modules |
+| `Surface/Floating` | nav dock, floating player, hero action clusters |
+| `Surface/Rail` | dark anchored desktop navigation |
 | `Surface/Tinted` | section grouping, soft context blocks |
 
 ### 4.5 Cover Art and Media Frames
@@ -224,9 +282,9 @@ Rules:
 - mobile top bar should stay tight and not compete with bottom nav
 - use `Newsreader` only for the main page title, not all nav labels
 
-### 5.2 Bottom Navigation
+### 5.2 NavDock
 
-The bottom nav is one of the most important Narvo habits.
+The floating mobile dock is one of the most important Narvo habits.
 
 Destinations:
 
@@ -238,12 +296,15 @@ Destinations:
 
 Rules:
 
-- pill or softly segmented container
+- floating pill container with breathing room from the screen edge
+- oversized tap targets and clearer active-state framing
 - active item gets teal emphasis
 - live or active audio can show a small vermilion or waveform cue
 - icon + short label only
 
-### 5.3 Sidebar Navigation
+This is not a flat utility bar. It should feel like a premium control dock.
+
+### 5.3 DesktopRail
 
 Desktop only.
 
@@ -255,7 +316,8 @@ Used for:
 
 Rules:
 
-- quieter than main feed
+- dark, anchored, and visually stable
+- quieter than main feed content but stronger than a generic sidebar
 - supports filters, collections, and utility groups
 - should feel like a stable rail, not a second app
 
@@ -278,7 +340,7 @@ Rules:
 
 ## 6. Content and Editorial Components
 
-### 6.1 StoryCardFeatured
+### 6.1 StoryCardLarge
 
 Use for:
 
@@ -300,7 +362,7 @@ Visual rule:
 - card should feel premium, spacious, and calm
 - this is not the brightest component on screen
 
-### 6.2 StoryCardStandard
+### 6.2 StoryCardCompact
 
 Use for:
 
@@ -395,7 +457,7 @@ Rules:
 
 This family is uniquely Narvo and should become visually ownable.
 
-### 7.1 TruthTag
+### 7.1 TruthPill / TruthTag
 
 Use for:
 
@@ -410,6 +472,7 @@ Rules:
 - always compact
 - colour must stay semantic
 - this component should never be over-designed
+- use pill framing on browse surfaces and stricter compact framing inside dense article contexts
 
 Approved semantic mapping:
 
@@ -488,7 +551,31 @@ This is a higher-level intelligence card, somewhere between analytics and editor
 
 Audio is Narvo’s most distinctive interaction layer.
 
-### 8.1 PlayerBarPersistent
+### 8.1 PlayerCluster and PlayerBarPersistent
+
+`PlayerCluster` is the central transport-control family for Narvo.
+
+Use for:
+
+- persistent player
+- full player
+- briefing hero
+- active audio tiles
+
+Anatomy:
+
+- central play or pause action
+- supporting transport actions
+- progress or waveform context
+- active emphasis state
+
+Rules:
+
+- controls should feel larger and more central than in a standard media app
+- the cluster can carry more vermilion emphasis than the rest of the layout
+- active state may pulse or glow subtly, never aggressively
+
+`PlayerBarPersistent` remains the always-on compact expression of this family.
 
 Use for:
 
@@ -815,9 +902,14 @@ Structure:
 - top header
 - optional topic rail
 - primary feed
-- secondary sidebar on desktop
+- desktop rail on desktop
 - persistent player
-- bottom nav on mobile
+- floating nav dock on mobile
+
+Rules:
+
+- large-card rhythm belongs here
+- the shell should feel airy in the canvas and anchored in the rail
 
 ### 12.2 Article Shell
 
@@ -833,6 +925,7 @@ Structure:
 Rule:
 
 - this is the quietest shell in the app
+- large-UI scale should step back here so reading stays comfortable
 
 ### 12.3 Listen Shell
 
@@ -847,6 +940,7 @@ Rule:
 
 - more active than article shell
 - calmer than full discover browse
+- should make room for the larger player cluster and premium briefing card
 
 ### 12.4 Discover Shell
 
@@ -860,6 +954,7 @@ Structure:
 Rule:
 
 - most modular and card-rich shell
+- the best place to use large pills, large cards, and segmented browse controls
 
 ### 12.5 Settings Shell
 
@@ -872,6 +967,7 @@ Structure:
 Rule:
 
 - should feel controlled, not clinical
+- should not inherit the full large-UI scale from browse surfaces
 
 ---
 
@@ -930,15 +1026,15 @@ The new system should map onto current files like this:
 
 | Current file | Future component family |
 |-------------|-------------------------|
-| `StoryCard.tsx` | `StoryCardStandard`, `StoryCardCompact`, `RecommendationCard` |
-| `AudioPlayerBar.tsx` | `PlayerBarPersistent`, `QueueItem`, `PlayerControlCluster` |
+| `StoryCard.tsx` | `StoryCardLarge`, `StoryCardCompact`, `RecommendationCard` |
+| `AudioPlayerBar.tsx` | `PlayerBarPersistent`, `QueueItem`, `PlayerCluster` |
 | `AudioPlayer.tsx` | `PlayerFull`, `WaveformStrip`, `TransportControls` |
-| `TruthTag.tsx` | `TruthTag` |
+| `TruthTag.tsx` | `TruthPill`, `TruthTag` |
 | `CertaintyMeter.tsx` | `CertaintyMeter` |
 | `SourceTimeline.tsx` | `SourceTimeline` |
-| `MobileNav.tsx` | `BottomNavigation` |
+| `MobileNav.tsx` | `NavDock` |
 | `DashboardHeader.tsx` | `TopBar`, `ContextHeader` |
-| `DashboardSidebar.tsx` | `SidebarRail`, `SignalPanel`, `SourcePanel` |
+| `DashboardSidebar.tsx` | `DesktopRail`, `SignalPanel`, `SourcePanel` |
 | `EmptyState.tsx` | `EmptyState` |
 | `ErrorState.tsx` | `ErrorState` |
 | `Skeleton.tsx` | `SkeletonState` primitives |
@@ -954,10 +1050,11 @@ This means the next implementation phase should mostly be a **systematisation an
 Approve this component system if the following statements are true:
 
 1. Narvo should remain calm on reading surfaces and more energetic on audio surfaces.
-2. Story, truth, and player components should form the three signature families of the product.
-3. The system should favour rounded modular cards, pill actions, and floating surfaces without becoming soft or generic.
-4. Trust and intelligence components should feel uniquely Narvo, not copied from a standard media app.
-5. The next step after approval should be a visual board and then component-by-component implementation.
+2. The large-UI pivot should apply to dashboard, listen, discover, player, and landing surfaces, not article detail.
+3. Story, truth, and player components should form the three signature families of the product.
+4. The system should favour rounded modular cards, pill actions, floating docks, and anchored rails without becoming soft or generic.
+5. Trust and intelligence components should feel uniquely Narvo, not copied from a standard media app.
+6. The next step after approval should be component-by-component implementation against this final board.
 
 If approved, the build sequence should be:
 
