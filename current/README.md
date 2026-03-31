@@ -15,6 +15,7 @@
 
 - **Narvo_Security_Hardening_Checklist_v1.md** — Security hardening priorities for the current stack: Supabase/RLS, auth boundaries, rate limiting, sensitive routes, spend caps, and verification steps
 - **TECHNICAL_REFERENCE.md** — Current architecture, data model, infrastructure, and implementation reference
+- **Narvo_MVP_Backend_Architecture_v1.md** — MVP backend simplification baseline: target architecture, service boundaries, public API scope, processing flow, and optimization guidance
 
 ### Business
 
