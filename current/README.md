@@ -10,9 +10,14 @@
 - **Narvo_Component_Design_System_v1.md** — Approved component system: dock, rail, pill, story-card, truth/intelligence, player, settings, feedback, and layout-shell families
 - **Narvo_Emotional_Interaction_Guidelines_v1.md** — Interaction guidance: habit loops, trust feedback, premium motion, audio rituals, and delight rules without noise
 - **Narvo_App_Copy.md** — Current user-facing copy system and language direction
+- **Narvo_UI_UX_Revamp_Workflow_v1.md** — Active Wave 1 execution workflow for the B2C frontend revamp
+- **Narvo_UI_Inventory_and_Migration_Map_v1.md** — Route/component inventory, keep-vs-replace map, and legacy drift tracker
+- **Narvo_UI_Route_Acceptance_Checklist_v1.md** — Route-by-route approval checklist for the redesign program
+- **Narvo_MVP_Page_Surface_Map_v1.md** — Canonical MVP page inventory: public/authenticated pages, route aliases, empty/error/loading states, shared shells, and optional vs must-ship surfaces
 
 ### Technical
 
+- **MVP_Implementation_Entry_Spec.md** — Working trace from launch checklist + MVP backend contract into this repo: ordered backlog, route mapping vs `backend/`, security checklist crosswalk, UX sequencing
 - **Narvo_Security_Hardening_Checklist_v1.md** — Security hardening priorities for the current stack: Supabase/RLS, auth boundaries, rate limiting, sensitive routes, spend caps, and verification steps
 - **TECHNICAL_REFERENCE.md** — Current architecture, data model, infrastructure, and implementation reference
 - **Narvo_MVP_Backend_Architecture_v1.md** — MVP backend simplification baseline: target architecture, service boundaries, public API scope, processing flow, and optimization guidance
