@@ -47,6 +47,13 @@ It is not about making the app playful for its own sake. It is about making the 
 - human
 - trustworthy
 
+### Bridging to implementation
+
+- **Component scale, primitives, and motion timings:** [Narvo_Component_Design_System_v1.md](./Narvo_Component_Design_System_v1.md) (especially §14 *Motion and State Rules*).
+- **Where features live by route (Next.js):** `narvo_news/docs/NARVO_APP_ROUTES.md`, aligned to [Narvo_MVP_Page_Surface_Map_v1.md](./Narvo_MVP_Page_Surface_Map_v1.md).
+
+Use the **emotional ladder** (§4) as a QA lens on **briefing entry**, **play / save / download**, and **truth** surfaces before polishing secondary flows.
+
 ---
 
 ## 2. Core Interaction Thesis

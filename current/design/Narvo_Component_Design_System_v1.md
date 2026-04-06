@@ -1041,6 +1041,22 @@ The new system should map onto current files like this:
 | `BreakingNews.tsx` | `BreakingBanner` |
 | `ThemeToggle.tsx` | `ToggleRow`, `SegmentControl` |
 
+### 15.1 Next.js B2C app (`narvo_news` / `frontend/app/`)
+
+The consumer web app uses different filenames but should converge on the contracts in §3.1 (e.g. `NavDock`, `DesktopRail`, `PlayerCluster`, truth family). Initial mapping:
+
+| Current file (`narvo_news`) | Component family (this document) |
+| --- | --- |
+| `components/TruthTag.tsx` | `TruthPill`, `TruthTag` |
+| `components/AudioPlayer.tsx`, `AudioPlayerContext.tsx` | `PlayerBarPersistent`, `PlayerCluster`, transport |
+| `components/app/DesktopRail.tsx` | `DesktopRail` |
+| `components/app/MobileNavDock.tsx` | `NavDock` |
+| `components/app/AuthenticatedAppShell.tsx` | Layout shells (dashboard, settings, library, etc.) |
+| `components/auth/AuthShell.tsx` | Auth / funnel frame |
+| `app/page.tsx` (landing) | `LandingHeroFrame` (target state) |
+
+**Gaps:** Many §3.1 names are not yet standalone modules — e.g. `StoryCardLarge` / `StoryCardCompact`, `FilterPill`, shared `EmptyState` / `ErrorState` — behaviour often lives inline on pages. Emotional and motion targets for implementation are in [Narvo_Emotional_Interaction_Guidelines_v1.md](./Narvo_Emotional_Interaction_Guidelines_v1.md). Route inventory for Next.js: `narvo_news/docs/NARVO_APP_ROUTES.md`.
+
 This means the next implementation phase should mostly be a **systematisation and redesign**, not a total invention from zero.
 
 ---

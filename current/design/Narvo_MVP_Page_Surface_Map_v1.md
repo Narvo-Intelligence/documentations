@@ -4,6 +4,16 @@
 >
 > **Scope:** B2C web MVP only. Includes public pages, authenticated product pages, auth/onboarding, empty/loading/error states, route aliases, and shared system surfaces.
 
+### Multi-repo file paths (read this first)
+
+The **File** columns in §2–§5 still describe a **Vite + `frontend/src/`** layout (`App.jsx`, `pages/*.tsx`). The shipping **Next.js** B2C app in the **`narvo_news`** monorepo uses **`frontend/app/`** with the **same route intent** and different paths.
+
+- **Authoritative route → file map for Next.js:** `narvo_news/docs/NARVO_APP_ROUTES.md` (sibling repo to this `documentations` checkout).
+- **Visual and component contracts** on those surfaces: [Narvo_Component_Design_System_v1.md](./Narvo_Component_Design_System_v1.md).
+- **Interaction quality** (briefing ritual, play/save, trust): [Narvo_Emotional_Interaction_Guidelines_v1.md](./Narvo_Emotional_Interaction_Guidelines_v1.md).
+
+When auditing or specifying work, do not treat the legacy `frontend/src/...` paths as the only source of truth for the Next.js consumer app.
+
 ---
 
 ## 1. MVP page set at a glance
@@ -224,7 +234,8 @@ This document is the page-level counterpart to:
 
 - [MVP_Implementation_Entry_Spec.md](../MVP_Implementation_Entry_Spec.md)
 - `Narvo_Design_Foundation_v5.md`
-- `Narvo_Component_Design_System_v1.md`
+- [Narvo_Component_Design_System_v1.md](./Narvo_Component_Design_System_v1.md)
+- [Narvo_Emotional_Interaction_Guidelines_v1.md](./Narvo_Emotional_Interaction_Guidelines_v1.md)
 - `Narvo_UI_UX_Revamp_Workflow_v1.md`
 
 Use this page map when:
