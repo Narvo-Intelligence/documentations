@@ -421,7 +421,7 @@ Default divider: `rgba(23, 50, 74, 0.10)`. Heavy divider: `rgba(23, 50, 74, 0.18
 
 Mobile-only, floating pill. Breathing room from screen edge. Oversized tap targets.
 
-**Canonical destinations (from `nav-items.ts`):** Home `/dashboard` · Briefing `/briefing` · Listen `/listen` · Search `/search` · Library `/library`
+**Primary destinations (from `nav-items.ts`):** Home `/dashboard` · Listen `/listen` · Discover `/discover` · Library `/library`. Morning Briefing `/briefing` is reached from Home, Listen, and Library; Search `/search` from the universal header (not duplicated in the dock).
 
 Active item: Petrol Teal emphasis. Live/active audio: small vermilion or waveform cue. This is a premium control dock, not a flat utility bar.
 

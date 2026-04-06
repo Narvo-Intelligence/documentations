@@ -316,6 +316,8 @@ min-h-screen flex
 
 **Route protection:** `middleware.ts` checks `narvo_demo_session` cookie. Unauthenticated → redirect to `/auth?next=...`.
 
+**Primary shell links:** `components/app/nav-items.ts` — dock and desktop rail use Home (`/dashboard`), Listen, Discover, Library; Settings stays a separate trailing control. `/briefing` and `/search` remain first-class routes (entry from feed, library, listen hub, and header search).
+
 ### 5.2 API Client
 
 **Public reads:** `lib/narvo-api.ts` → base URL from `NEXT_PUBLIC_NARVO_API_URL` or `NEXT_PUBLIC_BACKEND_URL`. Throws `NarvoApiError` on non-ok responses.
