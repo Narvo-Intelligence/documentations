@@ -135,8 +135,8 @@ narvo_news/
 │   │   │   ├── usePwaApis.ts        # PWA install prompt
 │   │   │   └── useSettings.ts       # User settings SWR
 │   │   ├── components/
-│   │   │   ├── MobileNav.tsx        # Full-width 5-tab bottom bar + More sheet
-│   │   │   ├── AudioPlayerBar.tsx   # Persistent bottom audio dock
+│   │   │   ├── MobileNavDock.tsx    # Floating pill dock (App Router / narvo_news)
+│   │   │   ├── AudioPlayer.tsx      # Persistent player + PlayerCluster
 │   │   │   ├── DashboardLayout.tsx  # Shell layout wrapper
 │   │   │   ├── ErrorState.tsx       # Shared error fallback UI
 │   │   │   └── ...
@@ -467,8 +467,8 @@ The layout shell for authenticated routes is `DashboardLayout`:
 ```jsx
 <div className="flex flex-col h-screen overflow-hidden">
   {/* page content fills remaining height */}
-  <MobileNav />          {/* md:hidden — full-width 5-tab bottom bar */}
-  <AudioPlayerBar />     {/* docked above MobileNav on mobile */}
+  <MobileNavDock />     {/* mobile — floating pill dock */}
+  <AudioPlayer />       {/* persistent player shell */}
 </div>
 ```
 
@@ -586,7 +586,7 @@ The previous version accidentally let cross-origin `/api/*` requests through, ca
 
 ### 5.7 Mobile Navigation
 
-`MobileNav.tsx` — full-width 5-tab bottom bar (mobile only, `md:hidden`).
+`MobileNavDock.tsx` — floating pill dock (mobile; see `narvo_news/frontend/components/app/MobileNavDock.tsx`).
 
 **Structure:**
 ```
@@ -893,7 +893,7 @@ A comprehensive code audit identified 24 improvements that preserve existing log
 9. **Service Worker fixes** (`sw.js`): (a) Stale-while-revalidate for `/api/news` now calls `event.waitUntil(fetchPromise)` so background revalidation isn't garbage-collected. (b) `trimCache()` evicts oldest entries when cache exceeds 150 items.
 10. **Empty `catch {}` blocks replaced** — 20+ silent catch blocks across `AudioContext`, `AuthContext`, `ThemeContext`, hooks, etc. now bind the error parameter (`catch (err)`) for debuggability. Critical paths log to `console.debug`.
 11. **Vite vendor chunk splitting** (`vite.config.js`) — `manualChunks` splits `react`, `framer-motion`, `i18next`, and `swr` into separate cacheable bundles.
-12. **`rel="noopener noreferrer"`** added to all `target="_blank"` links in `DashboardSidebar`, `SourceTimeline`, `ToolsPage`, and `NewsDetailPage`.
+12. **`rel="noopener noreferrer"`** added to all `target="_blank"` links in shell/detail surfaces (`DesktopRail` / legacy sidebar-era components), `SourceTimeline`, `ToolsPage`, and `NewsDetailPage`.
 
 **Docs & Tools page:**
 13. `/tools` page updated with new infrastructure entries: shared httpx pool, IndexedDB eviction, SW cache limiter, CSP, env validation.
@@ -926,7 +926,7 @@ server.py now contains only: app creation, middleware stack, CORS, router regist
 
 **#16 OpenGraph meta:** `react-helmet-async` Helmet tags added to MorningBriefingPage, DiscoverPage, VoiceStudioPage, SearchPage.
 
-**#20 React.memo:** `StoryCard.tsx` — memoized reusable component for recommendation grid cards.
+**#20 React.memo:** story card surfaces — `StoryCardLarge` / list variants in `narvo_news` (historically `StoryCard.tsx`).
 
 **#21 Web Vitals:** `web-vitals` package installed; CLS, FID, LCP, FCP, TTFB reported to console (dev) and Sentry metrics (prod) from `index.jsx`.
 

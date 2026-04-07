@@ -113,11 +113,11 @@ These are not route-level pages in every case, but they are required MVP UI surf
 
 | Surface | Primary files | Why it matters |
 | --- | --- | --- |
-| Desktop rail | `frontend/src/components/DesktopRail.tsx` | Canonical desktop navigation shell |
-| Mobile dock | `frontend/src/components/NavDock.tsx` | Canonical mobile navigation shell |
-| Header shell | `frontend/src/components/DashboardHeader.tsx` | Page-level context and utility actions |
-| Dashboard layout | `frontend/src/components/DashboardLayout.tsx` | Shared authenticated shell wrapper |
-| Persistent audio player | `frontend/src/components/AudioPlayerBar.tsx` | Playback continuity across routes |
+| Desktop rail | `narvo_news/frontend/components/app/DesktopRail.tsx` | Canonical desktop navigation shell |
+| Mobile dock | `narvo_news/frontend/components/app/MobileNavDock.tsx` | Canonical mobile navigation shell |
+| Header shell | (per-route headers inside `AuthenticatedAppShell`) | Page-level context and utility actions |
+| Dashboard layout | `narvo_news/frontend/components/app/AuthenticatedAppShell.tsx` | Shared authenticated shell wrapper (Next.js App Router) |
+| Persistent audio player | `narvo_news/frontend/components/AudioPlayer.tsx` | Playback continuity across routes |
 | Download queue indicator | `frontend/src/components/DownloadQueueIndicator.tsx` | Visible status for offline/download actions |
 | Tour guide modal | `frontend/src/components/TourGuideModal.tsx` | First-run product guidance |
 
@@ -154,7 +154,7 @@ This section answers the practical product question: where does each major MVP f
 | Daily feed | `/dashboard` | Shared story cards, nav shell |
 | Morning digest | `/briefing`, `/dashboard` | Audio player, transcript fallback |
 | Story detail and trust UI | `/news/:id` | `TruthTag`, `CertaintyMeter`, `SourceTimeline` |
-| Persistent audio playback | All authenticated routes | `AudioPlayerBar`, audio context |
+| Persistent audio playback | All authenticated routes | `AudioPlayer` + `AudioPlayerContext` |
 | Listen/resume behavior | `/listen`, `/library`, `/insights` | Queue/history APIs |
 | Save/bookmark | `/dashboard`, `/news/:id`, `/search`, `/library` | bookmarks hook |
 | Offline access | `/library` | download queue, audio cache, service worker |

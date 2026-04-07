@@ -459,7 +459,7 @@ external_factcheck_status · confidence_score · explanation · evidence_links
 | GET | `/api/me/offline` | Authenticated |
 | POST | `/api/me/offline` | Authenticated |
 | DELETE | `/api/me/offline/{story_id}` | Authenticated |
-| GET | `/api/voices` | Canonical voice list — use `/api/tts/voices` (deprecate `/api/news/voices`) |
+| GET | `/api/tts/voices` | Canonical public voice list (replaces legacy `/api/voices`) |
 | GET | `/api/share/{story_id}` | Share URL + Open Graph metadata |
 
 ### Known Mismatches to Resolve

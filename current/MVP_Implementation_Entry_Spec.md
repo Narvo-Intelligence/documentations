@@ -41,13 +41,13 @@ Execution order follows **§4 Launch Priority Order** in doc 08, expanded into F
 | `GET /api/news/breaking`             | `GET /api/news/breaking`                             | Same                                                                                                |
 | `GET /api/news/{story_id}`           | `GET /api/news/{news_id}`                            | Path param name differs only in label                                                               |
 | `GET /api/briefing/latest`           | `GET /api/briefing/latest`                           | `[routes/briefing.py](../../backend/routes/briefing.py)`                                            |
-| `POST /api/briefing/generate`        | `GET /api/briefing/generate`                         | **Method mismatch:** MVP doc says POST; code exposes GET with query params                          |
+| `POST /api/briefing/generate`        | `POST /api/briefing/generate` (+ deprecated `GET` alias) | **Canonical:** POST with JSON body; GET kept for backwards compatibility only.                          |
 | `GET /api/briefing/{date}`           | `GET /api/briefing/{briefing_date}`                  | Same intent                                                                                         |
 | `GET /api/me/preferences`            | `GET /api/me/preferences`                            | `[routes/me.py](../../backend/routes/me.py)`                                                        |
 | `PUT /api/me/preferences`            | `PUT` + `POST /api/me/preferences`                   | POST kept for transition                                                                            |
 | `GET/POST/DELETE /api/me/bookmarks*` | Present                                              |                                                                                                     |
 | `GET/POST/DELETE /api/me/offline*`   | Present                                              |                                                                                                     |
-| `GET /api/voices`                    | `GET /api/tts/voices` **and** `GET /api/news/voices` | **Duplicate surface:** MVP wants one; consolidate client on `/api/tts/voices` or document canonical |
+| `GET /api/voices` (legacy name)      | **`GET /api/tts/voices` only**                       | **`/api/news/voices` not implemented.** Legacy `/api/voices` removed — use `/api/tts/voices`. |
 | `GET /api/share/{story_id}`          | `GET /api/share/{news_id}`                           | `[routes/share.py](../../backend/routes/share.py)`                                                  |
 
 
@@ -64,7 +64,7 @@ Execution order follows **§4 Launch Priority Order** in doc 08, expanded into F
 | `search.py`        | `/api/search`, `/api/trending`                                        | “Broad search” deferred — confirm product still needs minimal search |
 | `factcheck.py`     | `/api/factcheck/*`                                                    | Trust synthesis support; keep behind rate limits                     |
 | `notifications.py` | `/api/notifications/*`                                                | Push/digest; align with security consolidation                       |
-| `settings.py`      | `/api/settings/{user_id}`                                             | Overlaps `/api/me/*` — merge per MVP doc §6.1                        |
+| ~~`settings.py`~~  | ~~`/api/settings/{user_id}`~~                                         | **Removed** — use `/api/me/settings` only                          |
 | `health.py`        | `/api/health`, `/api/metrics`, `/api/analytics/{user_id}`             | Ops; review analytics path for `user_id` pattern                     |
 
 
@@ -80,7 +80,7 @@ Execution order follows **§4 Launch Priority Order** in doc 08, expanded into F
 | Finding                | narvo_news location                                                                                 | Action                                                                                                                                                                         |
 | ---------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Insights path param    | `GET /api/me/insights/summary/{user_id}` — compares to JWT in `[me.py](../../backend/routes/me.py)` | Safer than blind trust; still prefer no path `user_id` for MVP (derive only from JWT)                                                                                          |
-| Legacy settings compat | `GET/POST/PUT /api/settings/{user_id}` in `[settings.py](../../backend/routes/settings.py)`         | For non-`guest`, reads/writes use `**_require_user(request)`** (JWT), not path `user_id` — low IDOR risk but still duplicate surface; deprecate toward `/api/me/settings` only |
+| ~~Legacy settings compat~~ | Removed | Unauthenticated “guest” defaults: client-side `DEFAULT_SETTINGS` / product copy; signed-in users use `/api/me/settings` only. |
 | Health analytics       | `GET /api/analytics/{user_id}` in `[health.py](../../backend/routes/health.py)`                     | **Critical:** no `Depends`/JWT check; path `user_id` is passed straight to Supabase via service role — **IDOR until auth or removal**                                          |
 
 
@@ -94,7 +94,7 @@ Only `/api/tts/*`, `/api/factcheck/*`, `/api/notifications/*` are limited. Check
 | Route                                  | Module           |
 | -------------------------------------- | ---------------- |
 | `POST /api/tts/generate`               | `tts.py`         |
-| `GET /api/briefing/generate`           | `briefing.py`    |
+| `POST /api/briefing/generate` (primary); `GET` alias | `briefing.py`    |
 | `POST /api/translate/text`, `/narrate` | `translation.py` |
 
 

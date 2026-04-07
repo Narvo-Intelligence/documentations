@@ -39,10 +39,7 @@ This workflow keeps data/auth/audio/backend flows intact by default while rebuil
 - Fix TypeScript errors
 - Fix test harness blockers
 - Fix obvious shell-level token misuse
-- Identify legacy duplicates:
-  - `MobileNav` vs `NavDock`
-  - `DashboardSidebar` vs `DesktopRail`
-  - `StoryCard` vs `StoryCardLarge` / `StoryCardCompact`
+- Confirm no legacy shell/card filenames reappear (`MobileNav`, `DashboardSidebar`, monolithic `StoryCard`, `AudioPlayerBar`); canonical: `MobileNavDock`, `DesktopRail`, `StoryCardLarge` + `StoryNewsListCard`, `AudioPlayer`
 
 ### Phase 1 — Source of Truth in Repo
 

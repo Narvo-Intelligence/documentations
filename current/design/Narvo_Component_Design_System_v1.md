@@ -1022,9 +1022,9 @@ Motion rules:
 
 ## 15. Current Codebase Mapping
 
-The new system should map onto current files like this:
+Historical CRA filenames below are **removed** in `narvo_news`; the B2C app maps to §15.1. This table stays as a vocabulary bridge for older docs.
 
-| Current file | Future component family |
+| Historical file (pre–Phase 5) | Component family |
 |-------------|-------------------------|
 | `StoryCard.tsx` | `StoryCardLarge`, `StoryCardCompact`, `RecommendationCard` |
 | `AudioPlayerBar.tsx` | `PlayerBarPersistent`, `QueueItem`, `PlayerCluster` |
@@ -1032,7 +1032,7 @@ The new system should map onto current files like this:
 | `TruthTag.tsx` | `TruthPill`, `TruthTag` |
 | `CertaintyMeter.tsx` | `CertaintyMeter` |
 | `SourceTimeline.tsx` | `SourceTimeline` |
-| `MobileNav.tsx` | `NavDock` |
+| `MobileNav.tsx` | `NavDock` → **`MobileNavDock`** in `narvo_news` |
 | `DashboardHeader.tsx` | `TopBar`, `ContextHeader` |
 | `DashboardSidebar.tsx` | `DesktopRail`, `SignalPanel`, `SourcePanel` |
 | `EmptyState.tsx` | `EmptyState` |

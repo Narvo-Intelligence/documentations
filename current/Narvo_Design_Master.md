@@ -823,7 +823,7 @@ Every meaningful action needs at least instant and confirming feedback. Every lo
 - News Detail: typography leads, proof restrained, actions do not overpower reading
 - Settings/Onboarding/Auth: calmer scale, consistent tokens
 
-### Component Migration Status
+### Component migration status (Phase 5 — v5.1)
 
 | Legacy | Target | Status |
 |--------|--------|--------|
@@ -832,3 +832,5 @@ Every meaningful action needs at least instant and confirming feedback. Every lo
 | `StoryCard.tsx` | `StoryCardLarge` + `StoryNewsListCard` | ✅ Migrated — legacy removed |
 | `AudioPlayerBar.tsx` | `AudioPlayer.tsx` PlayerCluster | ✅ Full expanded sheet built, TimeScrubber, queue, immersive mode |
 | `TruthTag.tsx` | `TruthPill` + calmer truth module | ✅ Mixed state added, Soft Butter, role-coloured SourceTimeline |
+
+**Card surfaces (Phase 5 audit):** dashboard, listen (featured row), and landing samples use `StoryCardLarge` / `StoryCardLargeLanding`; discover and search use `StoryNewsListCard`; library uses `SwipeToDeleteRow` for saved items (appropriate density, not feed cards).

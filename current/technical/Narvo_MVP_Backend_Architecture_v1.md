@@ -107,7 +107,7 @@ Keep the public surface narrow:
 - `GET /api/me/offline`
 - `POST /api/me/offline`
 - `DELETE /api/me/offline/{story_id}`
-- `GET /api/voices`
+- `GET /api/tts/voices`
 - `GET /api/share/{story_id}`
 
 ### Internal Jobs
@@ -392,9 +392,9 @@ That unified surface should cover:
 
 ### 5.4 Voices
 
-#### `GET /api/voices`
+#### `GET /api/tts/voices`
 
-Returns supported TTS voices for current product surfaces.
+Returns supported TTS voices for current product surfaces (canonical; legacy `GET /api/voices` removed).
 
 ### 5.5 Sharing
 

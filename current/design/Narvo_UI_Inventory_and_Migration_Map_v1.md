@@ -30,10 +30,10 @@
 |---|---|---|
 | `DashboardLayout` | Partial v5.1 shell | Refactor forward |
 | `DashboardHeader` | Rebuilt toward v5.1 shell | Keep and refine |
-| `DesktopRail` | Rebuilt as wave-1 shell anchor | Keep and refine |
-| `NavDock` | Rebuilt as wave-1 mobile anchor | Keep and refine |
-| `MobileNav` | Legacy duplicate | Compatibility shim now; remove later |
-| `DashboardSidebar` | Legacy duplicate | Replace with `DesktopRail`; remove later |
+| `DesktopRail` | v5.1 desktop shell (`narvo_news/frontend/components/app/DesktopRail.tsx`) | Canonical |
+| `MobileNavDock` | v5.1 mobile shell (`narvo_news/frontend/components/app/MobileNavDock.tsx`) | Canonical |
+| ~~`MobileNav`~~ | — | Removed (Phase 5); use `MobileNavDock` |
+| ~~`DashboardSidebar`~~ | — | Removed (Phase 5); use `DesktopRail` |
 
 ---
 
@@ -41,10 +41,10 @@
 
 | Legacy / existing | Target family | Status |
 |---|---|---|
-| `StoryCard.tsx` | `StoryCardLarge`, `StoryCardCompact` | Legacy still present; migrate and remove |
+| ~~`StoryCard.tsx`~~ | `StoryCardLarge`, `StoryNewsListCard` | Removed (Phase 5); callers migrated |
 | `TruthTag.tsx` | `TruthPill` + calmer truth module | Keep behavior; redesign presentation |
-| `AudioPlayerBar.tsx` | `PlayerCluster` + persistent player shell | Refactor in upcoming milestone |
-| `AudioPlayer.tsx` | full player shell | Refactor in upcoming milestone |
+| ~~`AudioPlayerBar.tsx`~~ | `AudioPlayer.tsx` / `PlayerCluster` | Removed (Phase 5) |
+| `AudioPlayer.tsx` | full player shell | Canonical persistent player (`narvo_news`) |
 | `ThemeToggle.tsx` | keep behavior; align shell visuals | Refactor forward |
 | `EmptyState`, `ErrorState`, `Skeleton` | same behaviors with v5.1 visuals | Rebuild later wave |
 
@@ -56,7 +56,7 @@
 
 - `rgb(var(--color-*` patterns still exist against hex-based CSS vars in multiple active files
 - v4 naming and commentary still remain in some route files
-- duplicate shell/nav components remain in repo
+- duplicate shell/nav legacy filenames are gone from `narvo_news` (verify no regressions in design tokens)
 - some components rely on compatibility aliases rather than clean v5.1 tokens
 
 ### Priority cleanup order
@@ -97,9 +97,9 @@
 - search surface layout
 - settings surface layout
 
-### Delete after migration
+### Phase 5 complete (narvo_news)
 
-- `MobileNav`
-- `DashboardSidebar`
-- legacy `StoryCard` once all callers are moved
-- stale v4 comments and token references in active surfaces
+- ~~`MobileNav`~~ — deleted; `MobileNavDock` only
+- ~~`DashboardSidebar`~~ — deleted; `DesktopRail` only
+- ~~legacy `StoryCard`~~ — deleted; `StoryCardLarge` / `StoryNewsListCard` only
+- stale v4 comments and token references in active surfaces — ongoing lint pass
