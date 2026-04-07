@@ -732,32 +732,45 @@ Every meaningful action needs at least instant and confirming feedback. Every lo
 | 1 — Source of Truth | This doc + migration map + acceptance checklist maintained | ✅ Done |
 | 2 — Shared Presentation Layer | Root tokens, Tailwind semantics, shell variables, shared primitives | ✅ Done |
 | 3 — Landing + App Shell | Landing page, desktop rail, mobile dock, top header, shell spacing | ✅ Done |
-| 4 — Core Product Surfaces | Dashboard → Briefing + Player → News Detail → Listen → Discover/Library/Search → Settings/Onboarding/Auth → System states | 🔄 In progress |
-| 5 — Consolidation | Remove deprecated components, v4 naming, ensure one component per job | ⬜ Queued |
+| 4 — Core Product Surfaces | Dashboard → Briefing + Player → News Detail → Listen → Discover/Library/Search → Settings/Onboarding/Auth → System states | ✅ Done |
+| 5 — Consolidation | Remove deprecated components, v4 naming, ensure one component per job | 🔄 In progress |
 
 ### Milestone Tracker
 
-**Milestone A — Stabilize**
+**Milestone A — Stabilize** ✅
 - ✅ v5.1 tokens in frontend CSS
 - ✅ Shell reset: DesktopRail, NavDock, DashboardHeader
 - ✅ Landing page replaced with v5.1 hero-first direction
 - ✅ Revamp docs added to repo
-- ❌ Remaining TypeScript errors
-- ❌ Active-route token drift (legacy `rgb(var(--token))` patterns)
+- ✅ TypeScript errors cleared (zero errors as of April 2026)
+- ✅ Token drift cleared — zero `rgb(var(--token))` patterns remain
 
-**Milestone B — Dashboard and Player**
-- ❌ Dashboard large-card shell
-- ❌ Filter pill rail
-- ❌ Briefing entry and scan-state truth cues
-- ❌ Persistent player cluster alignment
+**Milestone B — Dashboard and Player** ✅
+- ✅ Dashboard large-card shell (StoryCardLarge, 2-col grid, featured slot)
+- ✅ Filter pill rail (FilterPillGroup, All / Recommended / Breaking)
+- ✅ Briefing entry and scan-state truth cues (TruthTag, CertaintyMeter, SourceTimeline)
+- ✅ Persistent player cluster alignment (compact bar + full-screen expanded sheet, TimeScrubber, speed, volume, queue, immersive/fullscreen)
 
-**Milestone C — Reading and Detail**
-- ❌ Calm article shell
-- ❌ Quieter action treatment
-- ❌ Truth/certainty/source modules aligned to reading tone
+**Milestone C — Reading and Detail** ✅
+- ✅ Calm article shell (NewsDetailClient, calm reading scale)
+- ✅ Quieter action treatment (actions below body, proof modules restrained)
+- ✅ Truth/certainty/source modules aligned to reading tone (TruthTag mixed state, SourceTimeline role dots, CertaintyMeter light/dark variants)
 
-**Milestone D — Browse, Utility, Support**
-- ❌ Discover, Library, Search, Settings, Auth, Onboarding, Empty/Error/Skeleton states
+**Milestone D — Browse, Utility, Support** ✅
+- ✅ Discover (Stories / Radio / Podcasts tabs, RadioStationCard, PodcastCard, CollectionTile, debounced search)
+- ✅ Library (SwipeToDeleteRow, sort rail, search, cloud + local sync)
+- ✅ Search (existing page)
+- ✅ Settings (account / voice / billing / preferences / accessibility tabs, SaveStateFeedback, theme persistence, display toggles, realtime sync)
+- ✅ Onboarding and Auth (existing pages)
+- ✅ Empty / Error / Skeleton states (EmptyState, ErrorState, Skeleton family — StoryCardSkeleton, ListRowSkeleton, FeedSkeleton, BriefingSkeleton, HeadlineSkeleton)
+- ✅ Briefing transcript seek (segment-linked, char-offset → ratio, seekToRatio wired end-to-end)
+- ✅ Insights (StatTiles, 7-day ListeningTrendChart, individual entry deletion, realtime updates)
+- ✅ Toast system (ToastProvider + useToast hook, 6 variants, AnimatePresence)
+- ✅ QueueItem (order index, mini wave bars, remove, drag-handle support)
+- ✅ BreakingBanner (standalone, reusable across surfaces)
+- ✅ ToggleRow / SelectRow primitives
+- ✅ MobileNavDock live dot (vermilion pulse on Listen when audio playing)
+- ✅ Supabase realtime (listening_history, bookmarks, offline_articles, user_preferences all in publication)
 
 ### MVP Page Inventory
 
@@ -814,8 +827,8 @@ Every meaningful action needs at least instant and confirming feedback. Every lo
 
 | Legacy | Target | Status |
 |--------|--------|--------|
-| `MobileNav.tsx` | `MobileNavDock.tsx` | Compatibility shim — remove after migration |
-| `DashboardSidebar.tsx` | `DesktopRail.tsx` | Replace and remove |
-| `StoryCard.tsx` | `StoryCardLarge` + `StoryNewsListCard` | Legacy present — migrate callers then remove |
-| `AudioPlayerBar.tsx` | `AudioPlayer.tsx` PlayerCluster | Refactor in Milestone B |
-| `TruthTag.tsx` | `TruthPill` + calmer truth module | Keep behaviour, redesign presentation |
+| `MobileNav.tsx` | `MobileNavDock.tsx` | ✅ Migrated — legacy removed |
+| `DashboardSidebar.tsx` | `DesktopRail.tsx` | ✅ Migrated — legacy removed |
+| `StoryCard.tsx` | `StoryCardLarge` + `StoryNewsListCard` | ✅ Migrated — legacy removed |
+| `AudioPlayerBar.tsx` | `AudioPlayer.tsx` PlayerCluster | ✅ Full expanded sheet built, TimeScrubber, queue, immersive mode |
+| `TruthTag.tsx` | `TruthPill` + calmer truth module | ✅ Mixed state added, Soft Butter, role-coloured SourceTimeline |

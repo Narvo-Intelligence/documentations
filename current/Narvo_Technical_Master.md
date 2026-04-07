@@ -626,6 +626,28 @@ cd frontend && npm install && npm run dev   # → http://localhost:3000
 
 ## 12. Decisions Log
 
+### 2026-04 — Full UI revamp complete (Milestones A–D)
+
+All four milestones of the UI/UX revamp workflow are complete. Key deliverables:
+
+**Player:** `AudioPlayer.tsx` now has a full-screen expanded sheet with interactive `TimeScrubber` (pointer-capture draggable, keyboard-accessible), cross-browser fullscreen + iOS immersive mode, mute toggle with pre-mute volume memory, volume range input, skip-to-next (queue), clear-queue, real elapsed/remaining time display, speed selector (0.75×–2×). `AudioPlayerContext` gained `playbackRate`, `volume`, `seekToRatio`, `enqueueTrack`, `removeFromQueueAt`, `clearPlayQueue`, `skipToNext`, `currentTimeSec`, `durationSec`. `lib/player-routes.ts` determines when track info should link to `/news/:id`.
+
+**Briefing transcript seek:** `briefing_service.py` `_compute_story_segments()` stores `story_segments` (`start_char` + `length`) in Supabase. Frontend `buildBriefingTranscriptBlocks()` renders clickable segment blocks; `handleTranscriptSegmentSeek` converts `startChar / scriptLen` to a seek ratio and calls `seekToRatio()`.
+
+**Discover:** Three-tab layout (Stories / Radio / Podcasts). `RadioStationCard` and `PodcastCard` in `components/discover/`. Backend `radio_service.py` and `podcast_service.py` added.
+
+**Insights:** `StatTile` components (time listened, streak, stories, favourite category) from `aggregateListeningInsights()`. `ListeningTrendChart` — 7-day CSS bar chart. Individual entry deletion via `deleteMyListeningHistoryEntry`. Realtime via `useListeningHistoryRealtime`.
+
+**Settings:** Reorganised to account / voice / billing / preferences / accessibility tabs. `SaveStateFeedback` inline sync-state indicator. Theme persistence and display toggles (`high_contrast`, `reduced_motion`) via `lib/narvo-ui-persistence.ts`. `writeDisplayToggles` applies `narvo-high-contrast` / `narvo-reduced-motion` classes to `document.documentElement`. Billing portal and subscription checkout wired.
+
+**New primitives:** `Skeleton.tsx` (StoryCardSkeleton, ListRowSkeleton, FeedSkeleton, BriefingSkeleton), `Toast.tsx` (ToastProvider + `useToast` hook), `ToggleRow.tsx` + `SelectRow.tsx`, `QueueItem.tsx`, `BreakingBanner.tsx`.
+
+**Supabase realtime:** `useUserTableRealtime` generic hook subscribes to `postgres_changes` filtered by `user_id=eq.{uid}`. Migrations 005/006 add `listening_history`, `bookmarks`, `offline_articles`, `user_preferences` to `supabase_realtime` publication. DELETE RLS policy added for `listening_history`.
+
+**TruthTag:** `mixed` state added (Soft Butter). `unverified` resolves to `mixed`. **SourceTimeline:** role-coloured dots (teal = PRIMARY, butter = SUPPORTING, vermilion/alert = CONTEXT) from `assign_source_roles()` backend field.
+
+**ThemeProvider:** now exports `useTheme()` with `{ theme, resolvedTheme, setThemeChoice, toggleTheme }`. `resolvedTheme` resolves `system` via `prefers-color-scheme`.
+
 ### 2026-04 — Frontend migrated to Next.js 15 App Router
 Old Vite/React (`frontend/src/`) replaced by Next.js 15 (`frontend/app/`). Tailwind v4 `@theme` replaces CSS vars-only approach. `motion` replaces `framer-motion`. Lucide replaces Phosphor Icons. Route protection via `middleware.ts` cookie check. Build output remains `build/` via `distDir` in `next.config.ts` for Vercel compatibility.
 
