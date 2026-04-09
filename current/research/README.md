@@ -1,21 +1,23 @@
 # Narvo B2C Revamp — Research Index
 
 > **Authored:** March 2026  
-> **Context:** Pre-revamp research conducted ahead of the Narvo consumer app (narvo_news) restructure, redesign, and feature expansion.  
+> **Context:** Pre-revamp and launch research for the Narvo consumer app (narvo_news): stack, UX, competitors, implementation logs, realtime/audio options, and MVP launch priorities.  
 > **Author:** Ajibola Akelebe — Founder & Sole Developer, Narvo Intelligence
 
 ---
 
 ## Purpose
 
-This directory captures the strategic and technical research that informs the **Narvo B2C revamp** — a full-cycle effort covering UX redesign, code quality, performance, and new feature additions (monetisation, personalisation engine, offline-first improvements, and social features).
+This directory captures the strategic and technical research that informs the **Narvo B2C revamp** — UX redesign, code quality, performance, feature expansion (monetisation, personalisation, offline-first, social), and **shipping an MVP** with grant-ready positioning.
 
-The research was conducted with four goals:
+The research supports four goals:
 
-1. **Validate the current stack** — identify free alternatives that deliver more value at MVP scale
-2. **Map the premium upgrade path** — tools and services to adopt as Narvo scales past MVP
-3. **Define UX best practices** — landing page, feed, navigation, audio player, and onboarding patterns grounded in current industry evidence
-4. **Understand the competitive landscape** — African news apps, global audio news exits, and strategic differentiation opportunities
+1. **Validate the current stack** — free alternatives that deliver more value at MVP scale  
+2. **Map the premium upgrade path** — tools and services to adopt as Narvo scales past MVP  
+3. **Define UX best practices** — landing, feed, navigation, audio player, onboarding, and evidence-based patterns  
+4. **Understand the competitive landscape** — African news apps, global audio news exits, and differentiation  
+
+Later additions (06–08) add **implementation traceability**, **realtime/audio delivery options** (e.g. hosted WebSocket layers, fanout, TTS/delivery tradeoffs), and a **launch checklist** aligned to grants and scope control.
 
 ---
 
@@ -27,16 +29,26 @@ The research was conducted with four goals:
 | 2 | [Premium Tools Roadmap](./02_Premium_Tools_Roadmap.md) | Scaling-phase tools: payments, CDN, personalisation, analytics, social |
 | 3 | [UX Design Patterns](./03_UX_Design_Patterns.md) | Landing page, feed, navigation, audio player, onboarding, microinteractions |
 | 4 | [Competitor Analysis](./04_Competitor_Analysis.md) | African news apps, audio news exits (Curio, Artifact, Audm), design lessons |
-| 5 | [Strategic Opportunities](./05_Strategic_Opportunities.md) | Narvo's 5 decisive advantages, go-to-market priorities, WhatsApp distribution |
+| 5 | [Strategic Opportunities](./05_Strategic_Opportunities.md) | Narvo's decisive advantages, go-to-market priorities, WhatsApp distribution |
+| 6 | [Landing Page Implementation](./06_Landing_Page_Implementation.md) | v3 landing **implementation log**: files touched, `LandingPage.tsx` section architecture, shipped status |
+| 7 | [Realtime and Audio Delivery Analysis](./07_Realtime_and_Audio_Delivery_Analysis.md) | **Working draft** — realtime fanout (e.g. Apinator vs polling/Supabase), audio pipeline fit, Q&A conclusions to extend |
+| 8 | [MVP Launch Checklist and Grant Priority](./08_MVP_Launch_Checklist_and_Grant_Priority.md) | **Working launch plan** — MVP definition, must-ship core, priorities, grant-facing framing |
 
 ---
 
 ## How to Use This Research
 
-- **For engineering decisions** → Start with Doc 01 (stack) and Doc 02 (premium roadmap)
-- **For UX/design work** → Start with Doc 03 (patterns), cross-reference the [Design System v3](../design/Narvo_Design_System_v3.md) and [Brand Guidelines v3](../brand/Narvo_Brand_Guidelines_v3.md)
-- **For product and strategy** → Doc 04 (competitors) + Doc 05 (opportunities)
-- **For investor conversations** → Doc 05 (strategic opportunities) provides the core differentiation narrative
+| For… | Start here |
+|------|------------|
+| **Engineering & stack** | Doc 01 → Doc 02; cross-check [Technical Reference](../technical/TECHNICAL_REFERENCE.md) and [MVP Implementation Entry Spec](../MVP_Implementation_Entry_Spec.md) |
+| **Realtime, WebSockets, audio delivery** | Doc 07 (draft — extend as technical decisions land) |
+| **Launch scope, grants, “what ships first”** | Doc 08 → Doc 05 for narrative; Doc 01–02 for tooling |
+| **UX / design execution** | Doc 03 → Doc 06 (what was built on the landing); align with [Design Foundation v5](../design/Narvo_Design_Foundation_v5.md) and [Component Design System v1](../design/Narvo_Component_Design_System_v1.md) |
+| **Product & strategy** | Doc 04 + Doc 05; Doc 08 for MVP boundaries |
+| **Investor / grant conversations** | Doc 05 + Doc 08 (proposition, must-ship, differentiation) |
+| **Historical UI reference (v4 era)** | [Design System v4](../design/Narvo_Design_System_v4.md) — context only during v5 transition |
+
+Copy and tone: [Narvo App Copy](../design/Narvo_App_Copy.md). Master design index: [Narvo Design Master](../Narvo_Design_Master.md).
 
 ---
 
@@ -54,12 +66,16 @@ The research was conducted with four goals:
 **Pages being cut:** `ToolsPage`, `NarrativeDuelPage`, `ReputationDashboardPage`  
 **Settings consolidation:** `SettingsPage` + `AccountPage` + `SystemSettingsPage` + `AccessibilityPage` → one unified `SettingsPage`
 
+*For execution order and backend crosswalk, prefer [MVP Implementation Entry Spec](../MVP_Implementation_Entry_Spec.md) alongside Doc 08.*
+
 ---
 
 ## Related Documentation
 
-- [Design System v3](../design/Narvo_Design_System_v3.md)
-- [Brand Guidelines v3](../brand/Narvo_Brand_Guidelines_v3.md)
-- [App Copy](../design/Narvo_App_Copy.md)
-- [Technical Reference](../technical/TECHNICAL_REFERENCE.md)
-- [Narvo Overview](../repo-files/Narvo_Overview.md)
+- [Narvo Design Master](../Narvo_Design_Master.md)  
+- [Design Foundation v5](../design/Narvo_Design_Foundation_v5.md)  
+- [Component Design System v1](../design/Narvo_Component_Design_System_v1.md)  
+- [Narvo App Copy](../design/Narvo_App_Copy.md)  
+- [Technical Reference](../technical/TECHNICAL_REFERENCE.md)  
+- [MVP Implementation Entry Spec](../MVP_Implementation_Entry_Spec.md)  
+- [Current documentation index](../README.md)  
