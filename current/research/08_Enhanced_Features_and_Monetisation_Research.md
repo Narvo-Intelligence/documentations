@@ -1,8 +1,8 @@
 # Enhanced Features, Fact-Checking Architecture, and Monetisation Research
 
-> **Series:** Narvo B2C Revamp Research · Document 08  
-> **Date:** April 2026  
-> **Scope:** External research intake — enhanced product features, advanced fact-checking AI, expanded monetisation strategies, LangChain/LangGraph evaluation, CertaintyMeter enhancement, and MVP completion tasks  
+> **Series:** Narvo B2C Revamp Research · Document 08
+> **Date:** April 2026
+> **Scope:** External research intake — enhanced product features, advanced fact-checking AI, expanded monetisation strategies, LangChain/LangGraph evaluation, CertaintyMeter enhancement, and MVP completion tasks
 > **Status:** Evaluated draft — cross-referenced against Docs 01–07 and the `narvo_news` codebase
 
 ---
@@ -46,7 +46,7 @@ This document captures findings from external research conducted in April 2026. 
 
 ### 1.2 Multi-Dialect Code-Switching [NEW]
 
-**Concept:** Allow the AI narrator to naturally switch between English and local dialects (Pidgin, Yoruba, Hausa) within the same story, inserting culturally relevant signifiers.
+**Concept:** Allow the AI narrator to naturally switch between English and local dialects (Pidgin, Yoruba, Hausa, Igbo) within the same story, inserting culturally relevant signifiers.
 
 **Implementation Status:**
 - Not in any existing document or codebase
@@ -274,7 +274,7 @@ With conditional edges: if the evaluator finds a low confidence score, it routes
 
 Replace the CSS bar with a Lottie-driven gauge/needle animation:
 
-**Frame Mapping Formula:**  
+**Frame Mapping Formula:**
 $$\text{Target Frame} = \frac{\text{FactCheck Score}}{100} \times \text{Total Frames}$$
 
 **API Methods:** `goToAndStop(frame, isFrame)` or `playSegments([current, target], true)` for smooth transitions.
@@ -431,5 +431,5 @@ The external research validates the existing SSML approach. Specific comparisons
 
 ---
 
-*Previous: [07 — MVP Launch Checklist and Grant Priority](./07_MVP_Launch_Checklist_and_Grant_Priority.md)*  
+*Previous: [07 — MVP Launch Checklist and Grant Priority](./07_MVP_Launch_Checklist_and_Grant_Priority.md)*
 *Return to: [Research Index](./README.md)*
