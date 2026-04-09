@@ -37,7 +37,8 @@
 - **research/03_UX_Design_Patterns.md** — UX pattern research
 - **research/04_Competitor_Analysis.md** — Competitor analysis
 - **research/05_Strategic_Opportunities.md** — Strategic opportunities
-- **research/06_Landing_Page_Implementation.md** — Landing page implementation guidance
+- **research/06_Realtime_and_Audio_Delivery_Analysis.md** — Realtime and audio delivery analysis
+- **research/07_MVP_Launch_Checklist_and_Grant_Priority.md** — MVP launch checklist and grant priority
 
 ### Pitch
 

@@ -64,7 +64,8 @@ documentations/
 | [03 — UX Design Patterns](current/research/03_UX_Design_Patterns.md) | MD | Landing page, feed, nav, audio player, onboarding, micro-interactions |
 | [04 — Competitor Analysis](current/research/04_Competitor_Analysis.md) | MD | Opera News, Pulse NG, Curio, Artifact, African app design lessons |
 | [05 — Strategic Opportunities](current/research/05_Strategic_Opportunities.md) | MD | Pidgin audio, WhatsApp distribution, Truth Tag, offline, voice-first |
-| [06 — Landing Page Implementation](current/research/06_Landing_Page_Implementation.md) | MD | Implementation guide for the Narvo landing page |
+| [06 — Realtime and Audio Delivery Analysis](current/research/06_Realtime_and_Audio_Delivery_Analysis.md) | MD | Working draft on realtime fanout, audio formats, and delivery choices |
+| [07 — MVP Launch Checklist and Grant Priority](current/research/07_MVP_Launch_Checklist_and_Grant_Priority.md) | MD | Launch scope, must-ship priorities, and grant-facing framing |
 
 ### Pitch
 

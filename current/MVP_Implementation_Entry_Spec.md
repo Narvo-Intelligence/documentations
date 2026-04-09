@@ -1,16 +1,16 @@
 # MVP implementation entry spec (documentations → narvo_news)
 
-> **Purpose:** Executable trace from org docs into this repo. Derived from [08_MVP_Launch_Checklist_and_Grant_Priority.md](research/08_MVP_Launch_Checklist_and_Grant_Priority.md), [Narvo_MVP_Backend_Architecture_v1.md](technical/Narvo_MVP_Backend_Architecture_v1.md), [Narvo_Security_Hardening_Checklist_v1.md](technical/Narvo_Security_Hardening_Checklist_v1.md), [03_UX_Design_Patterns.md](research/03_UX_Design_Patterns.md), and [06_Landing_Page_Implementation.md](research/06_Landing_Page_Implementation.md).  
+> **Purpose:** Executable trace from org docs into this repo. Derived from [07_MVP_Launch_Checklist_and_Grant_Priority.md](research/07_MVP_Launch_Checklist_and_Grant_Priority.md), [Narvo_MVP_Backend_Architecture_v1.md](technical/Narvo_MVP_Backend_Architecture_v1.md), [Narvo_Security_Hardening_Checklist_v1.md](technical/Narvo_Security_Hardening_Checklist_v1.md), and [03_UX_Design_Patterns.md](research/03_UX_Design_Patterns.md).  
 > **Code references:** `[backend/server.py](../../backend/server.py)`, `[backend/routes/](../../backend/routes/)`, `[frontend/](../../frontend/)`.
 
 ---
 
-## 1. Ordered must-ship backlog (from doc 08)
+## 1. Ordered must-ship backlog (from doc 07)
 
-Execution order follows **§4 Launch Priority Order** in doc 08, expanded into FE/BE touchpoints.
+Execution order follows **§4 Launch Priority Order** in doc 07, expanded into FE/BE touchpoints.
 
 
-| Order | Priority | Area (doc 08)                       | Frontend work                                                                                                                      | Backend / data                                                                                                         |
+| Order | Priority | Area (doc 07)                       | Frontend work                                                                                                                      | Backend / data                                                                                                         |
 | ----- | -------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | 1     | P0       | Landing page                        | Landing route: value prop, trust, CTA into app; align copy to [Narvo_App_Copy.md](design/Narvo_App_Copy.md) + Design Foundation v5 | Public reads: `/api/news`, `/api/news/breaking`, metrics if landing uses them                                          |
 | 2     | P0       | Dashboard / feed                    | Audio-first home: Morning Briefing entry, breaking, cards with play + Truth cues                                                   | `GET /api/news`, `GET /api/news/breaking`, `GET /api/briefing/latest`                                                  |
@@ -21,12 +21,12 @@ Execution order follows **§4 Launch Priority Order** in doc 08, expanded into F
 | 7     | P1       | WhatsApp / share                    | Share sheet + preview                                                                                                              | `GET /api/share/{id}`, `GET /api/og/{id}`                                                                              |
 | 8     | P1       | Security hardening                  | Ensure FE only uses anon Supabase + backend for privileged ops                                                                     | See §3                                                                                                                 |
 | 9     | P2       | Onboarding & settings consolidation | Language, voice, interests; single settings surface                                                                                | `GET/PUT /api/me/preferences`, `GET/PUT /api/me/settings`; avoid legacy `/api/settings/{user_id}` for new work         |
-| 10    | P2+      | Analytics polish                    | Instrumentation per doc 08 §7.8                                                                                                    | Event plumbing; optional Mixpanel per research 01                                                                      |
+| 10    | P2+      | Analytics polish                    | Instrumentation per doc 07 §7.8                                                                                                    | Event plumbing; optional Mixpanel per research 01                                                                      |
 
 
-**Parallel “product scope lock” tasks (doc 08 §7.1):** freeze MVP definition, list out-of-scope features, map every new request to the five-step user loop.
+**Parallel “product scope lock” tasks (doc 07 §7.1):** freeze MVP definition, list out-of-scope features, map every new request to the five-step user loop.
 
-**Checklist parity:** Use doc 08 §8.1 Must-Ship as the release gate checklist.
+**Checklist parity:** Use doc 07 §8.1 Must-Ship as the release gate checklist.
 
 ---
 
@@ -113,19 +113,17 @@ Only `/api/tts/*`, `/api/factcheck/*`, `/api/notifications/*` are limited. Check
 
 ---
 
-## 4. UX sequencing (research 03 + 06)
+## 4. UX sequencing (research 03)
 
 Use **after** scope lock. Product implementation order:
 
-1. **Landing (doc 03 §2 + doc 06)** — Single hero CTA, bento features, social proof static or API-backed; performance and skeleton states; v5 tokens supersede v3 hex table in doc 06 (treat 06 as structure/logic reference, not colour source).
+1. **Landing (doc 03 §2)** — Single hero CTA, bento features, social proof static or API-backed; performance and skeleton states; align visuals to Design Foundation v5 and Component Design System v1.
 2. **Onboarding (doc 03 §6)** — Language, voice, interests before heavy feed; aligns with P2 backlog row but should follow landing in funnel.
 3. **Feed / dashboard (doc 03 §3)** — Audio-first cards, Truth visible on every card, data-conscious loading.
 4. **Navigation (doc 03 §4)** — Mobile dock / desktop rail per Design Foundation v5 + component DS v1.
 5. **Audio player (doc 03 §5)** — Persistent, thumb-zone, completion over scroll depth.
 6. **Story detail + Truth (doc 03 §9)** — Sources and verification context.
-7. **Offline (doc 03 §8)** — Explicit offline affordances; low-bandwidth QA per doc 08 §7.6.
-
-**Doc 06 specifics:** Section architecture (Nav → Hero → Stats → Bento → Live feed → Social proof → Voice modal → CTA → Footer) is the reference build order for the landing *page only*; wire live blocks to current API paths listed in §2.
+7. **Offline (doc 03 §8)** — Explicit offline affordances; low-bandwidth QA per doc 07 §7.6.
 
 ---
 
@@ -135,9 +133,8 @@ Use **after** scope lock. Product implementation order:
 | Doc                      | Path                                                                                                             |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | Canonical index          | [README.md](README.md)                                                                                           |
-| MVP launch checklist     | [research/08_MVP_Launch_Checklist_and_Grant_Priority.md](research/08_MVP_Launch_Checklist_and_Grant_Priority.md) |
+| MVP launch checklist     | [research/07_MVP_Launch_Checklist_and_Grant_Priority.md](research/07_MVP_Launch_Checklist_and_Grant_Priority.md) |
 | MVP backend architecture | [technical/Narvo_MVP_Backend_Architecture_v1.md](technical/Narvo_MVP_Backend_Architecture_v1.md)                 |
 | Security                 | [technical/Narvo_Security_Hardening_Checklist_v1.md](technical/Narvo_Security_Hardening_Checklist_v1.md)         |
 | Stack / cost             | [research/01_Stack_Analysis_Free_MVP.md](research/01_Stack_Analysis_Free_MVP.md)                                 |
-
 
