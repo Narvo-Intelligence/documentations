@@ -96,6 +96,7 @@ Current examples:
 
 - [backend/lib/auth.py](../../backend/lib/auth.py) derives identity from the Supabase JWT.
 - [backend/routes/briefing.py](../../backend/routes/briefing.py) resolves briefing personalization from `request.state.user_id`.
+- [backend/routes/news.py](../../backend/routes/news.py) resolves saved-story fallback from the authenticated request scope rather than a caller-supplied `user_id`.
 
 ### 3.2 Global scope and user scope must be explicit
 
@@ -139,12 +140,14 @@ Narvo may still allow anonymous generation in some cases, but anonymous generati
 
 ### 3.5 Normalize global-row representation
 
-The codebase should converge on one representation for global artifacts in storage.
+Narvo currently stores the global/default briefing scope as an empty string in `briefings.user_id`.
 
-At the moment, some paths behave as if global scope is represented by `None`, while other health logic suggests empty-string handling may still exist. That should be normalized in service code so read and write behavior stays predictable.
+Service code should normalize `None` and blank input to that canonical storage value before reads or writes so behavior stays predictable across route handlers, health checks, and cron jobs.
 
 Current reference:
 
+- [backend/services/briefing_service.py](../../backend/services/briefing_service.py)
+- [backend/supabase_migrations/002_briefing_user_segments.sql](../../backend/supabase_migrations/002_briefing_user_segments.sql)
 - [backend/routes/health.py](../../backend/routes/health.py)
 
 ---
@@ -210,10 +213,12 @@ Provider calls should emit logs that let reviewers answer:
 These are the rules that should be protected by tests and review comments.
 
 - No public briefing route accepts caller-controlled `user_id` for personalization.
+- No public news-detail route accepts caller-controlled `user_id` for saved or offline fallback.
 - User identity comes from [backend/lib/auth.py](../../backend/lib/auth.py) and middleware state.
 - The whole `/api/briefing/` surface is rate limited.
 - Anonymous briefing audio generation does not persist to arbitrary briefing rows.
 - User-owned briefing persistence requires ownership verification.
+- Global/default briefings normalize to the empty-string storage scope before DB access.
 - Known-invalid Google voice IDs are normalized before provider calls.
 - Repeated Gemini auth and permission failures enter cooldown instead of retry storms.
 - Scheduler routes require machine verification.
