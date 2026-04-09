@@ -17,7 +17,7 @@ The research supports four goals:
 3. **Define UX best practices** — landing, feed, navigation, audio player, onboarding, and evidence-based patterns  
 4. **Understand the competitive landscape** — African news apps, global audio news exits, and differentiation  
 
-Later additions (06–07) add **realtime/audio delivery options** (e.g. hosted WebSocket layers, fanout, TTS/delivery tradeoffs) and a **launch checklist** aligned to grants and scope control.
+Later additions (06–07) add **realtime/audio delivery options** (e.g. hosted WebSocket layers, fanout, TTS/delivery tradeoffs) and a **launch checklist** aligned to grants and scope control. Doc 08 captures **externally researched** enhanced features, fact-checking architecture, monetisation expansion, and technology evaluations — cross-referenced against both the existing research and the `narvo_news` codebase.
 
 ---
 
@@ -32,6 +32,7 @@ Later additions (06–07) add **realtime/audio delivery options** (e.g. hosted W
 | 5 | [Strategic Opportunities](./05_Strategic_Opportunities.md) | Narvo's decisive advantages, go-to-market priorities, WhatsApp distribution |
 | 6 | [Realtime and Audio Delivery Analysis](./06_Realtime_and_Audio_Delivery_Analysis.md) | **Working draft** — realtime fanout (e.g. Apinator vs polling/Supabase), audio pipeline fit, Q&A conclusions to extend |
 | 7 | [MVP Launch Checklist and Grant Priority](./07_MVP_Launch_Checklist_and_Grant_Priority.md) | **Working launch plan** — MVP definition, must-ship core, priorities, grant-facing framing |
+| 8 | [Enhanced Features and Monetisation Research](./08_Enhanced_Features_and_Monetisation_Research.md) | **Evaluated draft** — enhanced features, advanced fact-checking AI, expanded monetisation, LangChain evaluation, CertaintyMeter enhancement |
 
 ---
 
@@ -39,12 +40,12 @@ Later additions (06–07) add **realtime/audio delivery options** (e.g. hosted W
 
 | For… | Start here |
 |------|------------|
-| **Engineering & stack** | Doc 01 → Doc 02; cross-check [Technical Reference](../technical/TECHNICAL_REFERENCE.md) and [MVP Implementation Entry Spec](../MVP_Implementation_Entry_Spec.md) |
+| **Engineering & stack** | Doc 01 → Doc 02; Doc 08 §5 for LangChain/LangGraph evaluation; cross-check [Technical Reference](../technical/TECHNICAL_REFERENCE.md) and [MVP Implementation Entry Spec](../MVP_Implementation_Entry_Spec.md) |
 | **Realtime, WebSockets, audio delivery** | Doc 06 (draft — extend as technical decisions land) |
 | **Launch scope, grants, “what ships first”** | Doc 07 → Doc 05 for narrative; Doc 01–02 for tooling |
 | **UX / design execution** | Doc 03; align with [Design Foundation v5](../design/Narvo_Design_Foundation_v5.md) and [Component Design System v1](../design/Narvo_Component_Design_System_v1.md) |
 | **Product & strategy** | Doc 04 + Doc 05; Doc 07 for MVP boundaries |
-| **Investor / grant conversations** | Doc 05 + Doc 07 (proposition, must-ship, differentiation) |
+| **Investor / grant conversations** | Doc 05 + Doc 07 + Doc 08 §2–§4 (proposition, must-ship, differentiation, monetisation expansion) |
 | **Historical UI reference (v4 era)** | [Design System v4](../design/Narvo_Design_System_v4.md) — context only during v5 transition |
 
 Copy and tone: [Narvo App Copy](../design/Narvo_App_Copy.md). Master design index: [Narvo Design Master](../Narvo_Design_Master.md).
